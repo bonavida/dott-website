@@ -1,5 +1,5 @@
 cp node_modules/angular/angular.js public/lib/angular.js
 cp node_modules/angular-resource/angular-resource.js	public/lib/angular-resource.js
-cp node_modules/angular-router/angular-router.js public/lib/angular-router.js
+cp node_modules/angular-route/angular-route.js public/lib/angular-route.js
 cp node_modules/angular-ui-router/release/angular-ui-router.js public/lib/angular-ui-router.js
 cp node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js public/lib/angular-ui-bootstrap.js
