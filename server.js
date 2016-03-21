@@ -5,8 +5,8 @@ var mongoose   = require('mongoose');
 
 mongoose.connect('mongodb://localhost/dott');
 
-var User = require('./model/user');
-var Activity = require('./model/activity');
+var User = require('./models/user');
+var Activity = require('./models/activity');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
