@@ -25,9 +25,23 @@
   </nav>
 <!-- Aplicaciones -->
     <div ui-view></div>
+    <ul>
+      <li>
+        <a ui-sref="activities">List</a>
+      </li>
+      <li>
+        <a ui-sref="activities-new">Create</a>
+      </li>
+      <li>
+        <a ui-sref="activities-view">View</a>
+      </li>
+      <li>
+        <a ui-sref="activities-edit">Update</a>
+      </li>
+    </ul>
 
     <script type="text/javascript" src="lib/angular.js"></script>
-    <script type="text/javascript" src="lib/angular-route.js"></script>    
+    <script type="text/javascript" src="lib/angular-route.js"></script>
     <script type="text/javascript" src="lib/angular-resource.js"></script>
     <script type="text/javascript" src="lib/angular-ui-bootstrap.js"></script>
     <script type="text/javascript" src="lib/angular-ui-router.js"></script>

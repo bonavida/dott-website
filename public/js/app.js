@@ -12,15 +12,15 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
         url:'/activities',
         templateUrl:'partials/activities/list.html',
         controller:'ListActivityController'
-    }).state('activities/view',{
+    }).state('activities-view',{
        url:'/activities/:id/view',
        templateUrl:'partials/activities/view.html',
        controller:'ViewActivityController'
-    }).state('activities/new',{
+    }).state('activities-new',{
         url:'/activities/new',
         templateUrl:'partials/activities/add.html',
         controller:'CreateActivityController'
-    }).state('activities/edit',{
+    }).state('activities-edit',{
         url:'/activities/:id/edit',
         templateUrl:'partials/activities/edit.html',
         controller:'EditActivityController'
