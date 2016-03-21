@@ -2,15 +2,12 @@ angular.module('dottApp',['ui.router',
                           'ui.bootstrap',
                           'ngResource',
                           'ngRoute',
-                          'dottApp.factories',
-                          'dottApp.filters',
-                          'dottApp.directives',
                           'dottApp.controllers',
                           'dottApp.services']);//Dependencies
 
 angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRouterProvider){
 
-    $stateProviders
+    $stateProvider
       .state('activities',{
         url:'/activities',
         templateUrl:'partials/activities/list.html',
