@@ -77,7 +77,9 @@ router.get('/activities', function(req, res) {
   });
 });
 
+app.use('/',express.static(__dirname + '/public/'));//point to public folder to serve static content
 app.use('/api', router);
 
-app.listen(port);
-console.log('Listening on port ' + port);
+var server = app.listen(port, function () {
+      console.log('Server listening at http://localhost:'+ port);
+});
