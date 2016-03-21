@@ -26,7 +26,7 @@ npm install
 
 Iniciar el servidor MongoDB
 ```
-npm start-mongo
+npm run mongo
 ```
 Iniciar el servidor NodeJS
 ```
