@@ -17,6 +17,10 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
         url:'/activities/:id/edit',
         templateUrl:'partials/activities/edit.html',
         controller:'EditActivityController'
+    }).state('user-login',{
+    	url:'/login',
+    	templateUrl:'partials/users/login.html',
+    	controller:'LoginUserController'
     });
     $urlRouterProvider.otherwise("/activities");
 }).run(function($state){
