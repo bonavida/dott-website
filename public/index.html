@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html data-ng-app="dottApp">
-<head lang="en">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<base href="/mikrotik-controller/">-->
-    <title>DOTT</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="css/app.css"/>
-</head>
-<body>
+  <head lang="en">
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--<base href="/mikrotik-controller/">-->
+      <title>DOTT</title>
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+      <link rel="stylesheet" type="text/css" href="css/app.css"/>
+  </head>
+  <body>
 
-  <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-          <div class="navbar-header">
-              <a class="navbar-brand" ui-sref="activities">DOTT</a>
-          </div>
-          <div class="collapse navbar-collapse">
-              <ul class="nav navbar-nav">
-                  <li ><a href="#">Home
-                  </a></li>
-              </ul>
-          </div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" ui-sref="activities">DOTT</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li ><a href="#">Home
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+  <!-- Aplicaciones -->
+    <div class="container">
+
+      <ul class="nav nav-tabs">
+        <li>
+          <a ui-sref="activities">List</a>
+        </li>
+        <li>
+          <a ui-sref="activities-new">Create</a>
+        </li>
+        <li>
+          <a ui-sref="activities-view">View</a>
+        </li>
+        <li>
+          <a ui-sref="activities-edit">Update</a>
+        </li>
+        <li>
+        	<a ui-sref="user-login">Login</a>
+        </li>
+      </ul>
+      <div class="row">
+        <div class="col-xs-12" ui-view></div>
       </div>
-  </nav>
-<!-- Aplicaciones -->
 
-    <ul>
-      <li>
-        <a ui-sref="activities">List</a>
-      </li>
-      <li>
-        <a ui-sref="activities-new">Create</a>
-      </li>
-      <li>
-        <a ui-sref="activities-view">View</a>
-      </li>
-      <li>
-        <a ui-sref="activities-edit">Update</a>
-      </li>
-      <li>
-      	<a ui-sref="user-login">Login</a>
-      </li>
-    </ul>
-    <div ui-view></div>
 
+    </div>
     <script type="text/javascript" src="lib/angular.js"></script>
     <script type="text/javascript" src="lib/angular-route.js"></script>
     <script type="text/javascript" src="lib/angular-resource.js"></script>
@@ -57,10 +62,10 @@
 
 
 
-    <script type="text/javascript" src="js/controllers/activity-create.js"></script>
-    <script type="text/javascript" src="js/controllers/activity-edit.js"></script>
-    <script type="text/javascript" src="js/controllers/activity-view.js"></script>
-    <script type="text/javascript" src="js/controllers/activity-list.js"></script>
+    <script type="text/javascript" src="js/controllers/activities/add.js"></script>
+    <script type="text/javascript" src="js/controllers/activities/edit.js"></script>
+    <script type="text/javascript" src="js/controllers/activities/view.js"></script>
+    <script type="text/javascript" src="js/controllers/activities/list.js"></script>
     <script type="text/javascript" src="js/controllers/users/login.js"></script>
 
     <script type="text/javascript" src="js/router.js"></script>

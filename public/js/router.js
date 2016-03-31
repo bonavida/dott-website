@@ -12,7 +12,7 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
     }).state('activities-new',{
         url:'/activities/new',
         templateUrl:'partials/activities/add.html',
-        controller:'CreateActivityController'
+        controller:'AddActivityController'
     }).state('activities-edit',{
         url:'/activities/:id/edit',
         templateUrl:'partials/activities/edit.html',
