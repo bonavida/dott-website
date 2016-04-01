@@ -20,7 +20,11 @@ C:\Program Files\MongoDB\Server\3.2\bin
 ```
 npm install
 ```
-
+##Crear carpeta de la base de datos
+(dentro del directorio raiz del repositorio)
+```
+mkdir data
+```
 
 ##Ejecutar el servidor:
 
