@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
-	<body>
-		<form method="get" accept-charset="UTF-8">
-			Nombre de usuario: <br>
-			<input type="text" name="username" required><br>
-			Contraseña: <br>
-			<input type="password" name="pwd" required><br><br>
-			<input type="submit" value="Iniciar sesión">
-		</form>
-	</body>
-</html>
+<div>
+	<form ng-submit="loginUser()">
+		Nombre de usuario: <br>
+		<input type="text" ng-model="username" required><br>
+		Contraseña: <br>
+		<input type="password" ng-model="pwd" required><br><br>
+		<input type="submit" value="Iniciar sesión">
+	</form>
+	{{username}}
+	{{pwd}}
+</div>
+
