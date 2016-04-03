@@ -1,43 +1,43 @@
 
 <br />
-<form name="form" class="form-horizontal" novalidate>
+<form name="regForm" class="form-horizontal" ng-submit="submitForm(regForm.$valid)" novalidate>
     <!-- Nombre -->
-    <div class="form-group" ng-class="{ 'has-error': form.inputName.$dirty && form.inputName.$error.required }">
-        <label for="inputName" class="col-sm-2 control-label">Nombre</label>
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Nombre</label>
         <div class="col-sm-3">
-            <input type="text" class="form-control" id="inputName" placeholder="Nombre">
+            <input type="text" class="form-control" name="name" placeholder="Nombre" ng-required="true">
         </div>
     </div>
     <!-- Usuario -->
-    <div class="form-group" ng-class="{ 'has-error': form.inputUsername.$dirty && form.inputUsername.$error.required }">
-        <label for="inputUsername" class="col-sm-2 control-label">Usuario</label>
+    <div class="form-group">
+        <label for="username" class="col-sm-2 control-label">Usuario</label>
         <div class="col-sm-3">
-            <input type="text" class="form-control" id="inputUsername" placeholder="Usuario">
+            <input type="text" class="form-control" name="username" placeholder="Usuario" ng-required="true">
         </div>
     </div>
     <!-- Email -->
-    <div class="form-group" ng-class="{ 'has-error' : form.inputEmail.$invalid && form.inputEmail.$dirty }">
-        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+    <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid && regForm.email.$dirty }">
+        <label for="email" class="col-sm-2 control-label">Email</label>
         <div class="col-sm-3">
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+            <input type="email" class="form-control" name="email" placeholder="Email" ng-required="true">
         </div>
-        <p class="help-block" ng-show="form.inputEmail.$invalid && form.inputEmail.$dirty">Enter a valid email.</p>
+        <span class="help-block" ng-show="regForm.email.$invalid && regForm.email.$dirty">Enter a valid email.</span>
     </div>
     <!-- Password -->
-    <div class="form-group" ng-class="{ 'has-error' : form.inputPassword.$invalid && form.inputPassword.$dirty }">
-        <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+    <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid && regForm.password.$dirty }">
+        <label for="password" class="col-sm-2 control-label">Password</label>
         <div class="col-sm-3">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-minlength="8">
+            <input type="password" class="form-control" name="password" placeholder="Password" ng-minlength="8" ng-required="true">
         </div>
-        <p class="help-block" ng-show="form.inputPassword.$error.minlength && form.inputPassword.$dirty">Min password length is 8 characters.</p>
+        <p class="help-block" ng-show="regForm.password.$error.minlength && regForm.password.$dirty">Min password length is 8 characters.</p>
     </div>
     <!-- Fecha de nacimiento -->
     <!-- TODO> importar librerias para el datepicker -->
     <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label">Fecha de nacimiento</label>
+        <label for="birthday" class="col-sm-2 control-label">Fecha de nacimiento</label>
         <div class="col-sm-3">
             <div class="input-group date" id="datetimepicker1">
-                <input type="text" class="form-control" id="inputBirthday" />
+                <input type="text" class="form-control" name="birthday" ng-required="true">
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -50,22 +50,22 @@
         });
     </script>
     <!-- Localidad -->
-    <div class="form-group" ng-class="{ 'has-error': form.inputLocation.$dirty && form.inputLocation.$error.required }">
-        <label for="inputLocation" class="col-sm-2 control-label">Localidad</label>
+    <div class="form-group">
+        <label for="location" class="col-sm-2 control-label">Localidad</label>
         <div class="col-sm-3">
-            <input type="text" class="form-control" id="inputLocation" placeholder="Localidad">
+            <input type="text" class="form-control" name="location" placeholder="Localidad" ng-required="true">
         </div>
     </div>
     <!-- Imagen -->
     <div class="form-group">
-        <label for="inputImage" class="col-sm-2 control-label">Imagen de perfil</label>
+        <label for="profileImage" class="col-sm-2 control-label">Imagen de perfil</label>
         <div class="col-sm-3">
-            <input type="file" id="imputImage">
+            <input type="file" name="profileImage">
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-3">
-            <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Registrarse</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="regForm.$invalid">Registrarse</button>
         </div>
     </div>
 </form>
