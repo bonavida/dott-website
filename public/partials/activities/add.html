@@ -1,7 +1,49 @@
-<form>
-  <div class="form-group">
-    <label for="activity-name">Nombre</label>
-    <input type="text" class="form-control" id="activity-name" placeholder="Nombre">
-  </div>
-  <button type="submit" class="btn btn-default">Crear</button>
-</form>
+<div class="well">
+  <form ng-submit="save()">
+
+    <div class="form-group">
+      <label for="activity-name">Nombre</label>
+      <input type="text" class="form-control" id="activity-name" ng-model="activity.name" placeholder="Nombre">
+    </div>
+
+    <div class="form-group">
+      <label for="activity-description">Descripción</label>
+      <textarea  class="form-control" id="activity-description" ng-model="activity.description" placeholder="Una breve descrición"></textarea >
+    </div>
+<!--
+    <div class="form-group">
+      <label for="activity-image">Imagen</label>
+      <input type="text" class="form-control" id="activity-image" ng-model="activity.image" >
+    </div>
+-->
+    <div class="form-group">
+      <label for="activity-location">Lugar</label>
+      <input type="text" class="form-control" id="activity-location" ng-model="activity.location" placeholder="Lugar">
+    </div>
+
+    <div class="form-group">
+      <label for="activity-executionDate">Fecha</label>
+      <input type="date" class="form-control" id="activity-executionDate" ng-model="activity.executionDate">
+    </div>
+
+
+    <div class="form-group">
+      <label for="activity-minParticipants">Participantes mínimos</label>
+      <input type="number" class="form-control" id="activity-minParticipants" ng-model="activity.minParticipants" >
+    </div>
+
+
+    <div class="form-group">
+      <label for="activity-maxParticipants">Participantes máximos</label>
+      <input type="number" class="form-control" id="activity-maxParticipants" ng-model="activity.maxParticipants" >
+    </div>
+
+<!--
+    <div class="form-group">
+      <label for="activity-categories">Categorias</label>
+      <input type="text" class="form-control" id="activity-categories" ng-model="activity.categories">
+    </div>-->
+
+    <button type="submit" class="btn btn-default btn-info">Crear</button>
+  </form>
+</div>
