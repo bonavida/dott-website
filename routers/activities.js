@@ -20,7 +20,18 @@ module.exports = function(router){
       });
     }).post('/activities', function(req, res, next) {
       var activity = new Activity({
-        //set activity fields
+        name: req.body.name,
+        description: req.body.description,
+        image: req.body.image,
+        location: req.body.location,
+        creator: req.body.creator,
+        executionDate: req.body.executionDate,
+        creationDate: req.body.creationDate,
+        minParticipants: req.body.minParticipants,
+        maxParticipants: req.body.maxParticipants,
+        closed: False,
+        categories: req.body.categories,
+
       });
       activity.save(function(err, activity){
         if(!err){
@@ -50,7 +61,14 @@ module.exports = function(router){
           }else{
 
             activity.name = req.body.name;
-            //set activity fields
+            activity.description= req.body.description;
+            activity.image= req.body.image;
+            activity.location= req.body.location;
+            activity.creator= req.body.creator;
+            activity.executionDate= req.body.executionDate;
+            activity.minParticipants= req.body.minParticipants;
+            activity.maxParticipants= req.body.maxParticipants;
+            activity.categories= req.body.categories;
 
             activity.save(function(err, activity){
               if(!err){
