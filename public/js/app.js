@@ -6,3 +6,4 @@ angular.module('dottApp',['ui.router',
                           'dottApp.services']);//Dependencies
 
 angular.module('dottApp.controllers', ['ui.bootstrap']);
+angular.module('dottApp.services', []);
