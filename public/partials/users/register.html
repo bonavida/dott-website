@@ -1,35 +1,35 @@
 
 <br />
-<form name="regForm" class="form-horizontal" ng-submit="submitForm(regForm.$valid)" novalidate>
+<form name="regForm" class="form-horizontal" novalidate>
     <!-- Nombre -->
     <div class="form-group">
         <label for="name" class="col-sm-2 control-label">Nombre</label>
         <div class="col-sm-3">
-            <input type="text" class="form-control" name="name" placeholder="Nombre" ng-required="true">
+            <input type="text" class="form-control" name="name" placeholder="Nombre" required>
         </div>
     </div>
     <!-- Usuario -->
     <div class="form-group">
         <label for="username" class="col-sm-2 control-label">Usuario</label>
         <div class="col-sm-3">
-            <input type="text" class="form-control" name="username" placeholder="Usuario" ng-required="true">
+            <input type="text" class="form-control" name="username" placeholder="Usuario" required>
         </div>
     </div>
     <!-- Email -->
     <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid && regForm.email.$dirty }">
         <label for="email" class="col-sm-2 control-label">Email</label>
         <div class="col-sm-3">
-            <input type="email" class="form-control" name="email" placeholder="Email" ng-required="true">
+            <input type="email" class="form-control" name="email" placeholder="Email" required>
         </div>
         <span class="help-block" ng-show="regForm.email.$invalid && regForm.email.$dirty">Enter a valid email.</span>
     </div>
     <!-- Password -->
-    <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid && regForm.password.$dirty }">
+    <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid }">
         <label for="password" class="col-sm-2 control-label">Password</label>
         <div class="col-sm-3">
-            <input type="password" class="form-control" name="password" placeholder="Password" ng-minlength="8" ng-required="true">
+            <input type="password" class="form-control" name="password" placeholder="Password" ng-minlength="8" required>
         </div>
-        <p class="help-block" ng-show="regForm.password.$error.minlength && regForm.password.$dirty">Min password length is 8 characters.</p>
+        <p class="help-block" ng-show="regForm.password.$error.minlength">Min password length is 8 characters.</p>
     </div>
     <!-- Fecha de nacimiento -->
     <!-- TODO> importar librerias para el datepicker -->
@@ -37,7 +37,7 @@
         <label for="birthday" class="col-sm-2 control-label">Fecha de nacimiento</label>
         <div class="col-sm-3">
             <div class="input-group date" id="datetimepicker1">
-                <input type="text" class="form-control" name="birthday" ng-required="true">
+                <input type="text" class="form-control" name="birthday" required>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -53,7 +53,7 @@
     <div class="form-group">
         <label for="location" class="col-sm-2 control-label">Localidad</label>
         <div class="col-sm-3">
-            <input type="text" class="form-control" name="location" placeholder="Localidad" ng-required="true">
+            <input type="text" class="form-control" name="location" placeholder="Localidad" required>
         </div>
     </div>
     <!-- Imagen -->
