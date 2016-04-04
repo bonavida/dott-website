@@ -1,12 +1,37 @@
 var User  = require('../models/user');
-
+var passport = require('passport');
 
 module.exports = function(router){
 
   //var router = express.Router();
 
   //Users
-  router.get('/users', function(req, res, next) {
+  router.post('/register', function(req, res) {
+      User.register(new User(
+                 {
+                  username  : req.body.username,
+                  name      : req.body.name,
+                  email     : req.body.email,
+                  birthday  : req.body.birthday,
+                  location  : req.body.location,
+                  image     : req.body.image,
+                 }
+
+                ), req.body.password, function(err, account) {
+          if (err) {
+              res.send(500, err.message);
+          }
+
+          passport.authenticate('local')(req, res, function () {
+              res.sendStatus(200);
+          });
+      });
+  }).post('/login', passport.authenticate('local'), function(req, res) {
+      res.sendStatus(200);
+  }).get('/logout', function(req, res) {
+      req.logout();
+      res.sendStatus(200);
+  }).get('/users', function(req, res, next) {
       User.find(function(err, users){
         if(!err){
           if(!users){

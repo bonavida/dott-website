@@ -2,14 +2,28 @@ var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 mongoose.connect('mongodb://localhost/dott');
 
-//var Activity  = require('./models/activity');
-//var User  = require('./models/user');
+var Activity  = require('./models/activity');
+var User  = require('./models/user');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 var port = process.env.PORT || 3000;
 
