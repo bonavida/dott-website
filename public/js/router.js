@@ -25,6 +25,10 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
       url:'/register',
       templateUrl:'partials/users/register.html',
       controller:'UserRegisterController'
+    }).state('user-list',{
+      url:'/register',
+      templateUrl:'partials/users/list.html',
+      controller:'ListUserController'
     });
     $urlRouterProvider.otherwise("/activities");
 }).run(function($state){
