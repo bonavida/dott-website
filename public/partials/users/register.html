@@ -1,5 +1,5 @@
 <br />
-<form name="regForm" class="form-horizontal" novalidate>
+<form name="regForm" class="form-horizontal" ng-submit="submitForm(regForm.$valid)" novalidate>
     <!-- Nombre -->
     <div class="form-group">
         <label for="name" class="col-sm-2 control-label">Nombre</label>
@@ -14,6 +14,14 @@
             <input type="text" class="form-control" name="username" ng-model="user.username" placeholder="Usuario" required>
         </div>
     </div>
+    <!-- Password -->
+    <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid && !regForm.password.$pristine }">
+        <label for="password" class="col-sm-2 control-label">Contraseña</label>
+        <div class="col-sm-3">
+            <input type="password" class="form-control" name="password" ng-model="user.password" placeholder="Contraseña" ng-minlength="8" required>
+        </div>
+        <p class="help-block" ng-show="regForm.password.$error.minlength && !regForm.password.$pristine">La contraseña debe tener como mínimo 8 caracteres.</p>
+    </div>
     <!-- Email -->
     <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid && !regForm.email.$pristine }">
         <label for="email" class="col-sm-2 control-label">Email</label>
@@ -21,14 +29,6 @@
             <input type="email" class="form-control" name="email" ng-model="user.email" placeholder="Email" required>
         </div>
         <span class="help-block" ng-show="regForm.email.$invalid && !regForm.email.$pristine">Introduce un email válido.</span>
-    </div>
-    <!-- Password -->
-    <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid && !regForm.password.$pristine }">
-        <label for="password" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-3">
-            <input type="password" class="form-control" name="password" ng-model="user.password" placeholder="Password" ng-minlength="8" required>
-        </div>
-        <p class="help-block" ng-show="regForm.password.$error.minlength && !regForm.password.$pristine">La longitud mínima de la contraseña es de 8 caracteres.</p>
     </div>
     <!-- Fecha de nacimiento -->
     <div class="form-group">
@@ -54,6 +54,8 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-3">
             <button type="submit" class="btn btn-primary" ng-disabled="regForm.$invalid">Registrarse</button>
+            <a href="#" class="btn btn-link">Cancelar</a>
         </div>
     </div>
 </form>
+<pre>user = {{user | json}}</pre>
