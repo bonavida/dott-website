@@ -4,6 +4,7 @@ angular.module('dottApp.services').factory('AuthService',
 
     // create user variable
     var user = null;
+    var base_url = $location.absUrl().split("#")[0];
 
     function isLoggedIn() {
       if(user) {
@@ -23,7 +24,7 @@ angular.module('dottApp.services').factory('AuthService',
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post('/user/login',
+      $http.post(base_url+'/login',
         {username: username, password: password})
         // handle success
         .success(function (data, status) {
@@ -52,7 +53,7 @@ angular.module('dottApp.services').factory('AuthService',
       var deferred = $q.defer();
 
       // send a get request to the server
-      $http.get('/user/logout')
+      $http.get(base_url+'/logout')
         // handle success
         .success(function (data) {
           user = false;
@@ -75,7 +76,7 @@ angular.module('dottApp.services').factory('AuthService',
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post('/user/register',
+      $http.post(base_url+'/register',
         {username: username, password: password})
         // handle success
         .success(function (data, status) {
