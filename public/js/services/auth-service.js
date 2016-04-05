@@ -1,6 +1,5 @@
 angular.module('dottApp.services').factory('AuthService',
-  ['$q', '$timeout', '$http',
-  function ($q, $timeout, $http) {
+  function ($q, $timeout, $http, $location) {
 
     // create user variable
     var user = null;
@@ -24,7 +23,7 @@ angular.module('dottApp.services').factory('AuthService',
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post(base_url+'/login',
+      $http.post(base_url+'api/login',
         {username: username, password: password})
         // handle success
         .success(function (data, status) {
@@ -53,7 +52,7 @@ angular.module('dottApp.services').factory('AuthService',
       var deferred = $q.defer();
 
       // send a get request to the server
-      $http.get(base_url+'/logout')
+      $http.get(base_url+'api/logout')
         // handle success
         .success(function (data) {
           user = false;
@@ -76,7 +75,7 @@ angular.module('dottApp.services').factory('AuthService',
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post(base_url+'/register',
+      $http.post(base_url+'api/register',
         {username: username, password: password})
         // handle success
         .success(function (data, status) {
@@ -106,4 +105,4 @@ angular.module('dottApp.services').factory('AuthService',
       register: register
     });
 
-}]);
+});

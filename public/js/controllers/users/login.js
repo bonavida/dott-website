@@ -2,7 +2,7 @@
  * http://usejsdoc.org/
  */
 
-angular.module('dottApp.controllers').controller('LoginUserController', function($scope, $http, $window, User){
+angular.module('dottApp.controllers').controller('LoginUserController', function($scope, $http, $window, User, AuthService){
 	$scope.username;
 	$scope.pwd;
 	$scope.list=[];
@@ -16,23 +16,29 @@ angular.module('dottApp.controllers').controller('LoginUserController', function
 	
 	
 	$scope.login = function(){
-		$scope.aux=0;
-//		$scope.alet=""
-		angular.forEach($scope.list, function(value, key){
-			if(value.username==$scope.username && value.pdw==$scope.pwd){
-				console.log(true)
-				$scope.aux = 1;
-				$window.location.href="http://localhost:3000/#/activities";
-			}
-		});
+//		$scope.aux=0;
+////		$scope.alet=""
+//		angular.forEach($scope.list, function(value, key){
+//			if(value.username==$scope.username && value.pdw==$scope.pwd){
+//				console.log(true)
+//				$scope.aux = 1;
+//				$window.location.href="http://localhost:3000/#/activities";
+//			}
+//		});
+//		
+//		//No se han rellenado todavia lo campos, no quiero que se muestre ningun ERR
+//		if(angular.isUndefined($scope.username) || angular.isUndefined($scope.pwd)){
+//			console.log("undefined");
+//			$scope.aux = 2;
+//		}
 		
-		//No se han rellenado todavia lo campos, no quiero que se muestre ningun ERR
-		if(angular.isUndefined($scope.username) || angular.isUndefined($scope.pwd)){
-			console.log("undefined");
-			$scope.aux = 2;
-		}
+		AuthService.login($scope.username, $scope.pwd).then(function(){
+			//se logea
+			
+		}).catch(function(){
+			//no se logea
+		});
 		
 	};
 	
-	$scope.login();
 });
