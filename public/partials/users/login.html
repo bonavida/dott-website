@@ -7,31 +7,9 @@
 		<input type="password" ng-model="pwd" class="form-control" required><br><br>
 		
 		<button ng-click="login()" class="btn btn-default btn-lg">Iniciar sesión</button>
-		
 	</form>
 	
-	<!-- {{username}}
-	{{pwd}}
-	{{aux}} -->
-	
-	
-	<!-- No termina de funcionar!!(antes iba :S)-->
-	
-	<!-- <div ng-show=aux class="alert alert-danger" role="alert">
-		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-		<span class="sr-only">Error:</span> Usuario y/o contraseña incorrecto
-	</div> -->
-
-	<div ng-if="aux==0" class="alert alert-danger">
+	<div ng-show="status==0" class="alert alert-danger">
 		<strong>Error:</strong> El Usuario y/o contraseña incorrecto
 	</div>
-	
-	<!-- <div ng-if="aux==1" class="alert alert-danger">
-		<strong>Correcto!</strong> Rediregir
-		<a href="https://www.google.es/">si?</a>
-	</div>
-	
-	<div ng-if="aux==2" class="alert alert-danger">
-		<strong>VAMOS INCIA SESIÓN!!</strong> Nada
-	</div> -->
 </div>

@@ -1,5 +1,5 @@
 angular.module('dottApp.services').factory('AuthService',
-  function ($q, $timeout, $http, $location) {
+  function ($q, $timeout, $http, $location, StorageService) {
 
     // create user variable
     var user = null;
@@ -27,8 +27,9 @@ angular.module('dottApp.services').factory('AuthService',
         {username: username, password: password})
         // handle success
         .success(function (data, status) {
-          if(status === 200 && data.status){
+          if(status === 200){
             user = true;
+            StorageService.user={username: username, password: password}
             deferred.resolve();
           } else {
             user = false;
