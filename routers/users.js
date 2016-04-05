@@ -19,7 +19,7 @@ module.exports = function(router){
 
                 ), req.body.password, function(err, account) {
           if (err) {
-              res.send(500, err.message);
+              res.status(500).send(err.message);
           }
 
           passport.authenticate('local')(req, res, function () {

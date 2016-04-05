@@ -15,7 +15,7 @@ module.exports = function(router){
              res.json(activities);
           }
         }else{
-          res.send(500, err.message);
+          res.stutus(500).send(err.message);
         }
       });
     }).post('/activities', function(req, res, next) {
@@ -29,7 +29,7 @@ module.exports = function(router){
         creationDate: req.body.creationDate,
         minParticipants: req.body.minParticipants,
         maxParticipants: req.body.maxParticipants,
-        closed: False,
+        closed: false,
         categories: req.body.categories,
 
       });
