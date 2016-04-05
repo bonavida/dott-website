@@ -29,7 +29,7 @@ angular.module('dottApp.services').factory('AuthService',
         .success(function (data, status) {
           if(status === 200){
             user = true;
-            StorageService.user={username: username, password: password}
+            StorageService.user={username: username, password: password};
             deferred.resolve();
           } else {
             user = false;
