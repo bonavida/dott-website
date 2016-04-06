@@ -15,7 +15,7 @@ module.exports = function(router){
              res.json(activities);
           }
         }else{
-          res.stutus(500).send(err.message);
+          res.status(500).send(err.message);
         }
       });
     }).post('/activities', function(req, res, next) {
