@@ -1,109 +1,86 @@
-angular.module('dottApp.services').factory('AuthService',
-  function ($q, $timeout, $http, $location, StorageService) {
+angular.module('dottApp.services').service('AuthService', function($q, $http, API_ENDPOINT) {
+  var LOCAL_TOKEN_KEY = 'yourTokenKey';
+  var isAuthenticated = false;
+  var authToken;
 
-    // create user variable
-    var user = null;
-    var base_url = $location.absUrl().split("#")[0];
-
-    function isLoggedIn() {
-      if(user) {
-        return true;
-      } else {
-        return false;
-      }
+  function loadUserCredentials() {
+    var token = window.localStorage.getItem(LOCAL_TOKEN_KEY);
+    if (token) {
+      useCredentials(token);
     }
+  }
 
-    function getUserStatus() {
-      return user;
-    }
+  function storeUserCredentials(token) {
+    window.localStorage.setItem(LOCAL_TOKEN_KEY, token);
+    useCredentials(token);
+  }
 
-    function login(username, password) {
+  function useCredentials(token) {
+    isAuthenticated = true;
+    authToken = token;
 
-      // create a new instance of deferred
-      var deferred = $q.defer();
+    // Set the token as header for your requests!
+    $http.defaults.headers.common.Authorization = authToken;
+  }
 
-      // send a post request to the server
-      $http.post(base_url+'api/login',
-        {username: username, password: password})
-        // handle success
-        .success(function (data, status) {
-          if(status === 200){
-            user = true;
-            StorageService.user={username: username, password: password}
-            deferred.resolve();
-          } else {
-            user = false;
-            deferred.reject();
-          }
-        })
-        // handle error
-        .error(function (data) {
-          user = false;
-          deferred.reject();
-        });
+  function destroyUserCredentials() {
+    authToken = undefined;
+    isAuthenticated = false;
+    $http.defaults.headers.common.Authorization = undefined;
+    window.localStorage.removeItem(LOCAL_TOKEN_KEY);
+  }
 
-      // return promise object
-      return deferred.promise;
-
-    }
-
-    function logout() {
-
-      // create a new instance of deferred
-      var deferred = $q.defer();
-
-      // send a get request to the server
-      $http.get(base_url+'api/logout')
-        // handle success
-        .success(function (data) {
-          user = false;
-          deferred.resolve();
-        })
-        // handle error
-        .error(function (data) {
-          user = false;
-          deferred.reject();
-        });
-
-      // return promise object
-      return deferred.promise;
-
-    }
-
-    function register(username, password) {
-
-      // create a new instance of deferred
-      var deferred = $q.defer();
-
-      // send a post request to the server
-      $http.post(base_url+'api/register',
-        {username: username, password: password})
-        // handle success
-        .success(function (data, status) {
-          if(status === 200 && data.status){
-            deferred.resolve();
-          } else {
-            deferred.reject();
-          }
-        })
-        // handle error
-        .error(function (data) {
-          deferred.reject();
-        });
-
-      // return promise object
-      return deferred.promise;
-
-    }
-
-
-    // return available functions for use in the controllers
-    return ({
-      isLoggedIn: isLoggedIn,
-      getUserStatus: getUserStatus,
-      login: login,
-      logout: logout,
-      register: register
+  var register = function(user) {
+    return $q(function(resolve, reject) {
+      $http.post(API_ENDPOINT.url + '/register', user).then(function(result) {
+        if (result.data.success) {
+          resolve(result.data.msg);
+        } else {
+          reject(result.data.msg);
+        }
+      });
     });
+  };
 
+  var login = function(user) {
+    console.log(user);
+    return $q(function(resolve, reject) {
+      $http.post(API_ENDPOINT.url + '/login', user).then(function(result) {
+        if (result.data.success) {
+          storeUserCredentials(result.data.token);
+          resolve(result.data.msg);
+        } else {
+          reject(result.data.msg);
+        }
+      });
+    });
+  };
+
+  var logout = function() {
+    destroyUserCredentials();
+  };
+
+  loadUserCredentials();
+
+  return {
+    login: login,
+    register: register,
+    logout: logout,
+    isAuthenticated: function() {return isAuthenticated;},
+  };
+})
+
+.factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
+  return {
+    responseError: function (response) {
+      $rootScope.$broadcast({
+        401: AUTH_EVENTS.notAuthenticated,
+      }[response.status], response);
+      return $q.reject(response);
+    }
+  };
+})
+
+.config(function ($httpProvider) {
+  $httpProvider.interceptors.push('AuthInterceptor');
 });
