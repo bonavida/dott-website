@@ -29,8 +29,26 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
       url:'/users',
       templateUrl:'partials/users/list.html',
       controller:'ListUserController'
+    }).state('user-profile',{
+      url:'/profile',
+      templateUrl:'partials/users/profile.html',
+      controller:'ProfileUserController'
     });
     $urlRouterProvider.otherwise("/activities");
-}).run(function($state){
-   $state.go('activities');
+}).run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
+  $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
+    if (!AuthService.isAuthenticated()) {
+      console.log(next.name);
+      if (next.name !== 'user-login' && next.name !== 'user-register') {
+        event.preventDefault();
+        $state.go('user-login');
+      }
+    }else{
+      if (next.name === 'user-login' || next.name === 'user-register') {
+        event.preventDefault();
+        $state.go('user-profile');
+      }
+    }
+  });
+  $state.go('activities');
 });
