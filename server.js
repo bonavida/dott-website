@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 var morgan     = require('morgan');
 var passport   = require('passport');
+var cors = require('cors');
 var LocalStrategy = require('passport-local').Strategy;
 var port = process.env.PORT || 3000;
 
@@ -18,11 +19,7 @@ app.use(bodyParser.json());
 
 app.use(morgan('dev'));
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors());
 
 
 app.use(passport.initialize());
