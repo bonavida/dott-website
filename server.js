@@ -5,8 +5,7 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 var morgan     = require('morgan');
 var passport   = require('passport');
-var cors = require('cors');
-var LocalStrategy = require('passport-local').Strategy;
+var cors       = require('cors');
 var port = process.env.PORT || 3000;
 
 var Activity  = require('./models/activity');
