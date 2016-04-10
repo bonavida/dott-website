@@ -30,6 +30,7 @@ app.use('/',express.static(__dirname + '/public/'));//point to public folder to 
 
 var router = express.Router();
 require('./routers/auth')(router);
+require('./routers/files')(router);
 require('./routers/activities')(router);
 require('./routers/users')(router);
 app.use('/api', router);
