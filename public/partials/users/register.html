@@ -11,7 +11,7 @@
     <div class="form-group">
         <label for="username" class="col-sm-2 control-label">Usuario</label>
         <div class="col-sm-3">
-            <input type="text" class="form-control" name="username" ng-model="user.username" placeholder="Usuario" required>
+            <input type="text" class="form-control" name="username" ng-model="user.username" placeholder="Usuario">
         </div>
     </div>
     <!-- Password -->
@@ -59,3 +59,9 @@
     </div>
 </form>
 <pre>user = {{user | json}}</pre>
+<div ng-show="status==0" class="alert alert-danger">
+    <strong>Error:</strong> El usuario y/o e-amil ya existe.
+</div>
+<div ng-show="status==1" class="alert alert-success">
+    <strong>Éxito:</strong> El usuario se ha registrado correctamente.
+</div>
