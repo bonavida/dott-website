@@ -1,49 +1,49 @@
 <div class="well">
-  <form ng-submit="save()">
+  <form name="actForm" ng-submit="save(actForm.$valid)" novalidate>
 
     <div class="form-group">
       <label for="activity-name">Nombre</label>
-      <input type="text" class="form-control" id="activity-name" ng-model="activity.name" placeholder="Nombre">
+      <input type="text" class="form-control" id="activity-name" ng-model="activity.name" placeholder="Nombre" required>
     </div>
 
     <div class="form-group">
       <label for="activity-description">Descripción</label>
       <textarea  class="form-control" id="activity-description" ng-model="activity.description" placeholder="Una breve descripción"></textarea >
     </div>
+    
 <!--
     <div class="form-group">
       <label for="activity-image">Imagen</label>
       <input type="text" class="form-control" id="activity-image" ng-model="activity.image" >
     </div>
 -->
+
     <div class="form-group">
       <label for="activity-location">Lugar</label>
-      <input type="text" class="form-control" id="activity-location" ng-model="activity.location" placeholder="Lugar">
+      <input type="text" class="form-control" id="activity-location" ng-model="activity.location" placeholder="Lugar" required>
     </div>
 
     <div class="form-group">
       <label for="activity-executionDate">Fecha</label>
-      <input type="date" class="form-control" id="activity-executionDate" ng-model="activity.executionDate">
+      <input type="date" class="form-control" id="activity-executionDate" ng-model="activity.executionDate" required>
     </div>
-
 
     <div class="form-group">
       <label for="activity-minParticipants">Participantes mínimos</label>
-      <input type="number" class="form-control" id="activity-minParticipants" ng-model="activity.minParticipants" >
+      <input type="number" class="form-control" name="minParticipants" ng-model="activity.minParticipants" required>
     </div>
-
 
     <div class="form-group">
       <label for="activity-maxParticipants">Participantes máximos</label>
-      <input type="number" class="form-control" id="activity-maxParticipants" ng-model="activity.maxParticipants" >
+      <input type="number" class="form-control" id="maxParticipants" name="maxParticipants" min ="{{activity.minParticipants+1}}"  ng-model="activity.maxParticipants" required>
+       <p ng-show="actForm.maxParticipants.$error.min" class="text-danger help-block">Número de participantes maximo debe ser mayor que el mínimo.</p>
     </div>
-
 <!--
     <div class="form-group">
       <label for="activity-categories">Categorias</label>
       <input type="text" class="form-control" id="activity-categories" ng-model="activity.categories">
     </div>-->
 
-    <button type="submit" class="btn btn-default btn-info">Crear</button>
+    <button type="submit" class="btn btn-default btn-info" ng-disabled="actForm.$invalid">Crear</button>
   </form>
 </div>

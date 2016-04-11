@@ -4,3 +4,4 @@ data/
 .settings/
 RemoteSystemsTempFiles/
 npm-debug.log
+.project

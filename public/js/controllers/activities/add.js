@@ -8,7 +8,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
     executionDate:   new Date(),
     creationDate:  new Date(),
     minParticipants: 1,
-    maxParticipants: 1,
+    maxParticipants: 2,
     //categories: [{name:""}]
   };
   $scope.message="";
