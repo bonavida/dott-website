@@ -1,15 +1,18 @@
-<div>
-
-	<form class="form-group">
-		Nombre de usuario: <br>
-		<input type="text" ng-model="username" class="form-control" required><br>
-		Contraseña: <br>
-		<input type="password" ng-model="pwd" class="form-control" required><br><br>
-
-		<button ng-click="login()" class="btn btn-default btn-lg">Iniciar sesión</button>
+<div class="col-xs-4">
+	<form name="logForm" ng-submit="login(logForm.$valid)" novalidate>
+		<div class="form-group">
+			<label for="username">Nombre de usuario: </label>
+			<input type="text" ng-model="username" class="form-control" required>
+		</div>
+		<div class="form-group">
+			<label for="pwd">Contraseña:</label>
+			<input type="password" name="pwd" ng-model="pwd" class="form-control" required>
+		</div>
+		
+		<input type="submit" class="btn btn-default btn-info" value="Iniciar sesión" ng-disabled="logForm.$invalid"></input>
 	</form>
 
-	<div ng-show="status==0" class="alert alert-danger">
+	<!-- <div ng-show="status==0" class="alert alert-danger">
 		<strong>Error:</strong> El usuario y/o contraseña es incorrecto
-	</div>
+	</div> -->
 </div>
