@@ -1,5 +1,6 @@
 angular.module('dottApp',['ui.router',
                           'ui.bootstrap',
+                          'ngFileUpload',
                           'ngResource',
                           'ngRoute',
                           'dottApp.controllers',
