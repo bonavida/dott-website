@@ -1,66 +1,52 @@
-<br />
-<form name="regForm" class="form-horizontal" ng-submit="submitForm(regForm.$valid)" novalidate>
-    <!-- Nombre -->
-    <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">Nombre</label>
-        <div class="col-sm-3">
-            <input type="text" class="form-control" name="name" ng-model="user.name" placeholder="Nombre" required>
-        </div>
-    </div>
-    <!-- Usuario -->
-    <div class="form-group">
-        <label for="username" class="col-sm-2 control-label">Usuario</label>
-        <div class="col-sm-3">
-            <input type="text" class="form-control" name="username" ng-model="user.username" placeholder="Usuario">
-        </div>
-    </div>
-    <!-- Password -->
-    <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid && !regForm.password.$pristine }">
-        <label for="password" class="col-sm-2 control-label">Contraseña</label>
-        <div class="col-sm-3">
-            <input type="password" class="form-control" name="password" ng-model="user.password" placeholder="Contraseña" ng-minlength="8" required>
-        </div>
+<h2>Registrarse</h2>
+<div class="well">
+  <form name="regForm" class="form-horizontal" ng-submit="submitForm(regForm.$valid)" novalidate>
+      <!-- Nombre -->
+      <div class="form-group">
+        <label for="name" class="control-label">Nombre</label>
+        <input type="text" class="form-control" name="name" ng-model="user.name" placeholder="Nombre" required>
+      </div>
+      <!-- Usuario -->
+      <div class="form-group">
+        <label for="username" class="control-label">Usuario</label>
+        <input type="text" class="form-control" name="username" ng-model="user.username" placeholder="Usuario">
+      </div>
+      <!-- Password -->
+      <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid && !regForm.password.$pristine }">
+        <label for="password" class="control-label">Contraseña</label>
+        <input type="password" class="form-control" name="password" ng-model="user.password" placeholder="Contraseña" ng-minlength="8" required>
         <p class="help-block" ng-show="regForm.password.$error.minlength && !regForm.password.$pristine">La contraseña debe tener como mínimo 8 caracteres.</p>
-    </div>
-    <!-- Email -->
-    <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid && !regForm.email.$pristine }">
-        <label for="email" class="col-sm-2 control-label">Email</label>
-        <div class="col-sm-3">
-            <input type="email" class="form-control" name="email" ng-model="user.email" placeholder="Email" required>
-        </div>
+      </div>
+      <!-- Email -->
+      <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid && !regForm.email.$pristine }">
+        <label for="email" class="control-label">Email</label>
+        <input type="email" class="form-control" name="email" ng-model="user.email" placeholder="Email" required>
         <span class="help-block" ng-show="regForm.email.$invalid && !regForm.email.$pristine">Introduce un email válido.</span>
-    </div>
-    <!-- Fecha de nacimiento -->
-    <div class="form-group">
-        <label for="birthday" class="col-sm-2 control-label">Fecha de nacimiento</label>
-        <div class="col-sm-3">
-            <input type="date" class="form-control" name="birthday" ng-model="user.birthday" required>
-        </div>
-    </div>
-    <!-- Localidad -->
-    <div class="form-group">
-        <label for="location" class="col-sm-2 control-label">Localidad</label>
-        <div class="col-sm-3">
-            <input type="text" class="form-control" name="location" ng-model="user.location" placeholder="Localidad" required>
-        </div>
-    </div>
-    <!-- Imagen -->
-    <div class="form-group">
-        <label for="profileImage" class="col-sm-2 control-label">Imagen de perfil</label>
-        <div class="col-sm-3">
-            <input type="file" name="profileImage" ng-model="user.profileImage" >
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-3">
-            <button type="submit" class="btn btn-primary" ng-disabled="regForm.$invalid">Registrarse</button>
-            <a href="#" class="btn btn-link">Cancelar</a>
-        </div>
-    </div>
-</form>
-<div ng-show="status==0" class="alert alert-danger">
-    <strong>Error:</strong> El usuario y/o e-amil ya existe.
-</div>
-<div ng-show="status==1" class="alert alert-success">
-    <strong>Éxito:</strong> El usuario se ha registrado correctamente.
+      </div>
+      <!-- Fecha de nacimiento -->
+      <div class="form-group">
+        <label for="birthday" class="control-label">Fecha de nacimiento</label>
+        <input type="date" class="form-control" name="birthday" ng-model="user.birthday" required>
+      </div>
+      <!-- Localidad -->
+      <div class="form-group">
+        <label for="location" class="control-label">Localidad</label>
+        <input type="text" class="form-control" name="location" ng-model="user.location" placeholder="Localidad" required>
+      </div>
+      <!-- Imagen -->
+      <div class="form-group">
+        <label for="profileImage" class="control-label">Imagen de perfil</label>
+        <input type="file" name="profileImage" ng-model="user.profileImage" >
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" ng-disabled="regForm.$invalid">Registrarse</button>
+        <a href="#" class="btn btn-link">Cancelar</a>
+      </div>
+  </form>
+  <div ng-show="status==0" class="alert alert-danger">
+      <strong>Error:</strong> El usuario y/o e-amil ya existe.
+  </div>
+  <div ng-show="status==1" class="alert alert-success">
+      <strong>Éxito:</strong> El usuario se ha registrado correctamente.
+  </div>
 </div>

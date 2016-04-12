@@ -1,5 +1,6 @@
 angular.module('dottApp.controllers').controller('UserRegisterController', function($scope, $state, $timeout, AuthService) {
     $scope.user = {};
+    $scope.user.birthday = new Date();
     $scope.msg = "";
     $scope.status = 2;
 
