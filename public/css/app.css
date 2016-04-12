@@ -23,3 +23,8 @@
 .help-block.text-danger {
   color: #ff0404!important;
 }
+
+/*CENTER IMAGES*/
+.img-responsive {
+    margin: 0 auto;
+}
