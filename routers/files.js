@@ -7,7 +7,10 @@ module.exports = function(router) {
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
-        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+        var filename = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1];
+        //req.file= './public/uploads/'+filename;
+
+        cb(null, filename);
     }
   });
 
@@ -16,19 +19,14 @@ module.exports = function(router) {
   }).single('file');
 
   router.post('/uploads', function(req, res) {
-    upload(req, res, function(err) {
+    upload(req, res, function(err, data) {
       if (err) {
-        console.log(err);
-        res.json({
-          error_code: 1,
-          err_desc: err
-        });
+        res.json({success: false, err: err });
         return;
       }
-      res.json({
-        error_code: 0,
-        err_desc: null
-      });
+      var url = req.file.destination+req.file.filename;
+      url = "/"+url.split('/').slice(2,url.length).join("/");
+      res.json({success: true, url:url});
     });
   });
 };

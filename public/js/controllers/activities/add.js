@@ -2,7 +2,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
   $scope.activity = {
     name: "",
     description: "",
-    //image:   "",//TODO
+    image:   "",
     location: "",
     creator: {},
     executionDate:   new Date(),
@@ -31,17 +31,16 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
   };
 
   $scope.upload = function (file) {
-
-      console.log("1",file);
-      console.log("2",$scope.file);
       Upload.upload({
           url: 'http://localhost:3000/api/uploads', //webAPI exposed to upload the file
           data:{file:file} //pass file as data, should be user ng-model
       }).then(function (resp) { //upload function returns a promise
-          if(resp.data.error_code === 0){ //validate success
-              console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+        console.log("....",resp);
+          if(resp.data.success){ //validate success
+              console.log('Success');
+              $scope.activity.image = resp.data.url;
           } else {
-              console.log('an error occured');
+              console.log('Error');
           }
       }, function (resp) { //catch error
           console.log('Error status: ' + resp.status);
