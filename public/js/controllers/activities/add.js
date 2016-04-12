@@ -2,7 +2,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
   $scope.activity = {
     name: "",
     description: "",
-    image:   "",
+    image:   "images/default.jpg",
     location: "",
     creator: {},
     executionDate:   new Date(),
@@ -25,9 +25,9 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
 
   $scope.file="";
   $scope.submit = function(){ //function to call on form submit
-      //if ($scope.upload_form.file.$valid && $scope.file) { //check if from is valid
+      if ($scope.actForm.file.$valid && $scope.file) { //check if from is valid
           $scope.upload($scope.file); //call upload function
-      //}
+      }
   };
 
   $scope.upload = function (file) {
@@ -47,12 +47,8 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
       }, function (evt) {
           console.log(evt);
           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-          console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-          $scope.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+          $scope.progress = progressPercentage + '% subido';
       });
   };
-
-
-
 
 });
