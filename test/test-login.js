@@ -13,7 +13,7 @@ describe('API tests', function(){
 	};
 	var base = "http://127.0.0.1:3000/";
 	
-	it('Primer test login', function(done){
+	it('Iniciar sesión', function(done){
 		rest.post(base+"api/login", {data: user}).on("complete", function(data){
 			assert(data.success);
 			assert(data.token);
@@ -21,5 +21,20 @@ describe('API tests', function(){
 		});
 	});
 	
+	it('Iniciar sesión con un usuario no existente', function(done){
+		user.username = "username"
+		rest.post(base+"api/login", {data: user}).on("complete", function(data){
+			assert(!data.success);
+			done();
+		});
+	});
+	
+	it('Iniciar sesión sin contraseña', function(done){
+		user.password = ""
+		rest.post(base+"api/login", {data: user}).on("complete", function(data){
+			assert(!data.success);
+			done();
+		});
+	});
 	
 });
