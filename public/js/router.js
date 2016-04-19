@@ -33,6 +33,10 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
       url:'/profile',
       templateUrl:'partials/users/profile.html',
       controller:'ProfileUserController'
+    }).state('user-profile',{
+    	url:'/edit',
+    	templateUrl:'partials/users/edit.html',
+    	controller:'EditUserController'
     });
     $urlRouterProvider.otherwise("/activities");
 }).run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
