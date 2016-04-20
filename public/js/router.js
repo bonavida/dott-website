@@ -33,7 +33,7 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
       url:'/profile',
       templateUrl:'partials/users/profile.html',
       controller:'ProfileUserController'
-    }).state('user-profile',{
+    }).state('user-edit',{
     	url:'/edit',
     	templateUrl:'partials/users/edit.html',
     	controller:'EditUserController'
