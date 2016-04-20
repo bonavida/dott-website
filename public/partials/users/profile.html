@@ -1,2 +1,36 @@
-<p>{{user.name}}</p>
-<button class="btn btn-danger" ng-click="logout()">Cerrar sesión</button>
+<h2>Perfil de {{user.name}}</h2>
+<div class="well">
+    <div class="col-sm-2 pull-left">
+        <img src="{{user.image}}" class="img-circle img-responsive" width="200">
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <table class="table table-user-information">
+                <tbody>
+                      <tr>
+                          <th>Nombre</th>
+                          <td>{{user.name}}</td>
+                      </tr>
+                      <tr>
+                          <th>Usuario</th>
+                          <td>{{user.username}}</td>
+                      </tr>
+                      <tr>
+                          <th>Email</th>
+                          <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                      </tr>
+                      <tr>
+                          <th>Fecha de nacimiento</th>
+                          <td>{{user.birthday}}</td>
+                      </tr>
+                      <tr>
+                          <th>Localidad</th>
+                          <td>{{user.location}}</td>
+                      </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-primary" href="#">Editar perfil</button>
+            <button class="btn btn-danger" ng-click="logout()">Cerrar sesión</button>
+        </div>
+    </div>
+</div>
