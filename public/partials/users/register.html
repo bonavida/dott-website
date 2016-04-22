@@ -55,7 +55,6 @@
 							<span class="btn btn-default btn-file">
 								Seleccionar imagen
 								<input
-								  required
 								  type="file"
 								  ng-model="file"
 								  name="file"
@@ -75,12 +74,12 @@
 				<div class="form-group">
 					<div class="">
 						<div class="col-xs-12">
-							<button class="btn btn-default" type="submit" ng-click="submit()">Subir imagen</button>
+							<button class="btn btn-default" ng-click="submit()">Subir imagen</button>
 						</div>
 					</div>
 				</div>
 
-		        <img class="img-responsive" src="{{user.image}}"/>
+		        <img class="img-responsive" src="{{user.image}}" width="200" />
 			</div>
 		</div>
 	</div>

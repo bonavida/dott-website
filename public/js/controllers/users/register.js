@@ -24,7 +24,7 @@ angular.module('dottApp.controllers').controller('UserRegisterController', funct
         $state.go('activities');
         console.log("REDIRIGIR!");
     }
-    
+
     $scope.file="";
     $scope.submit = function(){ //function to call on form submit
         if ($scope.regForm.file.$valid && $scope.file) { //check if from is valid
