@@ -1,4 +1,4 @@
-angular.module('dottApp.controllers').controller('AddActivityController', function($scope, Upload, ActivityService, ActivityValidator){
+angular.module('dottApp.controllers').controller('AddActivityController', function($scope, $state, Upload, ActivityService, ActivityValidator){
   $scope.activity = {
     name: "",
     description: "",
@@ -17,6 +17,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
     if(ActivityValidator.isValid(  $scope.activity )){
       ActivityService.add( $scope.activity).then(function(data){
         $scope.message="Actividad creada con éxito";
+          $state.go("activities");
       });
     }else{
       $scope.message="Datos inválidos";

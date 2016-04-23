@@ -1,3 +1,15 @@
-angular.module('dottApp.controllers').controller('ViewActivityController',function($scope, ActivityService){
-  console.log("view");
+angular.module('dottApp.controllers').controller('ViewActivityController',function($scope, $stateParams, ActivityService){
+    //$scope.activity = {};
+
+    /*$scope.getActivity = function() {
+        ActivityService.getByID("571a969d4c5af2d771f1ada8").then(function (activity) {
+            $scope.activity = activity;
+            console.log(activity.name);
+        });
+    };
+
+    $scope.getActivity();
+    */
+
+    $scope.activity = ActivityService.getByID("571ab2b57327f71f3e219073");
 });

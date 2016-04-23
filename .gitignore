@@ -5,3 +5,4 @@ data/
 RemoteSystemsTempFiles/
 npm-debug.log
 .project
+.idea
