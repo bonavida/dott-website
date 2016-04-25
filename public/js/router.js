@@ -34,7 +34,7 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
       templateUrl:'partials/users/profile.html',
       controller:'ProfileUserController'
     }).state('user-edit',{
-    	url:'/edit',
+    	url:'/profile/update',
     	templateUrl:'partials/users/edit.html',
     	controller:'EditUserController'
     }).state('category-add',{
