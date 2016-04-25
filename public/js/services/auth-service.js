@@ -71,7 +71,19 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
   var logout = function() {
     destroyUserCredentials();
   };
-
+  
+  var edit = function(user) {
+    return $q(function(resolve, reject) {
+      $http.put(API_ENDPOINT.url + '/profile', user).then(function(result) {
+        if (result.data.success) {
+          resolve(result.data.msg);
+        } else {
+          reject(result.data.msg);
+        }
+      });
+    });
+  };
+	  
   loadUserCredentials();
 
   return {
@@ -79,6 +91,7 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
     register: register,
     logout: logout,
     getUser:getUser,
+    edit: edit,
     isAuthenticated: function() {return isAuthenticated;},
   };
 })

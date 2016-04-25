@@ -1,0 +1,108 @@
+<h2>Editar perfil {{user.name}}</h2>
+<div class="well">
+  <form name="edForm" class="form-horizontal" ng-submit="submitForm(edForm.$valid)" novalidate>
+  	<div class="row">
+  		<div class="col-xs-6">
+  			<div class="col-xs-12">
+				
+				<!-- Usuario -->
+				<div class="form-group">
+				  <label for="username" class="control-label">Usuario</label>
+				  <input type="text" class="form-control" name="username" ng-model="user.username" disabled>
+				</div>
+				
+				<!-- Nombre -->
+				<div class="form-group">
+				  <label for="name" class="control-label">Nombre</label>
+				  <input type="text" class="form-control" name="name" ng-model="user.name">
+				</div>
+
+				<!-- Password APARTE
+				<div class="form-group" ng-class="{ 'has-error' : edForm.password.$invalid && !edForm.password.$pristine }">
+				  <label for="password" class="control-label">Antigua contraseña</label>
+				  <input type="password" class="form-control" name="password" ng-model="user.password" ng-minlength="8" required>
+				  <p class="help-block" ng-show="edForm.password.$error.minlength && !edForm.password.$pristine">La contraseña debe tener como mínimo 8 caracteres.</p>
+				</div>
+				
+				<div class="form-group" ng-class="{ 'has-error' : edForm.password.$invalid && !edForm.password.$pristine }">
+				  <label for="password" class="control-label">Nueva contraseña</label>
+				  <input type="password" class="form-control" name="password" ng-model="user.password" ng-minlength="8" required>
+				  <p class="help-block" ng-show="edForm.password.$error.minlength && !edForm.password.$pristine">La contraseña debe tener como mínimo 8 caracteres.</p>
+				</div>
+				
+				<div class="form-group" ng-class="{ 'has-error' : edForm.password.$invalid && !edForm.password.$pristine }">
+				  <label for="password" class="control-label">Repetir nueva contraseña</label>
+				  <input type="password" class="form-control" name="password" ng-model="user.password" ng-minlength="8" required>
+				  <p class="help-block" ng-show="edForm.password.$error.minlength && !edForm.password.$pristine">La contraseña debe tener como mínimo 8 caracteres.</p>
+				</div> -->
+				
+				<!-- Email -->
+				<div class="form-group" ng-class="{ 'has-error' : edForm.email.$invalid && !edForm.email.$pristine }">
+				  <label for="email" class="control-label">Email</label>
+				  <input type="email" class="form-control" name="email" ng-model="user.email">
+				  <span class="help-block" ng-show="edForm.email.$invalid && !edForm.email.$pristine">Introduce un email válido.</span>
+				</div>
+
+				<!-- Localidad -->
+				<div class="form-group">
+				  <label for="location" class="control-label">Localidad</label>
+				  <input type="text" class="form-control" name="location" ng-model="user.location">
+				</div>
+			</div>
+		</div>
+
+		<!-- Imagen -->
+		<div class="col-xs-6">
+			<div class="col-xs-12">
+				<h3>Imagen de perfil</h3>
+
+				<div class="form-group">
+					<div class="">
+						<div class="col-xs-6">
+							<span class="btn btn-default btn-file">
+								Seleccionar imagen
+								<input
+								  type="file"
+								  ng-model="file"
+								  name="file"
+								  ngf-select
+								  ngf-pattern="'image/*'"
+								  accept="image/*"
+								  ngf-max-size="1MB"/>
+							</span>
+						</div>
+						<div class="col-xs-6">
+							<img class="pull-right" style="width:100px;" ngf-thumbnail="file"/>
+							<p>{{progress}}</p>
+							<i class=" help-block text-danger" ng-show="edForm.file.$error.maxSize">Imagen es demasiado pesada (max 20MB)</i>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="">
+						<div class="col-xs-12">
+							<button class="btn btn-default" type="submit" ng-click="submit()">Subir imagen</button>
+						</div>
+					</div>
+				</div>
+
+		        <img class="img-responsive" src="{{user.image}}"/>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-xs-12">
+			<button ng-click= "save()" class="btn btn-primary" ng-disabled="edForm.$invalid">Guardar cambios</button>
+			<button class="btn btn-primary" ng-disabled="edForm.$invalid">Cambiar contraseña</button>
+		</div>
+	</div>
+  </form>
+
+  <div ng-show="status==0" class="alert alert-danger">
+      <strong>Error:</strong> El usuario no se ha podido modificar.
+  </div>
+  <div ng-show="status==1" class="alert alert-success">
+      <strong>Éxito:</strong> El usuario se ha modificado correctamente.
+  </div>
+</div>

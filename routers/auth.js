@@ -74,7 +74,32 @@ module.exports = function(router){
   } else {
     return res.status(403).send({success: false, msg: 'No token provided.'});
   }
+}).put('/profile', passport.authenticate('jwt', { session: false}), function(req, res) {
+  var token = getToken(req.headers);
+  if (token) {
+    var decoded = jwt.decode(token, config.secret);
+    if(decoded.username == req.body.username){
+      User.findById(req.body._id, function(err, user){
+	    user.name = req.body.name,
+	    user.email = req.body.email,
+		user.location = req.body.location,
+		user.image = req.body.image,
+		user.save(function(err){
+		  if (err) {
+		    console.log(err);
+		    return res.json({success: false, msg: 'El usuario no se ha actualizado.'});
+		  }else{
+		    return res.json({success: true, msg: 'Usuario actualizado!'});
+		  }
+		});
+      });
+      
+    }
+  }else{
+    return res.status(403).send({success: false, msg: 'No token provided.'});
+  }
 });
+
 
 getToken = function (headers) {
   if (headers && headers.authorization) {
