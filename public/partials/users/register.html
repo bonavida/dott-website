@@ -1,6 +1,6 @@
 <h2>Registrarse</h2>
 <div class="well">
-  <form name="regForm" class="form-horizontal" ng-submit="submitForm(regForm.$valid)" novalidate>
+  <form name="regForm" class="form-horizontal"  novalidate>
   	<div class="row">
   		<div class="col-xs-6">
   			<div class="col-xs-12">
@@ -31,6 +31,7 @@
 				</div>
 
 				<!-- Fecha de nacimiento -->
+        
 				<div class="form-group">
 				  <label for="birthday" class="control-label">Fecha de nacimiento</label>
 				  <input type="date" class="form-control" name="birthday" ng-model="user.birthday" required>
@@ -74,7 +75,7 @@
 				<div class="form-group">
 					<div class="">
 						<div class="col-xs-12">
-							<button class="btn btn-default" ng-click="submit()">Subir imagen</button>
+							<button class="btn btn-default" ng-click="submitImage()">Subir imagen</button>
 						</div>
 					</div>
 				</div>
@@ -86,7 +87,7 @@
 
 	<div class="form-group">
 		<div class="col-xs-12">
-			<button type="submit" class="btn btn-primary" ng-disabled="regForm.$invalid">Registrarse</button>
+			<button ng-click="submitForm(regForm.$valid)" class="btn btn-primary" ng-disabled="regForm.$invalid">Registrarse</button>
 			<!-- <a href="#" class="btn btn-link">Cancelar</a> -->
 		</div>
 	</div>

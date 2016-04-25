@@ -26,7 +26,7 @@ angular.module('dottApp.controllers').controller('UserRegisterController', funct
     }
 
     $scope.file="";
-    $scope.submit = function(){ //function to call on form submit
+    $scope.submitImage = function(){ //function to call on form submit
         if ($scope.regForm.file.$valid && $scope.file) { //check if from is valid
             $scope.upload($scope.file); //call upload function
         }
