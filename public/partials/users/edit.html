@@ -1,6 +1,6 @@
 <h2>Editar perfil {{user.name}}</h2>
 <div class="well">
-  <form name="edForm" class="form-horizontal" ng-submit="submitForm(edForm.$valid)" novalidate>
+  <form name="pwdForm" class="form-horizontal" ng-submit="submitForm(edForm.$valid)" novalidate>
   	<div class="row">
   		<div class="col-xs-6">
   			<div class="col-xs-12">
@@ -17,25 +17,6 @@
 				  <input type="text" class="form-control" name="name" ng-model="user.name">
 				</div>
 
-				<!-- Password APARTE
-				<div class="form-group" ng-class="{ 'has-error' : edForm.password.$invalid && !edForm.password.$pristine }">
-				  <label for="password" class="control-label">Antigua contraseña</label>
-				  <input type="password" class="form-control" name="password" ng-model="user.password" ng-minlength="8" required>
-				  <p class="help-block" ng-show="edForm.password.$error.minlength && !edForm.password.$pristine">La contraseña debe tener como mínimo 8 caracteres.</p>
-				</div>
-				
-				<div class="form-group" ng-class="{ 'has-error' : edForm.password.$invalid && !edForm.password.$pristine }">
-				  <label for="password" class="control-label">Nueva contraseña</label>
-				  <input type="password" class="form-control" name="password" ng-model="user.password" ng-minlength="8" required>
-				  <p class="help-block" ng-show="edForm.password.$error.minlength && !edForm.password.$pristine">La contraseña debe tener como mínimo 8 caracteres.</p>
-				</div>
-				
-				<div class="form-group" ng-class="{ 'has-error' : edForm.password.$invalid && !edForm.password.$pristine }">
-				  <label for="password" class="control-label">Repetir nueva contraseña</label>
-				  <input type="password" class="form-control" name="password" ng-model="user.password" ng-minlength="8" required>
-				  <p class="help-block" ng-show="edForm.password.$error.minlength && !edForm.password.$pristine">La contraseña debe tener como mínimo 8 caracteres.</p>
-				</div> -->
-				
 				<!-- Email -->
 				<div class="form-group" ng-class="{ 'has-error' : edForm.email.$invalid && !edForm.email.$pristine }">
 				  <label for="email" class="control-label">Email</label>
@@ -85,8 +66,7 @@
 						</div>
 					</div>
 				</div>
-
-		        <img class="img-responsive" src="{{user.image}}"/>
+		     <img class="img-responsive" src="{{user.image}}"/>
 			</div>
 		</div>
 	</div>
@@ -94,7 +74,7 @@
 	<div class="form-group">
 		<div class="col-xs-12">
 			<button ng-click= "save()" class="btn btn-primary" ng-disabled="edForm.$invalid">Guardar cambios</button>
-			<button class="btn btn-primary" ng-disabled="edForm.$invalid">Cambiar contraseña</button>
+			<button ui-sref = "user-edit-pwd" class="btn btn-primary" ng-disabled="edForm.$invalid">Cambiar contraseña</button>
 		</div>
 	</div>
   </form>
