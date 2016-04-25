@@ -10,6 +10,5 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
 
     $scope.getActivity();
     */
-
-    $scope.activity = ActivityService.getByID("571ab2b57327f71f3e219073");
+    $scope.activity = ActivityService.getByID($stateParams.id);
 });
