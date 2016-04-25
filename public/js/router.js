@@ -37,6 +37,18 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
     	url:'/edit',
     	templateUrl:'partials/users/edit.html',
     	controller:'EditUserController'
+    }).state('category-add',{
+    	url:'/categories/new',
+    	templateUrl:'partials/categories/add.html',
+    	controller:'AddCategoryController'
+    }).state('category-edit',{
+    	url:'/categories/:id/edit',
+    	templateUrl:'partials/categories/edit.html',
+    	controller:'EditCategoryController'
+    }).state('category-list',{
+    	url:'/categories',
+    	templateUrl:'partials/categories/list.html',
+    	controller:'ListCategoryController'
     });
     $urlRouterProvider.otherwise("/activities");
 }).run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
