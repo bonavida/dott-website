@@ -1,22 +1,24 @@
-angular.module('dottApp.controllers').controller('EditUserController', function($scope, AuthService){
+angular.module('dottApp.controllers').controller('EditUserController', function($scope, $state, $timeout, AuthService){
 	$scope.user = {}; //Error con las fechas
 	$scope.err = 2; //1 --> error, 0 --> sin errores
+
 	$scope.getUser = function(){
-		AuthService.getUser().then(function(user){
+		AuthService.getUser().then(function(user) {
 			$scope.user = user;
 		});
 	};
-	
-	$scope.save = function(){
-		AuthService.edit($scope.user).then(function(){
-			$scope.err = 1;
-		}).catch(function(){
+
+	$scope.save = function() {
+		AuthService.edit($scope.user).then(function() {
 			$scope.err = 0;
+            $timeout(callAtTimeout, 3000);
+		}).catch(function() {
+			$scope.err = 1;
 		});
-	}
-	
+	};
+
 	function callAtTimeout() {
-        $state.go('activities');
+        $state.go('user-profile');
     }
 
     $scope.file="";
@@ -46,8 +48,6 @@ angular.module('dottApp.controllers').controller('EditUserController', function(
             $scope.progress = progressPercentage + '% subido';
         });
     };
-	
+
 	$scope.getUser();
 });
-
-

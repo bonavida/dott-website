@@ -7,7 +7,6 @@ angular.module('dottApp.controllers').controller('UserRegisterController', funct
 
     $scope.submitForm = function(isValid) {
         if (isValid) {
-            console.log($scope.user);
             AuthService.register($scope.user).then(function(msg){
                 $scope.msg = msg;
                 $scope.status = 1;
@@ -15,15 +14,13 @@ angular.module('dottApp.controllers').controller('UserRegisterController', funct
       		}).catch(function(msg){
                 $scope.msg = msg;
                 $scope.status = 0;
-      			console.log("ERROR!");
       		});
         }
     };
 
     function callAtTimeout() {
         $state.go('activities');
-        console.log("REDIRIGIR!");
-    }
+    };
 
     $scope.file="";
     $scope.submitImage = function(){ //function to call on form submit
