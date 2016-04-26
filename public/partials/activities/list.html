@@ -1,14 +1,24 @@
-<table class="table">
-    <tr>
-        <td><h3>All Activities</h3></td>
-        <td></td>
-    </tr>
-    <tr ng-repeat="activity in activities">
-        <td>{{activity.name}}</td>
-        <td>ID: {{activity._id}}</td>
-        <td>
-            <a class="btn btn-primary" ui-sref="activities-view({id:activity._id})">View</a>
-            <a class="btn btn-danger"  ng-click="deleteActivity(activity)">Delete</a>
-        </td>
-    </tr>
-</table>
+<div class="panel panel-default" ng-repeat="activity in activities">
+    <div class="panel-heading">
+        <h2 class="panel-title">{{activity.name}}</h2>
+
+    </div>
+    <div class="panel-body">
+        <div class="col-md-2">
+            <img ng-src="/{{activity.image}}" height="100px">
+        </div>
+        <div class="col-md-10">
+            <p>Description: {{activity.description}}</p>
+            <p>Location: {{activity.location}}</p>
+            <p>Min participants: {{activity.minParticipants}}</p>
+            <p>Max participants: {{activity.maxParticipants}}</p>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" ui-sref="activities-view({id:activity._id})">View</button>
+            <button type="button" class="btn btn-default" ui-sref="activities-edit({id:activity._id})">Edit</button>
+            <button type="button" class="btn btn-danger" ng-click="deleteActivity(activity)">Delete</button>
+        </div>
+    </div>
+</div>
