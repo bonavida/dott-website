@@ -20,7 +20,7 @@ angular.module('dottApp.controllers').controller('UserRegisterController', funct
 
     function callAtTimeout() {
         $state.go('activities');
-    };
+    }
 
     $scope.file="";
     $scope.submitImage = function(){ //function to call on form submit
