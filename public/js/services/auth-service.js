@@ -100,7 +100,19 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
       });
     });
   };
-	  
+
+  var deleteUsr = function(){
+    return $q(function(resolve, reject) {
+      $http.delete(API_ENDPOINT.url + '/users').then(function(result) {
+    	if (result.data.success) {
+          resolve(result.data.msg);
+        } else {
+          reject(result.data.msg);
+        }
+      });
+    });  
+  };
+  
   loadUserCredentials();
 
   return {
@@ -110,6 +122,7 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
     getUser:getUser,
     edit: edit,
     editPwd: editPwd,
+    deleteUsr: deleteUsr,
     isAuthenticated: function() {return isAuthenticated;},
   };
 })
