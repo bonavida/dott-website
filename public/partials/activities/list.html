@@ -4,42 +4,44 @@
     <hr class="featurette-divider">
 </div>
 <ul style="list-style: none" class="activities-list">
-    <li class="animate-repeat" ng-repeat="activity in activities" ng-if="$even">
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading">{{activity.name}}<span class="text-muted"> / {{activity.location}}</span></h2>
-                <p style="margin-top: 25px" class="lead">{{activity.description}}</p>
-                <p class="lead text-primary">Minimum attendees <span class="label label-info">{{activity.minParticipants}}</span></p>
-                <p class="lead text-primary">Maximum attendees <span class="label label-info">{{activity.maxParticipants}}</span></p>
-                <div style="margin-top: 30px" class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-lg btn-default" ui-sref="activities-view({id:activity._id})">Ver</button>
-                    <button type="button" class="btn btn-lg btn-default" ui-sref="activities-edit({id:activity._id})">Editar</button>
-                    <button type="button" class="btn btn-lg btn-danger" ng-click="deleteActivity(activity)">Eliminar</button>
+    <li ng-repeat="activity in activities">
+        <span ng-if="$even">
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">{{activity.name}}<span class="text-muted"> / {{activity.location}}</span></h2>
+                    <p style="margin-top: 25px" class="lead">{{activity.description}}</p>
+                    <p class="lead text-primary">Minimum attendees <span class="label label-info">{{activity.minParticipants}}</span></p>
+                    <p class="lead text-primary">Maximum attendees <span class="label label-info">{{activity.maxParticipants}}</span></p>
+                    <div style="margin-top: 30px" class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-lg btn-default" ui-sref="activities-view({id:activity._id})">Ver</button>
+                        <button type="button" class="btn btn-lg btn-default" ui-sref="activities-edit({id:activity._id})">Editar</button>
+                        <button type="button" class="btn btn-lg btn-danger" ng-click="deleteActivity(activity)">Eliminar</button>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <img ng-src="{{activity.image}}" class="featurette-image img-responsive center-block" alt="500x500">
                 </div>
             </div>
-            <div class="col-md-5">
-                <img ng-src="{{activity.image}}" class="featurette-image img-responsive center-block" alt="500x500">
-            </div>
-        </div>
-        <hr class="featurette-divider">
-    </li>
-    <li class="animate-repeat" ng-repeat="activity in activities" ng-if="$odd">
-        <div class="row featurette">
-            <div class="col-md-7 col-md-push-5">
-                <h2 class="featurette-heading">{{activity.name}} / <span class="text-muted">{{activity.location}}</span></h2>
-                <p style="margin-top: 25px" class="lead">{{activity.description}}</p>
-                <p class="lead text-primary">Minimum attendees <span class="label label-info">{{activity.minParticipants}}</span></p>
-                <p class="lead text-primary">Maximum attendees <span class="label label-info">{{activity.maxParticipants}}</span></p>
-                <div style="margin-top: 30px" class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-lg btn-default" ui-sref="activities-view({id:activity._id})">Ver</button>
-                    <button type="button" class="btn btn-lg btn-default" ui-sref="activities-edit({id:activity._id})">Editar</button>
-                    <button type="button" class="btn btn-lg btn-danger" ng-click="deleteActivity(activity)">Eliminar</button>
+            <hr class="featurette-divider">
+        </span>
+        <span ng-if="$odd">
+            <div class="row featurette">
+                <div class="col-md-7 col-md-push-5">
+                    <h2 class="featurette-heading">{{activity.name}} / <span class="text-muted">{{activity.location}}</span></h2>
+                    <p style="margin-top: 25px" class="lead">{{activity.description}}</p>
+                    <p class="lead text-primary">Minimum attendees <span class="label label-info">{{activity.minParticipants}}</span></p>
+                    <p class="lead text-primary">Maximum attendees <span class="label label-info">{{activity.maxParticipants}}</span></p>
+                    <div style="margin-top: 30px" class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-lg btn-default" ui-sref="activities-view({id:activity._id})">Ver</button>
+                        <button type="button" class="btn btn-lg btn-default" ui-sref="activities-edit({id:activity._id})">Editar</button>
+                        <button type="button" class="btn btn-lg btn-danger" ng-click="deleteActivity(activity)">Eliminar</button>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-pull-7">
+                    <img ng-src="{{activity.image}}" class="featurette-image img-responsive center-block" alt="500x500">
                 </div>
             </div>
-            <div class="col-md-5 col-md-pull-7">
-                <img ng-src="{{activity.image}}" class="featurette-image img-responsive center-block" alt="500x500">
-            </div>
-        </div>
-        <hr class="featurette-divider">
+            <hr class="featurette-divider">
+        </span>
     </li>
 </ul>
