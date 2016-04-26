@@ -53,7 +53,7 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
     	url:'/categories/:id/edit',
     	templateUrl:'partials/categories/edit.html',
     	controller:'EditCategoryController'
-    }).state('category-list',{
+    }).state('categories',{
     	url:'/categories',
     	templateUrl:'partials/categories/list.html',
     	controller:'ListCategoryController'
