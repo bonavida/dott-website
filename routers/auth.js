@@ -1,13 +1,9 @@
 var User  = require('../models/user');
 var jwt   = require('jwt-simple');
 var passport = require('passport');
-
 var config = require('../config/database');
 
-
 module.exports = function(router){
-
-  //var router = express.Router();
 
   //Users
   router.post('/register', function(req, res) {
@@ -104,43 +100,29 @@ module.exports = function(router){
   if (token) {
     var decoded = jwt.decode(token, config.secret);
     if(decoded.username == req.body.username){
-	  console.log("2 DECODED",decoded);//El usuario que hay en la base de datos
-	  console.log("2 REQ.BODY",req.body); //El usuario modificado (el del formulario)
-    	
       User.findById(req.body._id, function(err, user){
-	    user.name = req.body.name,
-	    user.email = req.body.email,
-		user.location = req.body.location,
-		user.image = req.body.image,
-		user.save(function(err){
-		  if (err) {
-		    console.log(err);
-		    return res.json({success: false, msg: 'El usuario no se ha actualizado.'});
-		  }else{
-		    return res.json({success: true, msg: 'Usuario actualizado!'});
-		  }
-		});
+	    // check if password matches
+	    user.comparePassword(req.body.oldPassword, function (err, isMatch) {
+	      if (isMatch && !err) {
+	    	user.password = req.body.newPassword;
+	        user.save(function(err){
+    	      if (err) {
+    	        console.log(err);
+    	        return res.json({success: false, msg: 'No se ha podido actualizar.'});
+    	      }else{
+    	        return res.json({success: true, msg: 'Se ha actualizado!'});
+    	      }
+	        });
+	      } else {
+	        res.send({success: false, msg: 'Authentication failed. Wrong password.'});
+	      }
+	    });
       });
-      
     }
   }else{
     return res.status(403).send({success: false, msg: 'No token provided.'});
   }
 });
-
-
-  
-//  // check if password matches
-//  user.comparePassword(req.body.password, function (err, isMatch) {
-//    if (isMatch && !err) {
-//      // if user is found and password is right create a token
-//      var token = jwt.encode(user, config.secret);
-//      // return the information including token as JSON
-//      res.json({success: true, token: 'JWT ' + token});
-//    } else {
-//      res.send({success: false, msg: 'Authentication failed. Wrong password.'});
-//    }
-//  });
   
 getToken = function (headers) {
   if (headers && headers.authorization) {

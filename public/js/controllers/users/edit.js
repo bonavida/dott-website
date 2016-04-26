@@ -1,25 +1,22 @@
 angular.module('dottApp.controllers').controller('EditUserController', function($scope, AuthService){
 	$scope.user = {}; //Error con las fechas
-	$scope.status=false;
-	console.log("SI?¿");
+	$scope.err = 2; //1 --> error, 0 --> sin errores
 	$scope.getUser = function(){
 		AuthService.getUser().then(function(user){
 			$scope.user = user;
-			console.log("HOLA!!", $scope.user);
 		});
 	};
 	
 	$scope.save = function(){
 		AuthService.edit($scope.user).then(function(){
-			$scope.status = 1;
+			$scope.err = 1;
 		}).catch(function(){
-			$scope.status = 0;
+			$scope.err = 0;
 		});
 	}
 	
 	function callAtTimeout() {
         $state.go('activities');
-        console.log("REDIRIGIR!");
     }
 
     $scope.file="";

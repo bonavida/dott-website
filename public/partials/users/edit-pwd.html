@@ -1,29 +1,35 @@
-<h2>Editar contraseña</h2>
+<h2>Editar contraseña {{user.name}} (revisar no funciona)</h2>
 <div class="well">
-  <form name="pwdForm" class="form-horizontal" ng-submit="submitForm(edForm.$valid)" novalidate>
+  <form name="pwdForm" class="form-horizontal" ng-submit="submitForm(pwdForm.$valid)" novalidate>
   
 	  <!-- Password -->
 		<div class="form-group" ng-class="{ 'has-error' : pwdForm.password.$invalid && !pwdForm.password.$pristine }">
 		  <label for="password" class="control-label">Antigua contraseña</label>
-		  <!-- <input type="password" class="form-control" name="oldPassword" ng-model="user.password" ng-minlength="8" required>
-		  <p class="help-block" ng-show="pwdForm.password.$error.minlength && !pwdForm.password.$pristine">La contraseña debe tener como m�nimo 8 caracteres.</p> -->
-		  <input type="password" class="form-control" name="oldPassword" ng-minlength="8" required>
-		  <p class="help-block" ng-if="oldPassword!=user.passpord" ng-show="pwdForm.password.$error.minlength && !pwdForm.password.$pristine">La contraseña debe tener como m�nimo 8 caracteres.</p>
+		  <input type="password" class="form-control" ng-model="user.oldPassword" ng-minlength="8" required>
+		  <p class="help-block" ng-show="pwdForm.password.$error.minlength && !pwdForm.password.$pristine">La contraseña debe tener como mínimo 8 caracteres.</p>
 		</div>
 		
 		<div class="form-group" ng-class="{ 'has-error' : pwdForm.password.$invalid && !pwdForm.password.$pristine }">
 		  <label for="password" class="control-label">Nueva contraseña</label>
-		  <input type="password" class="form-control" name="newPassword" ng-model="user.password" ng-minlength="8" required>
-		  <p class="help-block" ng-show="pwdForm.password.$error.minlength && !pwdForm.password.$pristine">La contraseña debe tener como m�nimo 8 caracteres.</p>
+		  <input type="password" class="form-control" ng-model="user.newPassword" ng-minlength="8" required>
+		  <p class="help-block" ng-show="pwdForm.password.$error.minlength && !pwdForm.password.$pristine">La contraseña debe tener como mínimo 8 caracteres.</p>
 		</div>
 		
 		<div class="form-group" ng-class="{ 'has-error' : pwdForm.password.$invalid && !pwdForm.password.$pristine }">
 		  <label for="password" class="control-label">Repetir nueva contraseña</label>
-		  <input type="password" class="form-control" name="repNewPassword" ng-model="user.password" ng-minlength="8" required>
-		  <p class="help-block" ng-show="pwdForm.password.$error.minlength && !pwdForm.password.$pristine">La contraseña debe tener como m�nimo 8 caracteres.</p>
+		  <input type="password" class="form-control" ng-model="confPassword" ng-minlength="8" required>
+		  <p class="help-block" ng-show="pwdForm.password.$error.minlength && !pwdForm.password.$pristine">La contraseña debe tener como mínimo 8 caracteres.</p>
+		  <p class="help-block" ng-hide="user.newPassword==confPassword">La contraseña debe coincidir con la nueva contraseña</p>
 		</div>
 	</form>
 	
+	
 	<button ng-click= "save()" class="btn btn-primary" ng-disabled="pwdForm.$invalid">Guardar cambios</button>
+	<div ng-show="err==1" class="alert alert-danger">
+      <strong>Error:</strong> {{msg}}
+  </div>
+  <div ng-show="err==0" class="alert alert-success">
+      <strong>Éxito:</strong> {{msg}}
+  </div>
 </div>
 		
