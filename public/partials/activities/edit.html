@@ -56,12 +56,12 @@
         </div>
 
         <div class="form-group">
-          <label for="activity-minParticipants">Participantes mínimos</label>
+          <label for="activity-minParticipants">Nº mín. participantes</label>
           <input type="number" class="form-control" name="minParticipants" ng-model="activity.minParticipants" required>
         </div>
 
         <div class="form-group">
-          <label for="activity-maxParticipants">Participantes máximos</label>
+          <label for="activity-maxParticipants">Nº máx. participantes</label>
           <input type="number" class="form-control" id="maxParticipants" name="maxParticipants" min ="{{activity.minParticipants+1}}"  ng-model="activity.maxParticipants" required>
            <p ng-show="actForm.maxParticipants.$error.min" class="text-danger help-block">Número de participantes maximo debe ser mayor que el mínimo.</p>
         </div>

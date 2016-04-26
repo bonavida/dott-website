@@ -1,24 +1,26 @@
+<h2>Todas las actividades</h2>
 <div class="panel panel-default" ng-repeat="activity in activities">
     <div class="panel-heading">
-        <h2 class="panel-title">{{activity.name}}</h2>
-
+        <div class="panel-title">
+            <h4><strong>{{activity.name}}</strong></h4>
+        </div>
     </div>
     <div class="panel-body">
         <div class="col-md-2">
             <img ng-src="/{{activity.image}}" height="100px">
         </div>
         <div class="col-md-10">
-            <p>Description: {{activity.description}}</p>
-            <p>Location: {{activity.location}}</p>
-            <p>Min participants: {{activity.minParticipants}}</p>
-            <p>Max participants: {{activity.maxParticipants}}</p>
+            <p><strong>Descripción:</strong> {{activity.description}}</p>
+            <p><strong>Lugar:</strong> {{activity.location}}</p>
+            <p><strong>Nº mín. participantes:</strong> {{activity.minParticipants}}</p>
+            <p><strong>Nº máx. participantes:</strong> {{activity.maxParticipants}}</p>
         </div>
     </div>
     <div class="panel-footer">
         <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" ui-sref="activities-view({id:activity._id})">View</button>
-            <button type="button" class="btn btn-default" ui-sref="activities-edit({id:activity._id})">Edit</button>
-            <button type="button" class="btn btn-danger" ng-click="deleteActivity(activity)">Delete</button>
+            <button type="button" class="btn btn-default" ui-sref="activities-view({id:activity._id})">Ver</button>
+            <button type="button" class="btn btn-default" ui-sref="activities-edit({id:activity._id})">Editar</button>
+            <button type="button" class="btn btn-danger" ng-click="deleteActivity(activity)">Eliminar</button>
         </div>
     </div>
 </div>

@@ -6,3 +6,4 @@ RemoteSystemsTempFiles/
 npm-debug.log
 .project
 .idea
+public/uploads/
