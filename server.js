@@ -32,6 +32,7 @@ var router = express.Router();
 require('./routers/auth')(router);
 require('./routers/files')(router);
 require('./routers/activities')(router);
+require('./routers/categories')(router);
 require('./routers/users')(router);
 app.use('/api', router);
 
