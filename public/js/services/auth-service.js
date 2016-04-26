@@ -74,8 +74,25 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
   
   var edit = function(user) {
     return $q(function(resolve, reject) {
+      console.log("auth-service llama a auth");
       $http.put(API_ENDPOINT.url + '/profile', user).then(function(result) {
+    	console.log("vuelve auth-service");
         if (result.data.success) {
+          resolve(result.data.msg);
+        } else {
+          reject(result.data.msg);
+        }
+      });
+    });
+  };
+  
+  var editPwd = function(user) {
+	console.log("auth-service");
+	
+    return $q(function(resolve, reject) {
+      console.log("auth-service llama a auth");
+      $http.put(API_ENDPOINT.url + '/profile/pwd', user).then(function(result) {
+    	if (result.data.success) {
           resolve(result.data.msg);
         } else {
           reject(result.data.msg);
@@ -92,6 +109,7 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
     logout: logout,
     getUser:getUser,
     edit: edit,
+    editPwd: editPwd,
     isAuthenticated: function() {return isAuthenticated;},
   };
 })
