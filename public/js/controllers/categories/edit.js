@@ -1,4 +1,4 @@
-angular.module('dottApp.controllers').controller('EditCategoryController', function($scope, $state, $stateParams, CategoryService){
+angular.module('dottApp.controllers').controller('EditCategoryController', function($scope, $state, $stateParams, CategoryService, Upload){
   $scope.category = {
     name:   "",
     image:  "images/default.jpg",
@@ -11,10 +11,9 @@ angular.module('dottApp.controllers').controller('EditCategoryController', funct
   };
 
   $scope.save = function(){
-    CategoryService.add( $scope.category).then(function(data){
-      $scope.message="Categoría creada con éxito";
+      CategoryService.update( $scope.category).then(function(data){
         $state.go("categories");
-    });
+      });
   };
 
 

@@ -8,7 +8,6 @@
           <input type="text" class="form-control" id="category-name" ng-model="category.name" placeholder="Nombre" required>
         </div>
 
-
         <div class="form-group">
           <div class="row">
             <div class="col-xs-6">
@@ -35,23 +34,23 @@
         </div>
         <div class="form-group">
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
               <button class="btn btn-default" type="submit" ng-click="submit()">Subir imagen</button>
             </div>
           </div>
         </div>
 
-
-
       </div>
-      <div class="col-xs-6">
-        <div class="col-xs-12">
-          <h3>Imagen categoría</h3>
-          <img class="img-responsive" src="{{category.image}}"/>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-3">
+            <h3>Imagen categoría</h3>
+            <img class="img-responsive" src="{{category.image}}" height="200" />
+          </div>
         </div>
       </div>
-      <div class="col-xs-12">
-        <button class="btn btn-primary" ng-click="save(catForm.$valid)" ng-disabled="actForm.$invalid">Guardar</button>
+      <div class="col-xs-6">
+        <button class="btn btn-primary" ng-click="save()">Guardar</button>
       </div>
     </div>
   </form>

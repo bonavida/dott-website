@@ -18,7 +18,7 @@ angular.module('dottApp.services').factory('CategoryService', function($http, $q
   }
 
   function update(category){
-    var request = $http.put(base_url + 'api/categories/'+category.id, category);
+    var request = $http.put(base_url + 'api/categories/'+category._id, category);
     return( request.then( handleSuccess, handleError ) );
   }
 
