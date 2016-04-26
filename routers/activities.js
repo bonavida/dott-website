@@ -42,7 +42,7 @@ module.exports = function(router){
         }
       });
     }).get('/activities/:activity_id', function(req, res, next) {
-      Activity.findById(req.params.id, function(err, activity){
+      Activity.findById(req.params.activity_id, function(err, activity){
         if(!err){
           if(!activity){
              next();
@@ -54,7 +54,7 @@ module.exports = function(router){
         }
       });
     }).put('/activities/:activity_id', function(req, res, next) {
-      Activity.findById(req.params.id, function(err, activity){
+      Activity.findById(req.params.activity_id, function(err, activity){
         if(!err){
           if(!activity){
              next();
@@ -83,7 +83,7 @@ module.exports = function(router){
         }
       });
     }).delete('/activities/:activity_id', function(req, res, next) {
-      Activity.findById(req.params.id, function(err, activity){
+      Activity.findById(req.params.activity_id, function(err, activity){
         if(!err){
           if(!activity){
              next();

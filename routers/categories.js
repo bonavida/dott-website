@@ -30,7 +30,7 @@ module.exports = function(router){
         }
       });
     }).get('/categories/:category_id', function(req, res, next) {
-      Category.findById(req.params.id, function(err, category){
+      Category.findById(req.params.category_id, function(err, category){
         if(!err){
           if(!category){
              next();
@@ -42,7 +42,7 @@ module.exports = function(router){
         }
       });
     }).put('/categories/:category_id', function(req, res, next) {
-      Category.findById(req.params.id, function(err, category){
+      Category.findById(req.params.category_id, function(err, category){
         if(!err){
           if(!category){
              next();
@@ -64,7 +64,7 @@ module.exports = function(router){
         }
       });
     }).delete('/categories/:category_id', function(req, res, next) {
-      Category.findById(req.params.id, function(err, category){
+      Category.findById(req.params.category_id, function(err, category){
         if(!err){
           if(!category){
              next();
