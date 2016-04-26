@@ -1,6 +1,6 @@
 <h2>Crear actividad</h2>
 <div class="well">
-  <form name="actForm" ng-submit="save(actForm.$valid)" novalidate>
+  <form name="actForm" novalidate>
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group">
@@ -83,7 +83,7 @@
         </div>
       </div>
       <div class="col-xs-12">
-        <button type="submit" class="btn btn-primary" ng-disabled="actForm.$invalid">Crear</button>
+        <button ng-click="save(actForm.$valid)" class="btn btn-primary" ng-disabled="actForm.$invalid">Crear</button>
       </div>
     </div>
   </form>

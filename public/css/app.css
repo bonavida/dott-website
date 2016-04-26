@@ -28,3 +28,30 @@
 .img-responsive {
     margin: 0 auto;
 }
+
+.table-align-v, .table-align-v th, .table-align-v td{
+  text-align:center;
+  vertical-align:middle;
+}
+
+.img-crop-circle {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid #337AB7;
+}
+.img-crop-circle img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.img-crop-circle img.portrait {
+  width: 100%;
+  height: auto;
+}
