@@ -7,7 +7,7 @@ module.exports = function(router){
 
   //Activities
   router.get('/activities', function(req, res, next) {
-      Activity.find(function(err, activities){
+      Activity.find({}).sort('-creationDate').exec(function(err, activities){
         if(!err){
           if(!activities){
              next();
