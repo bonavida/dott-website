@@ -31,7 +31,6 @@ module.exports = function(router){
         maxParticipants: req.body.maxParticipants,
         closed: false,
         categories: req.body.categories,
-
       });
       activity.save(function(err, activity){
         if(!err){
@@ -59,7 +58,6 @@ module.exports = function(router){
           if(!activity){
              next();
           }else{
-
             activity.name = req.body.name;
             activity.description= req.body.description;
             activity.image= req.body.image;

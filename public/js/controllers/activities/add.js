@@ -1,10 +1,14 @@
-angular.module('dottApp.controllers').controller('AddActivityController', function($scope, $state, Upload, ActivityService, ActivityValidator){
-  $scope.activity = {
+angular.module('dottApp.controllers').controller('AddActivityController', function($scope, $state, Upload, ActivityService, ActivityValidator, User, AuthService){
+	$scope.activity = {
     name: "",
     description: "",
     image:   "images/default.jpg",
     location: "",
-    creator: {},
+    creator: {
+      userID: "",
+      name: "",
+      image: ""
+    },
     executionDate:   new Date(),
     creationDate:  new Date(),
     minParticipants: 1,
@@ -12,9 +16,20 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
     //categories: [{name:""}]
   };
   $scope.message="";
+  $scope.user = {};
+
+  $scope.getUser = function(){
+    AuthService.getUser().then(function(user) {
+	  $scope.user = user;
+    });
+  };
 
   $scope.save = function(){
     if(ActivityValidator.isValid(  $scope.activity )){
+	  $scope.activity.creator.userID = $scope.user._id;
+	  $scope.activity.creator.name = $scope.user.username;
+	  $scope.activity.creator.image = $scope.user.image;
+	  
       ActivityService.add( $scope.activity).then(function(data){
         $scope.message="Actividad creada con éxito";
           $state.go("activities");
@@ -24,6 +39,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
     }
   };
 
+  
   $scope.file="";
   $scope.submit = function(){ //function to call on form submit
       if ($scope.actForm.file.$valid && $scope.file) { //check if from is valid
@@ -51,5 +67,5 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
           $scope.progress = progressPercentage + '% subido';
       });
   };
-
+  $scope.getUser();
 });
