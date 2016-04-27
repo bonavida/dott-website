@@ -25,5 +25,6 @@ angular.module('dottApp.controllers').controller('ProfileUserController', functi
 	  $scope.err = 1;
 	  $scope.msg = "No se ha podido dar de baja al usuario.";
     });
+    $scope.logout();
   }
 });
