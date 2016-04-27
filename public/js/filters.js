@@ -1,6 +1,7 @@
-angular.module('dottApp.filters',[]
-).filter('secondsToDateTime', [function() {
-    return function(seconds) {
-        return new Date(1970, 0, 1).setSeconds(seconds);
+angular.module('dottApp.filters')
+
+.filter('breakFilter', function () {
+    return function (text) {
+        return text ? text.replace(/\n/g, '<br />') : '';
     };
-}]);
+});

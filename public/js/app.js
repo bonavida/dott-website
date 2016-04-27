@@ -5,8 +5,11 @@ angular.module('dottApp',['ui.router',
                           'ngRoute',
                           'dottApp.controllers',
                           'dottApp.services',
-                          'dottApp.constants']);//Dependencies
+                          'dottApp.constants',
+                          'dottApp.filters',
+                          'ngSanitize']);//Dependencies
 
 angular.module('dottApp.controllers', ['ui.bootstrap']);
 angular.module('dottApp.services', []);
 angular.module('dottApp.constants', []);
+angular.module('dottApp.filters', []);

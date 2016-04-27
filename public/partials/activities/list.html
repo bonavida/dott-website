@@ -9,7 +9,7 @@
             <div class="row featurette">
                 <div class="col-md-7">
                     <h3 class="featurette-heading">{{activity.name}}<span class="text-muted"> / {{activity.location}}</span></h3>
-                    <p style="margin-top: 25px">{{activity.description}}</p>
+                    <p style="margin-top: 25px"><span ng-bind-html="activity.description | breakFilter"></span></p>
                     <br />
                     <div>
                         <p class="text-primary">Nº mín. participantes <span class="label label-info">{{activity.minParticipants}}</span></p>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-md-5">
                     <br /><br /><br /><br />
-                    <img ng-src="{{activity.image}}" class="featurette-image img-responsive center-block" height="200" width="500">
+                    <img ng-src="{{activity.image}}" class="featurette-image center-block" height="300">
                 </div>
             </div>
             <hr class="featurette-divider">
@@ -32,7 +32,7 @@
             <div class="row featurette">
                 <div class="col-md-7 col-md-push-5">
                     <h3 class="featurette-heading">{{activity.name}} / <span class="text-muted">{{activity.location}}</span></h3>
-                    <p style="margin-top: 25px">{{activity.description}}</p>
+                    <p style="margin-top: 25px"><span ng-bind-html="activity.description | breakFilter"></span></p>
                     <br />
                     <div>
                         <p class="text-primary">Nº mín. participantes <span class="label label-info">{{activity.minParticipants}}</span></p>
