@@ -23,14 +23,18 @@
                 </div>
                 <div class="col-md-5">
                     <br /><br /><br /><br />
-                    <img ng-src="{{activity.image}}" class="featurette-image center-block" height="300">
+                    <img ng-src="{{activity.image}}" class="featurette-image center-block" width="400">
                 </div>
             </div>
             <hr class="featurette-divider">
         </span>
         <span ng-if="$odd">
             <div class="row featurette">
-                <div class="col-md-7 col-md-push-5">
+                <div class="col-md-5">
+                    <br /><br /><br /><br />
+                    <img ng-src="{{activity.image}}" class="featurette-image center-block" width="400" >
+                </div>
+                <div class="col-md-7">
                     <h3 class="featurette-heading">{{activity.name}} / <span class="text-muted">{{activity.location}}</span></h3>
                     <p style="margin-top: 25px"><span ng-bind-html="activity.description | breakFilter"></span></p>
                     <br />
@@ -43,10 +47,6 @@
                         <button type="button" class="btn btn-md btn-default" ui-sref="activities-edit({id:activity._id})">Editar</button>
                         <button type="button" class="btn btn-md btn-danger" ng-click="deleteActivity(activity)">Eliminar</button>
                     </div>
-                </div>
-                <div class="col-md-5 col-md-pull-7">
-                    <br /><br /><br /><br />
-                    <img ng-src="{{activity.image}}" class="featurette-image img-responsive center-block" height="200" width="500">
                 </div>
             </div>
             <hr class="featurette-divider">
