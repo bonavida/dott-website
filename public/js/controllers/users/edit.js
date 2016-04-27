@@ -1,4 +1,4 @@
-angular.module('dottApp.controllers').controller('EditUserController', function($scope, $state, $timeout, AuthService){
+angular.module('dottApp.controllers').controller('EditUserController', function($scope, $state, $timeout, AuthService, Upload){
 	$scope.user = {}; //Error con las fechas
 	$scope.err = 2; //1 --> error, 0 --> sin errores
 
@@ -23,7 +23,7 @@ angular.module('dottApp.controllers').controller('EditUserController', function(
 
     $scope.file="";
     $scope.submit = function(){ //function to call on form submit
-        if ($scope.regForm.file.$valid && $scope.file) { //check if from is valid
+        if ($scope.edForm.file.$valid && $scope.file) { //check if from is valid
             $scope.upload($scope.file); //call upload function
         }
     };
