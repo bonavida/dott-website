@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
+var Activity = require('./activity');
 
 var UserSchema = new Schema({
   name:  String,
@@ -34,7 +35,17 @@ UserSchema.pre('save', function (next) {
     } else {
         return next();
     }
-});
+  }).pre('remove', function(next){
+    var user = this;
+    Activity.find({"creator.userID": user._id},function(err, acts){
+      for(var i=0; i<acts.length; i++){
+	    acts[i].remove();
+	  }
+      next();
+    });
+  });
+
+
 
 UserSchema.methods.comparePassword = function (passw, cb) {
     bcrypt.compare(passw, this.password, function (err, isMatch) {

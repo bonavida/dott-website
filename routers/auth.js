@@ -123,64 +123,24 @@ module.exports = function(router){
     return res.status(403).send({success: false, msg: 'No token provided.'});
   }
 }).delete('/users', passport.authenticate('jwt', { session: false}), function(req, res) {
-	  
-	  var token = getToken(req.headers);
-	  if (token) {
-	    var decoded = jwt.decode(token, config.secret);
-	    console.log("AUTH DELETE", decoded);
-//	    if(decoded.username == req.body.username){
-	      User.findById(decoded._id, function(err, user){	//Sustituir decoded por req.body
-		    // check if password matches
-	    	console.log("usuario", user);
-//		    user.comparePassword(decoded.password, function (err, isMatch) {
-//		      console.log("COINCIDEN?", isMatch)
-//		      if (isMatch && !err) {
-		    	user.remove(function(err){
-		    	  console.log("Algun error?", err);
-	              if(!err){
-	                res.status(200).send();
-	              }else{
-	                res.send(500, err.message);
-	              }
-	            });
-//		      } else {
-//		    	console.log("No, no???!! ELSE=ERROR");
-//		        res.send({success: false, msg: 'Delete failed. Wrong password.'});
-//		      }
-//		    });
-	      });
-//	    }
-	  }else{
-	    return res.status(403).send({success: false, msg: 'No token provided.'});
-	  }
-	});
+  var token = getToken(req.headers);
+  if (token) {
+    var decoded = jwt.decode(token, config.secret);
+    User.findById(decoded._id, function(err, user){	//Sustituir decoded por req.body
+	  user.remove(function(err){
+        if(!err){
+          res.status(200).send();
+       }else{
+          res.send(500, err.message);
+        }
+      });
+    });
+  }else{
+    return res.status(403).send({success: false, msg: 'No token provided.'});
+  }
+});
   
   
-  
-  
-  
-  
-  
-//  .delete('/users/:user_id', function(req, res, next) {
-//      User.findById(req.params.id, function(err, user){
-//        if(!err){
-//          if(!user){
-//             next();
-//          }else{
-//
-//            user.remove(function(err){
-//              if(!err){
-//                res.status(200).send();
-//              }else{
-//                res.send(500, err.message);
-//              }
-//            });
-//          }
-//        }else{
-//          res.send(500, err.message);
-//        }
-//      });
-
 getToken = function (headers) {
   if (headers && headers.authorization) {
     var parted = headers.authorization.split(' ');
