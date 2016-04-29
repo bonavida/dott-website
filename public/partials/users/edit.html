@@ -14,20 +14,20 @@
 				<!-- Nombre -->
 				<div class="form-group">
 				  <label for="name" class="control-label">Nombre</label>
-				  <input type="text" class="form-control" name="name" ng-model="user.name">
+				  <input type="text" class="form-control" name="name" ng-model="user.name" required>
 				</div>
 
 				<!-- Email -->
 				<div class="form-group" ng-class="{ 'has-error' : edForm.email.$invalid && !edForm.email.$pristine }">
 				  <label for="email" class="control-label">Email</label>
-				  <input type="email" class="form-control" name="email" ng-model="user.email">
+				  <input type="email" class="form-control" name="email" ng-model="user.email" required>
 				  <span class="help-block" ng-show="edForm.email.$invalid && !edForm.email.$pristine">Introduce un email válido.</span>
 				</div>
 
 				<!-- Localidad -->
 				<div class="form-group">
 				  <label for="location" class="control-label">Localidad</label>
-				  <input type="text" class="form-control" name="location" ng-model="user.location">
+				  <input type="text" class="form-control" name="location" ng-model="user.location" required>
 				</div>
 			</div>
 		</div>
@@ -81,6 +81,7 @@
 		<div class="col-xs-12">
 			<button ng-click= "save()" class="btn btn-primary" ng-disabled="edForm.$invalid">Guardar cambios</button>
 			<button ui-sref = "user-edit-pwd" class="btn btn-primary" ng-disabled="edForm.$invalid">Cambiar contraseña</button>
+			<button ui-sref = "user-profile" class="btn btn-primary" ng-disabled="edForm.$invalid">Cancelar</button>
 		</div>
 	</div>
   </form>
