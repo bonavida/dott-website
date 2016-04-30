@@ -22,7 +22,7 @@ angular.module('dottApp.services').factory('ActivityService', function($http, $q
     return( request.then( handleSuccess, handleError ) );
   }
 
-  function remove(){
+  function remove(id){
     var request = $http.delete(base_url + 'api/activities/'+id);
     return( request.then( handleSuccess, handleError ) );
   }

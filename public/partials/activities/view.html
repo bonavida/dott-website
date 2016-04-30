@@ -36,7 +36,13 @@
                 </tbody>
             </table>
             <button class="btn btn-primary" href="#">Editar actividad</button>
-            <button class="btn btn-danger" >Eliminar actividad</button>
+            <button class="btn btn-danger" ng-click="deleteActivity()">Eliminar actividad</button>
+              <div ng-show="err==1" class="alert alert-danger">
+						      <strong>Error:</strong> {{msg}}
+						  </div>
+						  <div ng-show="err==0" class="alert alert-success">
+						      <strong>Éxito:</strong> {{msg}}
+						  </div>
         </div>
     </div>
 </div>
