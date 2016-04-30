@@ -34,7 +34,7 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
       templateUrl:'partials/users/list.html',
       controller:'ListUserController'
     }).state('public-profile',{
-      url:'/:id/profile',
+      url:'/users/:id/profile',
       templateUrl:'partials/users/public-profile.html',
       controller:'PublicProfileUserController'
     }).state('user-profile',{

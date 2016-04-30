@@ -31,7 +31,7 @@ module.exports = function(router){
         }
       });
     }).get('/users/:user_id', function(req, res, next) {
-      User.findById(req.params.id, function(err, user){
+      User.findById(req.params.user_id, function(err, user){
         if(!err){
           if(!user){
              next();
@@ -43,7 +43,7 @@ module.exports = function(router){
         }
       });
     }).put('/users/:user_id', function(req, res, next) {
-      User.findById(req.params.id, function(err, user){
+      User.findById(req.params.user_id, function(err, user){
         if(!err){
           if(!user){
              next();
@@ -65,7 +65,7 @@ module.exports = function(router){
         }
       });
     }).delete('/users/:user_id', function(req, res, next) {
-      User.findById(req.params.id, function(err, user){
+      User.findById(req.params.user_id, function(err, user){
         if(!err){
           if(!user){
              next();

@@ -4,7 +4,6 @@ angular.module('dottApp.controllers').controller('PublicProfileUserController',f
     $scope.getUser = function() {
         UserService.getByID($stateParams.id).then(function (user) {
             $scope.user = user;
-            console.log(user.name);
         });
     };
 

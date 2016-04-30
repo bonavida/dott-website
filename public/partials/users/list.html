@@ -1,7 +1,7 @@
 <br />
 <div class="col-md-5 list-group">
     <div ng-repeat="user in users">
-        <a href="#" class="list-group-item clearfix">
+        <a ui-sref="public-profile({id:user._id})" class="list-group-item clearfix">
             <div class="col-md-2">
                 <img class="img-circle" ng-src="{{user.image}}" width="50">
             </div>

@@ -1,1 +1,42 @@
 <h2>Perfil de {{user.name}}</h2>
+<div class="well">
+    <div class="col-sm-2 pull-left">
+        <img src="{{user.image}}" class="img-circle img-responsive" width="200">
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <table class="table table-user-information">
+                <tbody>
+                      <tr>
+                          <th>Nombre</th>
+                          <td>{{user.name}}</td>
+                      </tr>
+                      <tr>
+                          <th>Usuario</th>
+                          <td>{{user.username}}</td>
+                      </tr>
+                      <tr>
+                          <th>Fecha de nacimiento</th>
+                          <td>{{user.birthday | date:'dd/MM/yyyy'}}</td>
+                      </tr>
+                      <tr>
+                          <th>Localidad</th>
+                          <td>{{user.location}}</td>
+                      </tr>
+                </tbody>
+            </table>
+            <!--
+            <a class="btn btn-primary" ui-sref="user-edit">Editar perfil</a>
+            <button class="btn btn-danger" ng-click="logout()">Cerrar sesión</button>
+            <button class="btn btn-danger" ng-click="deleteUsr()">Darse de baja</button>
+
+						<div ng-show="err==1" class="alert alert-danger">
+					      <strong>Error:</strong> {{msg}}
+					  </div>
+					  <div ng-show="err==0" class="alert alert-success">
+					      <strong>Éxito:</strong> {{msg}}
+					  </div>
+            -->
+        </div>
+    </div>
+</div>
