@@ -31,11 +31,11 @@
 
 /*LIST ACTIVITIES*/
 .starter-template {
-    padding: 40px 15px;
+    padding: 15px 15px;
     text-align: center;
 }
 .featurette-divider {
-    margin: 80px 0; /* Space out the Bootstrap <hr> more */
+    margin: 40px 0; /* Space out the Bootstrap <hr> more */
 }
 .featurette-heading {
     font-weight: 300;
