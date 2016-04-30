@@ -1,4 +1,4 @@
-angular.module('dottApp.controllers').controller('AddActivityController', function($scope, $state, Upload, ActivityService, ActivityValidator, User, AuthService){
+angular.module('dottApp.controllers').controller('AddActivityController', function($scope, $state, Upload, ActivityService, ActivityValidator, UserService, AuthService){
 	$scope.activity = {
     name: "",
     description: "",
@@ -29,7 +29,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
 	  $scope.activity.creator.userID = $scope.user._id;
 	  $scope.activity.creator.name = $scope.user.username;
 	  $scope.activity.creator.image = $scope.user.image;
-	  
+
       ActivityService.add( $scope.activity).then(function(data){
         $scope.message="Actividad creada con éxito";
           $state.go("activities");
@@ -39,7 +39,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
     }
   };
 
-  
+
   $scope.file="";
   $scope.submit = function(){ //function to call on form submit
       if ($scope.actForm.file.$valid && $scope.file) { //check if from is valid
