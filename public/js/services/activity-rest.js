@@ -18,7 +18,7 @@ angular.module('dottApp.services').factory('ActivityService', function($http, $q
   }
 
   function update(activity){
-    var request = $http.put(base_url + 'api/activities/'+activity.id, activity);
+    var request = $http.put(base_url + 'api/activities/'+activity._id, activity);
     return( request.then( handleSuccess, handleError ) );
   }
 

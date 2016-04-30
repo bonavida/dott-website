@@ -14,6 +14,10 @@
                     <td>{{activity.name}}</td>
                 </tr>
                 <tr>
+                    <th>Creador</th>
+                    <td><a ui-sref="public-profile({id:activity.creator.userID})">{{activity.creator.name}}</a></td>
+                </tr>
+                <tr>
                     <th>Descripción</th>
                     <td><span ng-bind-html="activity.description | breakFilter"></span></td>
                 </tr>
@@ -35,14 +39,16 @@
                 </tr>
                 </tbody>
             </table>
-            <button class="btn btn-primary" href="#">Editar actividad</button>
+            <button class="btn btn-primary" ng-show= "user._id==activity.creator.userID" ui-sref="activities-edit({id:activity._id})">Editar actividad</button>
             <button class="btn btn-danger" ng-show= "user._id==activity.creator.userID" ng-click="deleteActivity()">Eliminar actividad</button>
+            <br />
+            <br />
               <div ng-show="err==1" class="alert alert-danger">
-						      <strong>Error:</strong> {{msg}}
-						  </div>
-						  <div ng-show="err==0" class="alert alert-success">
-						      <strong>Éxito:</strong> {{msg}}
-						  </div>
+			      <strong>Error:</strong> {{msg}}
+			  </div>
+			  <div ng-show="err==0" class="alert alert-success">
+			      <strong>Éxito:</strong> {{msg}}
+			  </div>
         </div>
     </div>
 </div>
