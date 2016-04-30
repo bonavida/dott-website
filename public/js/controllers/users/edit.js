@@ -1,13 +1,34 @@
 angular.module('dottApp.controllers').controller('EditUserController', function($scope, $state, $timeout, AuthService, Upload){
 	$scope.user = {}; //Error con las fechas
 	$scope.err = 2; //1 --> error, 0 --> sin errores
-
+	
+//	//AÑADIDO
+//	$scope.status="";
+	
 	$scope.getUser = function(){
 		AuthService.getUser().then(function(user) {
 			$scope.user = user;
 		});
 	};
-
+	
+//	//AÑADIDO
+//	$scope.showConfirm = function(ev) {
+//      // Appending dialog to document.body to cover sidenav in docs app
+//      var confirm = $mdDialog.confirm()
+//          .title('Would you like to delete your debt?')
+//          .textContent('All of the banks have agreed to forgive you your debts.')
+//          .ariaLabel('Lucky day')
+//          .targetEvent(ev)
+//          .ok('Please do it!')
+//          .cancel('Sounds like a scam');
+//
+//      $mdDialog.show(confirm).then(function() {
+//        $scope.status = 'You decided to get rid of your debt.';
+//      }, function() {
+//        $scope.status = 'You decided to keep your debt.';
+//      });
+//    };
+    
 	$scope.save = function() {
 		AuthService.edit($scope.user).then(function() {
 			$scope.err = 0;
