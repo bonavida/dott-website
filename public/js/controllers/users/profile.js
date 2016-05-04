@@ -1,4 +1,4 @@
-angular.module('dottApp.controllers').controller('ProfileUserController', function($scope, $state, AuthService){
+angular.module('dottApp.controllers').controller('ProfileUserController', function($scope, $state, AuthService, $uibModal){
   $scope.user = {};
   $scope.err = 2; //0-->se borra, 1-->No se borra
   $scope.msg;
@@ -27,4 +27,30 @@ angular.module('dottApp.controllers').controller('ProfileUserController', functi
     });
     $scope.logout();
   }
+//});
+
+//POPUP
+  $scope.open = function () {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'confirmation.html',
+      controller: 'popupController',
+    });
+    modalInstance.result.then(function () {
+      $scope.deleteUsr();
+    }, function () {	//CANCEL
+    });
+  };
+  
+});
+
+//Controller de la POPUP
+angular.module('dottApp.controllers').controller('popupController', function ($scope, $uibModalInstance) {
+  $scope.ok = function () {
+    $uibModalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
 });
