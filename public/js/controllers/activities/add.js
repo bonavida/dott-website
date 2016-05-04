@@ -1,4 +1,4 @@
-angular.module('dottApp.controllers').controller('AddActivityController', function($scope, $state, Upload, ActivityService, ActivityValidator, UserService, AuthService){
+angular.module('dottApp.controllers').controller('AddActivityController', function($scope, $state, $uibModal, Upload, ActivityService, CategoryService, ActivityValidator, UserService, AuthService){
 	$scope.activity = {
     name: "",
     description: "",
@@ -13,16 +13,49 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
     creationDate:  new Date(),
     minParticipants: 1,
     maxParticipants: 2,
-    //categories: [{name:""}]
+    categories: [],
   };
+
+	$scope.availableCategories = [];
   $scope.message="";
   $scope.user = {};
+
+
+
 
   $scope.getUser = function(){
     AuthService.getUser().then(function(user) {
 	  $scope.user = user;
     });
   };
+
+	$scope.selectCategories = function(){
+		var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'addCategoryToActivityContent.html',
+      controller: 'AddCategoryToActivityController',
+      resolve: {
+        categories: function () {
+          return $scope.activity.categories;
+        },
+				availableCategories: function () {
+          return $scope.availableCategories;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedCategories) {
+      $scope.activity.categories = selectedCategories;
+    });
+
+	};
+
+
+	$scope.loadCategories = function(){
+		CategoryService.getAll().then(function(data){
+			$scope.availableCategories = data;
+		});
+	};
 
   $scope.save = function(){
     if(ActivityValidator.isValid(  $scope.activity )){
@@ -68,4 +101,40 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
       });
   };
   $scope.getUser();
+	$scope.loadCategories();
+}).controller('AddCategoryToActivityController', function($scope, $uibModalInstance, categories, availableCategories){
+	$scope.selectedCategories = categories;
+	$scope.availableCategories = availableCategories;
+
+
+	$scope.addCategory = function(category){
+		for(var i = 0; i<$scope.availableCategories.length; i++){
+			var value = $scope.availableCategories[i];
+			if(value._id == category._id){
+				$scope.availableCategories.splice(i, i+1);
+				$scope.selectedCategories.push(category);
+				break;
+			}
+		}
+	};
+
+	$scope.removeCategory = function(category){
+		for(var i = 0; i<$scope.selectedCategories.length; i++){
+			var value = $scope.selectedCategories[i];
+			if(value._id == category._id){
+				$scope.selectedCategories.splice(i, i+1);
+				$scope.availableCategories.push(category);
+				break;
+			}
+		}
+	};
+
+
+  $scope.ok = function () {
+    $uibModalInstance.close($scope.selectedCategories);
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
 });

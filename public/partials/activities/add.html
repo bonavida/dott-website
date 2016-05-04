@@ -82,8 +82,55 @@
         </div>
       </div>
       <div class="col-xs-12">
+        <h3>Categorías</h3>
+        <a class="btn btn-default" ng-click="selectCategories()">Seleccionar categorías</a>
+        <div class="circle-list" style="margin-top:10px;">
+          <div style="width: 50px; height: 50px" class="img-crop-circle" ng-repeat="category in activity.categories">
+            <img ng-src="{{category.image}}" alt="{{category.name}}" ng-click="removeCategory(category)" />
+            <span>Categorias</span>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="col-xs-12 voffset3"></div>
+
+      <div class="col-xs-12">
         <button ng-click="save(actForm.$valid)" class="btn btn-primary" ng-disabled="actForm.$invalid">Crear</button>
       </div>
     </div>
   </form>
+</div>
+<div>
+    <script type="text/ng-template" id="addCategoryToActivityContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Seleccionar categorías</h3>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="circle-list">
+                <h4>Disponibles</h4>
+                <div style="width: 50px; height: 50px" class="img-crop-circle" ng-repeat="acat in availableCategories">
+                  <img ng-src="{{acat.image}}" alt="{{acat.name}}" ng-click="addCategory(acat)" />
+                  <span>Categorias</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <div class="circle-list">
+                <h4>Seleccionadas</h4>
+                <div style="width: 50px; height: 50px" class="img-crop-circle" ng-repeat="scat in selectedCategories">
+                  <img ng-src="{{scat.image}}" alt="{{scat.name}}" ng-click="removeCategory(scat)" />
+                  <span>Categorias</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        </div>
+    </script>
 </div>
