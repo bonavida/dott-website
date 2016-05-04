@@ -69,3 +69,8 @@
   width: 100%;
   height: auto;
 }
+
+#map-canvas {
+  width: 550px;
+  height: 400px;
+}
