@@ -7,7 +7,8 @@ angular.module('dottApp',['ui.router',
                           'dottApp.services',
                           'dottApp.constants',
                           'dottApp.filters',
-                          'ngSanitize']);//Dependencies
+                          'ngSanitize',
+                          'uiGmapgoogle-maps']);//Dependencies
 
 angular.module('dottApp.controllers', ['ui.bootstrap']);
 angular.module('dottApp.services', []);

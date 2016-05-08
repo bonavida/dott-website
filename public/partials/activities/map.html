@@ -1,14 +1,16 @@
-<!-- <br />
-<input type="text" id="mapsearch" size="50">
-<br /><br />
+<br />
+<script type="text/ng-template" id="searchbox.tpl.html">
+    <input type="text" placeholder="Buscar" size="50">
+</script>
 <div class="well well-sm">
-    <div class="row">
-        <div class="col-md-6">
-            <div id="map-canvas"></div>
-        </div>
-        <div class="col-md-6">
-            lat&nbsp;&nbsp;&nbsp;{{lat}} <br />
-            lng&nbsp;&nbsp;&nbsp;{{lng}}
-        </div>
-    </div>
-</div> -->
+    <ui-gmap-google-map center="map.center"
+    			zoom="map.zoom"
+    			draggable="true"
+    			options="map.options"
+    			control="map.control">
+        <ui-gmap-search-box template="searchbox.template" options="searchbox.options" events="searchbox.events"></ui-gmap-search-box>
+		<ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id" ></ui-gmap-marker>
+    </ui-gmap-google-map>
+    {{lat}}<br />
+    {{lng}}
+</div>
