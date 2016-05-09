@@ -10,11 +10,6 @@ angular.module('dottApp.controllers').controller('ProfileUserController', functi
     });
   };
 
-  $scope.logout = function() {
-    AuthService.logout();
-    $state.go('activities');
-  };
-
   $scope.getUser();
   
   $scope.deleteUsr = function(){

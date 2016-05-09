@@ -64,6 +64,13 @@
 	        	</li>
 	      	</ul>
 	      	
+	      	<!-- Ver el perfil -->
+      		<ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated()">
+      			<div style="width: 40px; height: 40px" class="img-crop-circle" uib-tooltip="Ir a mi perfil" tooltip-placement="bottom" tooltip-trigger="none" tooltip-is-open="true">
+              <img class="" ng-src="{{user.image}}" ui-sref="user-profile">
+            </div>
+      		</ul>
+	      	
 	      	<!-- LOGOUT -->
       		<ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated()">
         		<li><a ng-click="logout()">Cerrar sesion</a></li>

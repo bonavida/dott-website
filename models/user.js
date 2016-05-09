@@ -11,6 +11,7 @@ var UserSchema = new Schema({
   birthday: Date,
   location: String,
   image: String,
+  isAdm: {type: Boolean, default: false},
   notifications: [{message: String, readed: Boolean, date: Date, activityID: String, activityName: String}]
 });
 

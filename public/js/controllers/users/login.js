@@ -1,4 +1,5 @@
 angular.module('dottApp.controllers').controller('LoginUserController', function($scope, $state, AuthService){
+	$scope.user={};
 	$scope.username;
 	$scope.pwd;
 	$scope.list=[];
@@ -22,6 +23,14 @@ angular.module('dottApp.controllers').controller('LoginUserController', function
 
 		console.log($scope.status);
 	};
+	
+	$scope.getUser = function(){
+	    AuthService.getUser().then(function(user){
+	    	$scope.user = user;
+	    });
+	};
+
+	$scope.getUser();
 
 	$scope.isAuthenticated = function(){
 		console.log(AuthService.isAuthenticated());
