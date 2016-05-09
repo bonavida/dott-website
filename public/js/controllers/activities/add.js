@@ -171,17 +171,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
 
         $scope.lat = place.geometry.location.lat();
         $scope.lng = place.geometry.location.lng();
-
-        var geocoder = new google.maps.Geocoder();
-
-        geocoder.geocode({ 'latLng': place.geometry.location }, function (results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            if (results[1]) {
-              $scope.searchModel.searchTerm = results[1].formatted_address; // details address
-              $scope.$apply();
-            }
-          }
-        });
+        $scope.searchModel.searchTerm = place.name;
 
         $scope.map.center = {
           latitude: $scope.lat,
