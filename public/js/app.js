@@ -9,6 +9,7 @@ angular.module('dottApp',['ui.router',
                           'dottApp.filters',
                           'dottApp.directives',
                           'ngSanitize',
+                          'angularUtils.directives.dirPagination',
                           'uiGmapgoogle-maps']);//Dependencies
 
 angular.module('dottApp.controllers', ['ui.bootstrap']);

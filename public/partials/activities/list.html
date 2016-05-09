@@ -2,8 +2,21 @@
     <h1>Todas las actividades</h1>
     <hr class="featurette-divider">
 </div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="col-xs-6">
+      <div class="input-group">
+        <input type="text" class="form-control" ng-model="query" placeholder="Buscar...">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="clearSeach()">Limpiar</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <ul style="list-style: none" class="activities-list">
-    <li ng-repeat="activity in activities">
+    <li dir-paginate="activity in activities | itemsPerPage : 2">
         <span ng-if="$even">
             <div class="row featurette">
                 <div class="col-md-7">
@@ -52,3 +65,9 @@
         </span>
     </li>
 </ul>
+
+<dir-pagination-controls
+   max-size="2"
+   direction-links="true"
+   boundary-links="true" >
+ </dir-pagination-controls>
