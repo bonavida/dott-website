@@ -20,7 +20,7 @@
         <span ng-if="$even">
             <div class="row featurette">
                 <div class="col-md-7">
-                    <h3 class="featurette-heading">{{activity.name}}<span class="text-muted"> / {{activity.location}}</span></h3>
+                    <h3 class="featurette-heading">{{activity.name}}<span class="text-muted"> / {{activity.location.name}}</span></h3>
                     <p style="margin-top: 25px"><span ng-bind-html="activity.description | breakFilter"></span></p>
                     <br />
                     <div>
@@ -47,7 +47,7 @@
                     <img ng-src="{{activity.image}}" class="featurette-image center-block" width="400" >
                 </div>
                 <div class="col-md-7">
-                    <h3 class="featurette-heading">{{activity.name}} / <span class="text-muted">{{activity.location}}</span></h3>
+                    <h3 class="featurette-heading">{{activity.name}} / <span class="text-muted">{{activity.location.name}}</span></h3>
                     <p style="margin-top: 25px"><span ng-bind-html="activity.description | breakFilter"></span></p>
                     <br />
                     <div>

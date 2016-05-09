@@ -1,5 +1,10 @@
 angular.module('dottApp.controllers').controller('ViewActivityController',function($scope, $state, $stateParams, $timeout, ActivityService, AuthService){
     $scope.activity = {};
+    $scope.lat = undefined;
+    $scope.lng = undefined;
+    $scope.searchModel = {
+        searchTerm: undefined
+    };
     $scope.user = {};
     $scope.err = 2; //0 --> No hay errores, 1 --> Hay errores, 2 --> Todavia no se ha llamado a la funcion
 	$scope.msg = "";
@@ -7,8 +12,38 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
     $scope.getActivity = function() {
         ActivityService.getByID($stateParams.id).then(function (activity) {
             $scope.activity = activity;
-            console.log(activity.name);
+            $scope.loadLocation();
         });
+    };
+
+    $scope.loadLocation = function() {
+        $scope.lat = $scope.activity.location.coords.lat;
+        $scope.lng = $scope.activity.location.coords.lng;
+        $scope.searchModel = {
+            searchTerm: $scope.activity.location.name
+        };
+
+        $scope.map = {
+            center: {
+                latitude: $scope.lat,
+                longitude: $scope.lng
+            },
+            zoom: 15,
+            options : {
+                scrollwheel: true
+            }
+        };
+
+        $scope.marker = {
+            id: 0,
+            coords: {
+                latitude: $scope.lat,
+                longitude: $scope.lng
+            },
+            options: {
+                draggable: false
+            }
+        };
     };
 
     $scope.getUser = function(){

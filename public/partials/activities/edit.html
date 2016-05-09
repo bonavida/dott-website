@@ -46,7 +46,7 @@
 
         <div class="form-group">
           <label for="activity-location">Lugar</label>
-          <input type="text" class="form-control" ng-model="activity.location" required>
+          <div id="searchBoxParent"></div>
         </div>
 
         <div class="form-group">
@@ -78,7 +78,14 @@
         </div>
         <div class="col-xs-12">
           <h3>Localización</h3>
-          <img class="img-responsive" src="/images/maps.png"/>
+          <ui-gmap-google-map center="map.center"
+                			zoom="map.zoom"
+                			draggable="true"
+                			options="map.options"
+                			control="map.control">
+            <ui-gmap-search-box template="searchbox.template" options="searchbox.options" events="searchbox.events" ng-model="searchModel.searchTerm" parentdiv="searchbox.parentdiv"></ui-gmap-search-box>
+            <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
+          </ui-gmap-google-map>
         </div>
       </div>
       <div class="col-xs-12">
@@ -95,5 +102,7 @@
   <div ng-show="err==0" class="alert alert-success">
       <strong>Éxito:</strong> La actividad se ha modificado correctamente.
   </div>
-
 </div>
+<script type="text/ng-template" id="searchbox.tpl.html">
+    <input type="text" class="form-control" ng-model="ngModel" placeholder="Lugar" required>
+</script>

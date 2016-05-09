@@ -3,7 +3,13 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
     name: "",
     description: "",
     image:   "images/default.jpg",
-    location: "",
+    location: {
+      name: "",
+      coords: {
+          lat: "",
+          lng: ""
+      }
+    },
     creator: {
       userID: "",
       name: "",
@@ -19,9 +25,6 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
 	$scope.availableCategories = [];
   $scope.message="";
   $scope.user = {};
-
-
-
 
   $scope.getUser = function(){
     AuthService.getUser().then(function(user) {
@@ -52,23 +55,30 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
 
 
 	$scope.loadCategories = function(){
-		CategoryService.getAll().then(function(data){
+		CategoryService.getAll().then(function(data) {
 			$scope.availableCategories = data;
 		});
 	};
 
   $scope.save = function(){
-    if(ActivityValidator.isValid(  $scope.activity )){
-	  $scope.activity.creator.userID = $scope.user._id;
-	  $scope.activity.creator.name = $scope.user.username;
-	  $scope.activity.creator.image = $scope.user.image;
+    if (ActivityValidator.isValid( $scope.activity )) {
+      /** Save activity creator info */
+  	  $scope.activity.creator.userID = $scope.user._id;
+  	  $scope.activity.creator.name = $scope.user.username;
+  	  $scope.activity.creator.image = $scope.user.image;
+      /** Save location info */
+      $scope.activity.location.name = $scope.searchModel.searchTerm;
+      $scope.activity.location.coords = {
+        lat: $scope.lat,
+        lng: $scope.lng
+      };
 
-      ActivityService.add( $scope.activity).then(function(data){
-        $scope.message="Actividad creada con éxito";
+      ActivityService.add($scope.activity).then(function(data) {
+        $scope.message = "Actividad creada con éxito";
           $state.go("activities");
       });
-    }else{
-      $scope.message="Datos inválidos";
+    } else {
+      $scope.message = "Datos inválidos";
     }
   };
 
@@ -102,6 +112,93 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
   };
   $scope.getUser();
 	$scope.loadCategories();
+
+  /** Google Maps */
+
+  $scope.lat = 39.9863563;
+  $scope.lng = -0.051324600000043574;
+  $scope.searchModel = {
+    searchTerm: ""
+  };
+
+  $scope.map = {
+    center: {
+      latitude: $scope.lat,
+      longitude: $scope.lng
+    },
+    zoom: 15,
+    options : {
+      scrollwheel: true
+    }
+  };
+
+  $scope.marker = {
+    id: 0,
+    coords: {
+      latitude: $scope.lat,
+      longitude: $scope.lng
+    },
+    options: {
+      draggable: true
+    },
+    events: {
+      dragend: function(marker, eventName, orignalEventArgs) {
+        $scope.lat = marker.getPosition().lat();
+        $scope.lng = marker.getPosition().lng();
+
+        var geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+              $scope.searchModel.searchTerm = results[1].formatted_address; // details address
+              $scope.$apply();
+            }
+          }
+        });
+      }
+    }
+  };
+
+  $scope.searchbox = {
+    template: 'searchbox.tpl.html',
+    options: {
+      autocomplete: true
+    },
+    events: {
+      place_changed: function (searchBox) {
+        var place = searchBox.getPlace();
+
+        $scope.lat = place.geometry.location.lat();
+        $scope.lng = place.geometry.location.lng();
+
+        var geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode({ 'latLng': place.geometry.location }, function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+              $scope.searchModel.searchTerm = results[1].formatted_address; // details address
+              $scope.$apply();
+            }
+          }
+        });
+
+        $scope.map.center = {
+          latitude: $scope.lat,
+          longitude: $scope.lng,
+        };
+
+        $scope.map.zoom = 15;
+
+        $scope.marker.coords = {
+          latitude: $scope.lat,
+          longitude: $scope.lng,
+        };
+      }
+    },
+    parentdiv: 'searchBoxParent'
+  };
+
 }).controller('AddCategoryToActivityController', function($scope, $uibModalInstance, categories, availableCategories){
 	$scope.selectedCategories = categories;
 	$scope.availableCategories = availableCategories;
@@ -129,7 +226,6 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
 		}
 	};
 
-
   $scope.ok = function () {
     $uibModalInstance.close($scope.selectedCategories);
   };
@@ -137,4 +233,5 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
+
 });

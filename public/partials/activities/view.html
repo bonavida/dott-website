@@ -23,7 +23,16 @@
                 </tr>
                 <tr>
                     <th>Lugar</th>
-                    <td>{{activity.location}}</td>
+                    <td>{{activity.location.name}}<br /><br />
+                        <ui-gmap-google-map center="map.center"
+                                            zoom="map.zoom"
+                                            draggable="true"
+                                            options="map.options"
+                                            control="map.control">
+                            <ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id"></ui-gmap-marker>
+                        </ui-gmap-google-map>
+                        <br />
+                    </td>
                 </tr>
                 <tr>
                     <th>Fecha</th>
