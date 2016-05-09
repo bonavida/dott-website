@@ -31,6 +31,8 @@ angular.module('dottApp.controllers').controller('EditActivityController',functi
     $scope.getActivity = function() {
         ActivityService.getByID($stateParams.id).then(function (activity) {
             $scope.activity = activity;
+            var executionDate = new Date($scope.activity.executionDate);
+            $scope.activity.executionDate = executionDate;
             $scope.loadLocation();
         });
     };
