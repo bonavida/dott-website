@@ -1,6 +1,9 @@
 angular.module('dottApp.controllers').controller('MapController',function($scope) {
     $scope.lat = "39.9863563";
     $scope.lng = "-0.051324600000043574";
+    $scope.searchModel = {
+        searchTerm: ""
+    };
 
     $scope.map = {
 		center: {
@@ -21,11 +24,28 @@ angular.module('dottApp.controllers').controller('MapController',function($scope
 		},
 		options: {
 			draggable: true
-		}
+		},
+        events: {
+            dragend: function(marker, eventName, orignalEventArgs) {
+                $scope.lat = marker.getPosition().lat();
+                $scope.lng = marker.getPosition().lng();
+
+                var geocoder = new google.maps.Geocoder();
+
+                geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[1]) {
+                            $scope.searchModel.searchTerm = results[1].formatted_address; // details address
+                            $scope.$apply();
+                        }
+                    }
+                });
+            }
+        }
 	};
 
     $scope.searchbox = {
-        template:'searchbox.tpl.html',
+        template: 'searchbox.tpl.html',
         options: {
             autocomplete: true
         },
@@ -41,14 +61,15 @@ angular.module('dottApp.controllers').controller('MapController',function($scope
                     longitude: $scope.lng,
                 };
 
+                $scope.map.zoom = 12;
+
                 $scope.marker.coords = {
                     latitude: $scope.lat,
                     longitude: $scope.lng,
                 };
-
-
             }
-        }
+        },
+        parentdiv: 'searchBoxParent'
     };
 
 });

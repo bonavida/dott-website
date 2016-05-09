@@ -5,7 +5,12 @@ var ActivitySchema = new Schema({
   name:  String,
   description: String,
   image:   String,
-  location: String,
+  location: {
+      name: String,
+      coords: {
+          lat: Number,
+          lng: Number
+      }},
   creator: {
             userID: String,
             name: String,
