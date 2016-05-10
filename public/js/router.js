@@ -38,7 +38,7 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
       templateUrl:'partials/users/register.html',
       controller:'UserRegisterController'
     }).state('user-remove',{
-      url:'/users',
+      url:'/user-remove',
       templateUrl:'partials/users/remove.html',
       controller:'RemoveUserController'
     }).state('user-list',{
@@ -46,7 +46,7 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
       templateUrl:'partials/users/list.html',
       controller:'ListUserController'
     }).state('manage-users',{
-      url:'/users',
+      url:'/manage-users',
       templateUrl:'partials/users/adminList.html',
       controller:'ManageUsersController'
     }).state('public-profile',{
