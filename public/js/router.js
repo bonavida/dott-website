@@ -4,11 +4,15 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
       .state('activities',{
         url:'/activities',
         templateUrl:'partials/activities/list.html',
-        controller:'ListActivityController'
+          controller:'ListActivityController'
+      }).state('adminActivities',{
+        url:'/manage-activities',
+        templateUrl:'partials/activities/adminList.html',
+        controller:'ManageActivitiesController'
     }).state('activities-view',{
-       url:'/activities/:id/view',
-       templateUrl:'partials/activities/view.html',
-       controller:'ViewActivityController'
+        url:'/activities/:id/view',
+        templateUrl:'partials/activities/view.html',
+        controller:'ViewActivityController'
     }).state('activities-new',{
         url:'/activities/new',
         templateUrl:'partials/activities/add.html',
@@ -17,6 +21,10 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
         url:'/activities/:id/edit',
         templateUrl:'partials/activities/edit.html',
         controller:'EditActivityController'
+    }).state('activities-remove',{
+        url:'/activities/:id/remove',
+        templateUrl:'partials/activities/remove.html',
+        controller:'RemoveActivityController'
     }).state('map',{
         url:'/map',
         templateUrl:'partials/activities/map.html',
@@ -29,10 +37,18 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
       url:'/register',
       templateUrl:'partials/users/register.html',
       controller:'UserRegisterController'
+    }).state('user-remove',{
+      url:'/users',
+      templateUrl:'partials/users/remove.html',
+      controller:'RemoveUserController'
     }).state('user-list',{
       url:'/users',
       templateUrl:'partials/users/list.html',
       controller:'ListUserController'
+    }).state('manage-users',{
+      url:'/users',
+      templateUrl:'partials/users/adminList.html',
+      controller:'ManageUsersController'
     }).state('public-profile',{
       url:'/users/:id/profile',
       templateUrl:'partials/users/public-profile.html',

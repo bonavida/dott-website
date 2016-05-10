@@ -84,36 +84,42 @@
   <!-- Aplicaciones -->
     <div class="container">
 
-      <ul class="nav nav-tabs">
-        <li>
-          <a ui-sref="activities">List</a>
-        </li>
-        <li>
-          <a ui-sref="activities-new">Create</a>
-        </li>
-        <li>
-          <a ui-sref="map">Mapa</a>
-        </li>
-        <li>
-        	<a ui-sref="user-login">Login</a>
-        </li>
-        <li>
-          <a ui-sref="user-register">Register</a>
-        </li>
-        <li>
-          <a ui-sref="user-list">List users</a>
-        </li>
-        <li>
-          <a ui-sref="user-profile">My profile</a>
-        </li>
-        <li>
-          <a ui-sref="categories">Categorías</a>
-        </li>
-      </ul>
+        <ul class="nav nav-tabs">
+            <li>
+                <a ui-sref="activities">List</a>
+            </li>
+            <li>
+                <a ui-sref="activities-new">Create</a>
+            </li>
+            <li>
+                <a ui-sref="adminActivities">Manage activities</a>
+            </li>
+            <li>
+                <a ui-sref="map">Mapa</a>
+            </li>
+            <li>
+                <a ui-sref="user-login">Login</a>
+            </li>
+            <li>
+                <a ui-sref="user-register">Register</a>
+            </li>
+            <li>
+                <a ui-sref="user-list">List users</a>
+            </li>
+            <li>
+                <a ui-sref="manage-users">Manage users</a>
+            </li>
+            <li>
+                <a ui-sref="user-profile">My profile</a>
+            </li>
+            <li>
+                <a ui-sref="categories">Categorías</a>
+            </li>
+        </ul>
 
-      <div class="row">
-        <div class="col-xs-12" ui-view></div>
-      </div>
+        <div class="row">
+            <div class="col-xs-12" ui-view></div>
+        </div>
     </div>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKVbTUVq9QRTgqtR2bk1RdhxPetMZ6cUM&libraries=places"></script>
 
@@ -145,7 +151,8 @@
     <script type="text/javascript" src="js/controllers/activities/add.js"></script>
     <script type="text/javascript" src="js/controllers/activities/edit.js"></script>
     <script type="text/javascript" src="js/controllers/activities/view.js"></script>
-    <script type="text/javascript" src="js/controllers/activities/list.js"></script>
+    <script type="text/javascript" src="js/controllers/activities/remove.js"></script>
+    <script type="text/javascript" src="js/controllers/activities/adminList.js"></script>
     <script type="text/javascript" src="js/controllers/activities/map.js"></script> <!-- TODO Quitar -->
     <script type="text/javascript" src="js/controllers/activities/directives.js"></script>
     <script type="text/javascript" src="js/controllers/users/login.js"></script>
@@ -153,6 +160,8 @@
     <script type="text/javascript" src="js/controllers/users/public-profile.js"></script>
     <script type="text/javascript" src="js/controllers/users/profile.js"></script>
     <script type="text/javascript" src="js/controllers/users/list.js"></script>
+    <script type="text/javascript" src="js/controllers/users/adminList.js"></script>
+    <script type="text/javascript" src="js/controllers/users/remove.js"></script>
     <script type="text/javascript" src="js/controllers/users/edit.js"></script>
     <script type="text/javascript" src="js/controllers/users/edit-pwd.js"></script>
     <script type="text/javascript" src="js/controllers/categories/add.js"></script>
@@ -161,5 +170,5 @@
     <script type="text/javascript" src="js/router.js"></script>
     <script type="text/javascript" src="js/filters.js"></script>
 
-  </body>
+    </body>
 </html>

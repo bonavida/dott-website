@@ -1,0 +1,16 @@
+<div style="margin-top: 100px" class="alert alert-danger" role="alert">
+    <h4>Atención !</h4>
+    <p>Esta a punto de eliminar al usuraio {{user.name}}.Todos los datos de este usuario se perderan. Pulse "Eliminar definitivamente" si esta seguro que desea eliminarlo
+    o "Cancelar" para volver a la lista de usuraios sin borrar el usuario.</p>
+    <div style="margin-top: 30px" class="btn-group" role="group" aria-label="...">
+        <a class="btn btn-default" ui-sref="manage-users">Cancelar</a>
+        <button class="btn btn-warning" ng-click="deleteUser()">Eliminar definitivamente</button>
+    </div>
+</div>
+<br />
+<div ng-show="err==1" class="alert alert-danger">
+    <strong>Error:</strong> {{msg}}
+</div>
+<div ng-show="err==0" class="alert alert-success">
+    <strong>Éxito:</strong> {{msg}}
+</div>

@@ -1,0 +1,23 @@
+<div class="starter-template">
+    <h1>Todas las actividades</h1>
+    <hr class="featurette-divider">
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="col-md-1">#</th>
+                <th class="col-md-10">Actividad</th>
+                <th class="col-md-1">Borrar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="activity in activities">
+                <th scope="row">{{$index}}</th>
+                <td>{{activity.name}}</td>
+                <td><a ui-sref="activities-remove({id: activity._id})">Borrar</a></td>
+            </tr>
+            </tbody> </table>
+    </div>
+</div>

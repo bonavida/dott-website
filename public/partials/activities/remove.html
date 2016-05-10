@@ -1,0 +1,16 @@
+<div style="margin-top: 100px" class="alert alert-danger" role="alert">
+    <h4>Atención !</h4>
+    <p>Esta a punto de eliminar la actividad {{activity.name}}.Todos los datos de esta actividad se perderan. Pulse "Eliminar definitivamente" si esta seguro que desea borrarla
+    o "Cancelar" para volver a la lista de actividades sin borrar la actividad.</p>
+    <div style="margin-top: 30px" class="btn-group" role="group" aria-label="...">
+        <a class="btn btn-default" ui-sref="adminActivities">Cancelar</a>
+        <button class="btn btn-warning" ng-click="deleteActivity()">Eliminar definitivamente</button>
+    </div>
+</div>
+<br />
+<div ng-show="err==1" class="alert alert-danger">
+    <strong>Error:</strong> {{msg}}
+</div>
+<div ng-show="err==0" class="alert alert-success">
+    <strong>Éxito:</strong> {{msg}}
+</div>
