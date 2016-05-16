@@ -26,6 +26,19 @@ angular.module('dottApp.services').factory('ActivityService', function($http, $q
     var request = $http.delete(base_url + 'api/activities/'+id);
     return( request.then( handleSuccess, handleError ) );
   }
+
+  function participate(activity){//TODO
+	var request = $http.put(base_url + 'api/activities/'+activity._id+'/participate', activity);
+	return( request.then( handleSuccess, handleError ) ); 
+  }
+  
+  function stopParticipate(activity){
+	console.log("Segunda llamada", activity);
+	var request = $http.put(base_url + 'api/activities/'+activity._id+'/stopParticipate', activity);
+	console.log("Luego?");
+	return( request.then( handleSuccess, handleError ) ); 
+  }
+  
   //PRIVATE METHODS
   function handleError( response ) {
     if (
@@ -39,12 +52,14 @@ angular.module('dottApp.services').factory('ActivityService', function($http, $q
   function handleSuccess( response ) {
     return( response.data );
   }
-
+  
   return ({
-    getAll    : getAll,
-    getByID   : getByID,
-    add       : add,
-    update    : update,
-    remove    : remove
+    getAll    		: getAll,
+    getByID   		: getByID,
+    add       		: add,
+    update    		: update,
+    remove    		: remove,
+    participate		: participate,
+    stopParticipate	:stopParticipate,
   });
 });

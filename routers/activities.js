@@ -80,13 +80,52 @@ module.exports = function(router){
           res.send(500, err.message);
         }
       });
+    }).put('/activities/:activity_id/participate', function(req, res, next) {
+      Activity.findById(req.params.activity_id, function(err, activity){
+        if(!err){
+          if(!activity){
+            next();
+          }else{
+        	activity.participants = req.body.participants;
+            console.log(activity);
+            activity.save(function(err, activity){
+              if(!err){
+                res.json(activity);
+              }else{
+                res.send(500, err.message);
+              }
+            });
+          }
+        }else{
+          res.send(500, err.message);
+        }
+      });
+    }).put('/activities/:activity_id/stopParticipate', function(req, res, next) {
+      Activity.findById(req.params.activity_id, function(err, activity){
+        if(!err){
+          if(!activity){
+            next();
+          }else{
+      	    activity.participants = req.body.participants;
+            console.log("Activity en el PUT: ",activity);
+            activity.save(function(err, activity){
+              if(!err){
+                res.json(activity);
+              }else{
+                res.send(500, err.message);
+              }
+            });
+          }
+        }else{
+          res.send(500, err.message);
+        }
+      });
     }).delete('/activities/:activity_id', function(req, res, next) {
       Activity.findById(req.params.activity_id, function(err, activity){
         if(!err){
           if(!activity){
-             next();
+            next();
           }else{
-
             activity.remove(function(err){
               if(!err){
                 res.status(200).send();

@@ -66,7 +66,7 @@
 	      	
 	      	<!-- Ver el perfil -->
       		<ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated()">
-      			<div style="width: 40px; height: 40px" class="img-crop-circle" uib-tooltip="Ir a mi perfil" tooltip-placement="bottom" tooltip-trigger="none" tooltip-is-open="true">
+      			<div style="width: 40px; height: 40px" class="img-crop-circle" uib-tooltip="Ir a mi perfil" tooltip-placement="bottom">
               <img class="" ng-src="{{user.image}}" ui-sref="user-profile">
             </div>
       		</ul>
@@ -118,7 +118,7 @@
         </ul>
 
         <div class="row">
-            <div class="col-xs-12" ui-view></div>
+            <div class="col-xs-8" ui-view></div>
         </div>
     </div>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKVbTUVq9QRTgqtR2bk1RdhxPetMZ6cUM&libraries=places"></script>

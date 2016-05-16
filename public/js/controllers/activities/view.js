@@ -5,9 +5,15 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
     $scope.searchModel = {
         searchTerm: undefined
     };
+    //Delete activity
     $scope.user = {};
     $scope.err = 2; //0 --> No hay errores, 1 --> Hay errores, 2 --> Todavia no se ha llamado a la funcion
 	$scope.msg = "";
+	
+	//Participate
+	$scope.participant={};
+	$scope.errPart = 2;//0 --> No hay errores, 1 --> Hay errores, 2 --> Todavia no se ha llamado a la funcion
+	$scope.msgPart = "";
 
     $scope.getActivity = function() {
         ActivityService.getByID($stateParams.id).then(function (activity) {
@@ -15,6 +21,48 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
             $scope.loadLocation();
         });
     };
+
+	//Comprobar si el usuario está participando
+    $scope.areYouParticipant = function(){
+    	if($scope.activity.participants != undefined){
+	    	for(var i=0; i<$scope.activity.participants.length; i++){
+	    		if($scope.activity.participants[i].userID == $scope.user._id){
+	    			return true;
+	    		}
+	    	}
+    	}
+    	return false;
+    }
+    $scope.stopParticipate = function(){
+    	for(var i=0; i<$scope.activity.participants.length; i++){
+    		if($scope.activity.participants[i].userID == $scope.user._id){
+    			console.log("Primera llamada");
+    			//Eliminar un elemento de un array
+    			for(var j=i; j<$scope.activity.participants.length-1; j++){
+    				$scope.activity.participants[j] = $scope.activity.participants[j+1];
+    			}
+    			$scope.activity.participants.length = $scope.activity.participants.length-1;
+    			console.log($scope.activity);
+    			ActivityService.stopParticipate($scope.activity);
+    		}
+    	}
+    }
+    $scope.participate = function(){//TODO
+    	$scope.participant.userID = $scope.user._id;
+        $scope.participant.name = $scope.user.name;
+        $scope.participant.image = $scope.user.image;
+        
+        //Comprobar que quedan plazas suficientes
+        if($scope.activity.participants.length < $scope.activity.maxParticipants){
+        	$scope.activity.participants.push($scope.participants);
+            ActivityService.participate($scope.activity);
+            $scope.errPart=0;
+			$scope.msg = "Participando! Estate alerta de todos los cambios que se puedan producir.";
+        }else{
+        	$scope.errPart=1;
+			$scope.msgPart = "Lo sentimos mucho pero esta actividad ya está completa.";
+        }
+    }
 
     $scope.loadLocation = function() {
         $scope.lat = $scope.activity.location.coords.lat;

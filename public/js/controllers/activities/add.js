@@ -20,6 +20,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
     minParticipants: 1,
     maxParticipants: 2,
     categories: [],
+    participants: [],
   };
 
 	$scope.availableCategories = [];
