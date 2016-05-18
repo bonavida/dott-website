@@ -1,70 +1,88 @@
 <div class="starter-template">
     <h1>Todas las actividades</h1>
-    <hr class="featurette-divider">
 </div>
 <div class="panel panel-default">
   <div class="panel-body">
-    <div class="col-xs-6">
+    <div class="col-xs-12">
       <div class="input-group">
         <input type="text" class="form-control" ng-model="query" placeholder="Buscar...">
         <span class="input-group-btn">
-        <button class="btn btn-default" type="button" ng-click="clearSeach()">Limpiar</button>
+        <button class="btn btn-default" type="button" ng-click="search()">Buscar</button>
         </span>
       </div>
     </div>
   </div>
 </div>
 
-<ul style="list-style: none" class="activities-list">
-    <li dir-paginate="activity in activities | itemsPerPage : 2">
-        <span ng-if="$even">
-            <div class="row featurette">
-                <div class="col-md-7">
-                    <h3 class="featurette-heading">{{activity.name}}<span class="text-muted"> / {{activity.location.name}}</span></h3>
-                    <p style="margin-top: 25px"><span ng-bind-html="activity.description | breakFilter"></span></p>
-                    <br />
-                    <div>
-                        <p class="text-primary">Nº mín. participantes <span class="label label-info">{{activity.minParticipants}}</span></p>
-                        <p class="text-primary">Nº máx. participantes <span class="label label-info">{{activity.maxParticipants}}</span></p>
-                    </div>
-                    <div style="margin-top: 20px" class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-md btn-default" ui-sref="activities-view({id:activity._id})">Ver</button>
-                        <button type="button" class="btn btn-md btn-default" ui-sref="activities-edit({id:activity._id})">Editar</button>
-                        <!-- <button type="button" class="btn btn-md btn-danger" ng-click="deleteActivity(activity)">Eliminar</button> -->
-                    </div>
+<div class="activities-list">
+    <div dir-paginate="activity in activities | filter: search | itemsPerPage : 2">
+
+      <div class="panel panel-default">
+
+        <div class="panel-body ">
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="col-md-12">
+                    <div class="overlay overlay-text rounded-corners">Promoted</div>
+                    <img ng-src="{{activity.image}}" class="center-block activity-image img-responsive" />
+                  </div>
                 </div>
-                <div class="col-md-5">
-                    <br /><br /><br /><br />
-                    <img ng-src="{{activity.image}}" class="featurette-image center-block" width="400">
-                </div>
-            </div>
-            <hr class="featurette-divider">
-        </span>
-        <span ng-if="$odd">
-            <div class="row featurette">
-                <div class="col-md-5">
-                    <br /><br /><br /><br />
-                    <img ng-src="{{activity.image}}" class="featurette-image center-block" width="400" >
-                </div>
-                <div class="col-md-7">
+                <div class="col-md-12">
                     <h3 class="featurette-heading">{{activity.name}} / <span class="text-muted">{{activity.location.name}}</span></h3>
-                    <p style="margin-top: 25px"><span ng-bind-html="activity.description | breakFilter"></span></p>
-                    <br />
+                    <blockquote>
+                      <p>{{activity.description}}</p>
+                      <footer> <a ui-sref="public-profile({id:activity.creator.userID})">{{activity.creator.name}}</a></footer>
+                    </blockquote>
+
+                    <div class="tooltp tooltp-left">
+                      <span class="badge">{{activity.participants.length}}</span>
+                      <span class="tooltptext">Participantes mínimos</span>
+                    </div>
+                    <div class="tooltp tooltp-right pull-right">
+                      <span class="badge">{{activity.maxParticipants}}</span>
+                      <span class="tooltptext">Participantes máximos</span>
+                    </div>
                     <div>
-                        <p class="text-primary">Nº mín. participantes <span class="label label-info">{{activity.minParticipants}}</span></p>
-                        <p class="text-primary">Nº máx. participantes <span class="label label-info">{{activity.maxParticipants}}</span></p>
+                      <div class="participants-wrapper">
+                        <div class="progress-bar-segmented">
+                          <div  style="width:{{100/activity.maxParticipants}}%"
+                                class="item" ng-repeat="n in [] | range:activity.participants.lenght">
+                            <div class="filled"></div>
+                          </div>
+                          <div  style="width:{{100/activity.maxParticipants}}%"
+                                class="item" ng-repeat="n in [] | range: (activity.maxParticipants-activity.participants.lenght)">
+                            <div class="empty"></div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div style="margin-top: 30px" class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-md btn-default" ui-sref="activities-view({id:activity._id})">Ver</button>
-                        <button type="button" class="btn btn-md btn-default" ui-sref="activities-edit({id:activity._id})">Editar</button>
-                        <!-- <button type="button" class="btn btn-md btn-danger" ng-click="deleteActivity(activity)">Eliminar</button> -->
+
+                    <div class="hiddeable" ng-show="activity.showMap">
+                      <div>{{activity.location.name}}<br /><br />
+                          <ui-gmap-google-map center="{latitude: activity.location.coords.lat,longitude: activity.location.coords.lng}"
+                                              zoom="15"
+                                              draggable="true"
+                                              options="{scrollwheel: true}">
+                              <ui-gmap-marker coords="{latitude: activity.location.coords.lat,longitude: activity.location.coords.lng}"  idkey="0"></ui-gmap-marker>
+                          </ui-gmap-google-map>
+                      </div>
                     </div>
+                    <div style="margin-top: 10px" class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-md btn-success pull-right" ui-sref="activities-view({id:activity._id})">Me interesa!</button>
+                    </div>
+
+                    <div style="margin-top: 10px" class="btn-group" role="group" aria-label="...">
+                        <button class="btn btn-default" ng-click="activity.showMap=!activity.showMap">Mostrar localización</button>
+                    </div>
+
                 </div>
             </div>
-            <hr class="featurette-divider">
-        </span>
-    </li>
-</ul>
+          </div>
+        </div>
+
+    </div>
+
+</div>
 
 <dir-pagination-controls
    max-size="2"
