@@ -7,6 +7,11 @@ angular.module('dottApp.services').factory('UserService',function($http, $q, $lo
         return( request.then( handleSuccess, handleError ) );
     }
 
+    function remove(id){
+        var request = $http.delete(base_url + 'api/users/'+id);
+        return( request.then( handleSuccess, handleError ) );
+    }
+
     //PRIVATE METHODS
     function handleError( response ) {
         if (
@@ -23,7 +28,8 @@ angular.module('dottApp.services').factory('UserService',function($http, $q, $lo
     }
 
     return ({
-        getByID   : getByID
+        getByID   : getByID,
+        remove    : remove
     });
 
 });

@@ -16,7 +16,7 @@
             <tr ng-repeat="user in users">
                 <th scope="row">{{$index}}</th>
                 <td>{{user.name}}</td>
-                <td><a ui-sref="user-remove({id: user._id})">Borrar</a></td>
+                <td><a ui-sref="user-delete({id: user._id})">Borrar</a></td>
             </tr>
             </tbody> </table>
     </div>

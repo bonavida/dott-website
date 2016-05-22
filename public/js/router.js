@@ -66,9 +66,9 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
     	templateUrl:'partials/users/edit-pwd.html',
     	controller:'EditPwdUserController'
     }).state('user-delete',{
-    	url:'/profile/delete',
-    	templateUrl:'partials/users/delete.html',
-    	controller:'DeleteUserController'
+    	url:'/users/:id/delete',
+    	templateUrl:'partials/users/remove.html',
+    	controller:'RemoveUserController'
     }).state('category-add',{
     	url:'/categories/new',
     	templateUrl:'partials/categories/add.html',
