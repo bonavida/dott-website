@@ -23,10 +23,21 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
     participants: [],
   };
 
-	$scope.availableCategories = [];
+  $scope.availableCategories = [];
   $scope.message="";
   $scope.user = {};
-
+  
+  //Tabs
+  $scope.index=0;
+  $scope.next=function(){
+	console.log($scope.actFormTab0);
+	return $scope.index+=1;
+  }
+  $scope.prev=function(){
+	return $scope.index-=1;
+  }
+  
+  
   $scope.getUser = function(){
     AuthService.getUser().then(function(user) {
 	  $scope.user = user;
@@ -34,7 +45,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
   };
 
 	$scope.selectCategories = function(){
-		var modalInstance = $uibModal.open({
+	  var modalInstance = $uibModal.open({
       animation: true,
       templateUrl: 'addCategoryToActivityContent.html',
       controller: 'AddCategoryToActivityController',
