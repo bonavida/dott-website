@@ -59,11 +59,15 @@
 
                     <div class="hiddeable" ng-show="activity.showMap">
                       <div>{{activity.location.name}}<br /><br />
-                          <ui-gmap-google-map center="{latitude: activity.location.coords.lat,longitude: activity.location.coords.lng}"
+                          <ui-gmap-google-map center="centerMap"
                                               zoom="15"
                                               draggable="true"
-                                              options="{scrollwheel: true}">
-                              <ui-gmap-marker coords="{latitude: activity.location.coords.lat,longitude: activity.location.coords.lng}"  idkey="0"></ui-gmap-marker>
+                                              options="{scrollwheel: true}"
+                                              ng-init="centerMap = {latitude: activity.location.coords.lat, longitude: activity.location.coords.lng}">
+                              <ui-gmap-marker coords="centerMap"
+                                              idkey="0"
+                                              ng-init="centerMap = {latitude: activity.location.coords.lat, longitude: activity.location.coords.lng}">
+                              </ui-gmap-marker>
                           </ui-gmap-google-map>
                       </div>
                     </div>

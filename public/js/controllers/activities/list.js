@@ -3,11 +3,14 @@ angular.module('dottApp.controllers').controller('ListActivityController', funct
 
   $scope.query = "";
 
+  $scope.centerMap = {};
+
   uiGmapGoogleMapApi.then(function (maps) {
           $scope.$evalAsync(function () {
               $scope.showMap = true;
           });
       });
+
   $scope.search = function () {
     $scope.query = $scope.searchText;
   };
