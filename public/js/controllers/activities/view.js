@@ -24,7 +24,7 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
 
 	//Comprobar si el usuario está participando
     $scope.areYouParticipant = function(){
-    	if($scope.activity.participants != undefined){
+    	if($scope.activity.participants !== undefined){
 	    	for(var i=0; i<$scope.activity.participants.length; i++){
           console.log($scope.activity.participants[i]);
 	    		if($scope.activity.participants[i].userID == $scope.user._id){
@@ -33,7 +33,8 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
 	    	}
     	}
     	return false;
-    }
+    };
+
     $scope.stopParticipate = function(){
     	for(var i=0; i<$scope.activity.participants.length; i++){
     		if($scope.activity.participants[i].userID == $scope.user._id){
@@ -47,8 +48,9 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
     			ActivityService.stopParticipate($scope.activity);
     		}
     	}
-    }
-    $scope.participate = function(){//TODO
+    };
+
+    $scope.participate = function() { //TODO
     	$scope.participant.userID = $scope.user._id;
         $scope.participant.name = $scope.user.name;
         $scope.participant.image = $scope.user.image;
@@ -58,16 +60,16 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
         	$scope.activity.participants.push($scope.participant);
             ActivityService.participate($scope.activity);
             $scope.errPart=0;
-			$scope.msgPart = "Participando! Estate alerta de todos los cambios que se puedan producir.";
+			$scope.msgPart = "¡Participando! Estate alerta de todos los cambios que se puedan producir.";
         }else{
         	$scope.errPart=1;
 			$scope.msgPart = "Lo sentimos mucho pero esta actividad ya está completa.";
         }
-    }
+    };
 
     $scope.loadLocation = function() {
-        $scope.lat = $scope.activity.location.coords.lat;
-        $scope.lng = $scope.activity.location.coords.lng;
+        $scope.lat = $scope.activity.location.coords.latitude;
+        $scope.lng = $scope.activity.location.coords.longitude;
         $scope.searchModel = {
             searchTerm: $scope.activity.location.name
         };

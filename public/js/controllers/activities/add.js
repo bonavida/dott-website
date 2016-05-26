@@ -26,19 +26,19 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
   $scope.availableCategories = [];
   $scope.message="";
   $scope.user = {};
-  
+
   //Tabs
   $scope.index=0;
-  $scope.next=function(){
-	console.log($scope.actFormTab0);
-	return $scope.index+=1;
-  }
-  $scope.prev=function(){
-	return $scope.index-=1;
-  }
-  
-  
-  $scope.getUser = function(){
+  $scope.next = function() {
+	  console.log($scope.actFormTab0);
+	  return $scope.index+=1;
+  };
+  $scope.prev = function() {
+	  return $scope.index-=1;
+  };
+
+
+  $scope.getUser = function() {
     AuthService.getUser().then(function(user) {
 	  $scope.user = user;
     });
@@ -81,8 +81,8 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
       /** Save location info */
       $scope.activity.location.name = $scope.searchModel.searchTerm;
       $scope.activity.location.coords = {
-        lat: $scope.lat,
-        lng: $scope.lng
+        latitude: $scope.lat,
+        longitude: $scope.lng
       };
 
       ActivityService.add($scope.activity).then(function(data) {

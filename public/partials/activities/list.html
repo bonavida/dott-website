@@ -57,17 +57,15 @@
                       </div>
                     </div>
 
-                    <div class="hiddeable" ng-show="activity.showMap">
+                    <div class="hiddeable" ng-if="activity.showMap">
                       <div>{{activity.location.name}}<br /><br />
                           <ui-gmap-google-map center="centerMap"
                                               zoom="15"
                                               draggable="true"
                                               options="{scrollwheel: true}"
-                                              ng-init="centerMap = {latitude: activity.location.coords.lat, longitude: activity.location.coords.lng}">
-                              <ui-gmap-marker coords="centerMap"
-                                              idkey="0"
-                                              ng-init="centerMap = {latitude: activity.location.coords.lat, longitude: activity.location.coords.lng}">
-                              </ui-gmap-marker>
+                                              ng-init="centerMap = {latitude: activity.location.coords.latitude, longitude: activity.location.coords.longitude}">
+                              <ui-gmap-marker coords="centerMap" options="{draggable: false}" idkey="0"
+                                              ng-init="centerMap = {latitude: activity.location.coords.latitude, longitude: activity.location.coords.longitude}"></ui-gmap-marker>
                           </ui-gmap-google-map>
                       </div>
                     </div>
