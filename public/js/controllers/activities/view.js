@@ -9,7 +9,7 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
     $scope.user = {};
     $scope.err = 2; //0 --> No hay errores, 1 --> Hay errores, 2 --> Todavia no se ha llamado a la funcion
 	$scope.msg = "";
-	
+
 	//Participate
 	$scope.participant={};
 	$scope.errPart = 2;//0 --> No hay errores, 1 --> Hay errores, 2 --> Todavia no se ha llamado a la funcion
@@ -26,6 +26,7 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
     $scope.areYouParticipant = function(){
     	if($scope.activity.participants != undefined){
 	    	for(var i=0; i<$scope.activity.participants.length; i++){
+          console.log($scope.activity.participants[i]);
 	    		if($scope.activity.participants[i].userID == $scope.user._id){
 	    			return true;
 	    		}
@@ -51,13 +52,13 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
     	$scope.participant.userID = $scope.user._id;
         $scope.participant.name = $scope.user.name;
         $scope.participant.image = $scope.user.image;
-        
+
         //Comprobar que quedan plazas suficientes
         if($scope.activity.participants.length < $scope.activity.maxParticipants){
-        	$scope.activity.participants.push($scope.participants);
+        	$scope.activity.participants.push($scope.participant);
             ActivityService.participate($scope.activity);
             $scope.errPart=0;
-			$scope.msg = "Participando! Estate alerta de todos los cambios que se puedan producir.";
+			$scope.msgPart = "Participando! Estate alerta de todos los cambios que se puedan producir.";
         }else{
         	$scope.errPart=1;
 			$scope.msgPart = "Lo sentimos mucho pero esta actividad ya está completa.";
