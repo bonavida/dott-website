@@ -97,7 +97,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
 
   $scope.file="";
   $scope.submit = function(){ //function to call on form submit
-      if ($scope.actForm.file.$valid && $scope.file) { //check if from is valid
+      if ($scope.actFormTab1.file.$valid && $scope.file) { //check if from is valid
           $scope.upload($scope.file); //call upload function
       }
   };
