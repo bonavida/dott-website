@@ -6,6 +6,9 @@ var mongoose   = require('mongoose');
 var morgan     = require('morgan');
 var passport   = require('passport');
 var cors       = require('cors');
+var http       = require('http');
+var server     = http.createServer(app);
+var io         = require('socket.io').listen(server);
 var port = process.env.PORT || 3000;
 
 var Activity  = require('./models/activity');
@@ -44,8 +47,12 @@ app.use(function(err, req, res, next){
   res.sendStatus(500);
 });
 
+io.sockets.on('connection', function(socket) {
+  socket.on('send message', function(data) {
+    io.sockets.emit('get message', data);
+  });
+});
 
-
-var server = app.listen(port, function () {
+server.listen(port, function () {
       console.log('Server listening at http://localhost:'+ port);
 });

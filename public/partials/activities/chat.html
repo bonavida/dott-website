@@ -1,0 +1,15 @@
+<br />
+<h2>Chat</h2>
+
+<form ng-submit="sendMessage()" action="">
+  <div class="form-group">
+    <textarea id="chat" rows="10" class="form-control" readonly>{{showMessages()}}</textarea>
+  </div>
+  <div class="fomr-group">
+    <input type="text" class="form-control" ng-model="message.text" />
+  </div>
+  <br />
+  <div class="form-group">
+  	<button class="btn btn-primary">Enviar</button>
+  </div>
+</form>

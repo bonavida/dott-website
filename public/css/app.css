@@ -261,3 +261,8 @@
 .hiddeable.ng-hide {
   height: 0;
 }
+
+/** Chat style */
+#chat {
+  background-color: #ffff99;
+}
