@@ -1,29 +1,29 @@
-angular.module('dottApp.controllers').controller('ChatController',function($scope, socket) {
+angular.module('dottApp.controllers').controller('ChatController',function($scope, socket, AuthService) {
+
+    var textarea = document.getElementById('chat');
 
     $scope.messages = [];
-    $scope.message = {};
+    $scope.chat = "";
+    $scope.user = {};
 
-    $scope.showMessages = function() {
-        var text ='';
-        $scope.messages.forEach(function(message) {
-            text += message + "\n";
+    $scope.getUser = function() {
+        AuthService.getUser().then(function(user) {
+          $scope.user = user;
         });
-       return text;
     };
 
     $scope.sendMessage = function() {
-        socket.emit('send message', $scope.message.text);
+        socket.emit('send message', $scope.user.username + ": " + $scope.message.text);
+        $scope.message.text = "";
     };
 
     socket.on('get message', function(data) {
         $scope.messages.push(data);
-        $scope.message.text = "";
+        $scope.chat = $scope.messages.join('\n');
         $scope.$digest();
+        textarea.scrollTop = textarea.scrollHeight;
     });
 
-    var textarea = document.getElementById('chat');
-    setInterval(function() {
-        textarea.scrollTop = textarea.scrollHeight;
-    }, 1000);
+    $scope.getUser();
 
 });
