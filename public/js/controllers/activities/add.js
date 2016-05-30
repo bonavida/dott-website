@@ -31,6 +31,9 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
   $scope.index=0;
   $scope.next = function() {
 	  console.log($scope.actFormTab0);
+    if (($scope.index+1) === 2) {  // When index==2 loads Google Maps
+      $scope.loadMap();
+    }
 	  return $scope.index+=1;
   };
   $scope.prev = function() {
@@ -125,52 +128,20 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
   $scope.getUser();
 	$scope.loadCategories();
 
+
   /** Google Maps */
 
-  $scope.lat = 39.9863563;
-  $scope.lng = -0.051324600000043574;
+
+  $scope.lat = undefined;
+  $scope.lng = undefined;
+
   $scope.searchModel = {
     searchTerm: ""
   };
 
-  $scope.map = {
-    center: {
-      latitude: $scope.lat,
-      longitude: $scope.lng
-    },
-    zoom: 15,
-    options : {
-      scrollwheel: true
-    }
-  };
+  $scope.map = {};
 
-  $scope.marker = {
-    id: 0,
-    coords: {
-      latitude: $scope.lat,
-      longitude: $scope.lng
-    },
-    options: {
-      draggable: true
-    },
-    events: {
-      dragend: function(marker, eventName, orignalEventArgs) {
-        $scope.lat = marker.getPosition().lat();
-        $scope.lng = marker.getPosition().lng();
-
-        var geocoder = new google.maps.Geocoder();
-
-        geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            if (results[1]) {
-              $scope.searchModel.searchTerm = results[1].formatted_address; // details address
-              $scope.$apply();
-            }
-          }
-        });
-      }
-    }
-  };
+  $scope.marker = {};
 
   $scope.searchbox = {
     template: 'searchbox.tpl.html',
@@ -200,6 +171,56 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
     },
     parentdiv: 'searchBoxParent'
   };
+
+
+  $scope.loadMap = function() {
+    $scope.lat = 39.9863563;
+    $scope.lng = -0.051324600000043574;
+    $scope.searchModel = {
+      searchTerm: ""
+    };
+
+    $scope.map = {
+      center: {
+        latitude: $scope.lat,
+        longitude: $scope.lng
+      },
+      zoom: 15,
+      options : {
+        scrollwheel: true
+      }
+    };
+
+    $scope.marker = {
+      id: 0,
+      coords: {
+        latitude: $scope.lat,
+        longitude: $scope.lng
+      },
+      options: {
+        draggable: true
+      },
+      events: {
+        dragend: function(marker, eventName, orignalEventArgs) {
+          $scope.lat = marker.getPosition().lat();
+          $scope.lng = marker.getPosition().lng();
+
+          var geocoder = new google.maps.Geocoder();
+
+          geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              if (results[1]) {
+                $scope.searchModel.searchTerm = results[1].formatted_address; // details address
+                $scope.$apply();
+              }
+            }
+          });
+        }
+      }
+    };
+  };
+
+/** Add categories to activity controller */
 
 }).controller('AddCategoryToActivityController', function($scope, $uibModalInstance, categories, availableCategories){
 	$scope.selectedCategories = categories;
