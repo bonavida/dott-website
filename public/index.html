@@ -56,7 +56,7 @@
 
 										</div>
 										<div class="bottom text-center">
-											Eres nuevo? <a ui-sref="user-register"><b>Regístrate</b></a>
+											¿Eres nuevo? <a ui-sref="user-register"><b>Regístrate</b></a>
 										</div>
 						 			</div>
 								</li>
@@ -82,14 +82,14 @@
 
 	      	<!-- Ver el perfil -->
       		<ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated()">
-      			<div style="width: 40px; height: 40px" class="img-crop-circle" uib-tooltip="Ir a mi perfil" tooltip-placement="bottom">
-              <img class="" ng-src="{{user.image}}" ui-sref="user-profile">
+      			<div style="width: 40px; height: 40px; margin-top:5px;" class="img-crop-circle" uib-tooltip="Ir a mi perfil" tooltip-placement="bottom">
+              <a ui-sref="user-profile"><img class="" ng-src="{{user.image}}" /></a>
             </div>
       		</ul>
 
 	      	<!-- LOGOUT -->
       		<ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated()">
-        		<li><a ng-click="logout()">Cerrar sesion</a></li>
+        		<li><a href="" ng-click="logout()">Cerrar sesión</a></li>
       		</ul>
 
     		</div><!-- /.navbar-collapse -->

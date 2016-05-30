@@ -1,15 +1,14 @@
 <br />
 <h2>Chat</h2>
-
 <div id="chat-wrapper">
   <div ng-repeat="message in messages track by $index"><b>{{message.user}}:</b> {{message.text}}</div>
 </div>
-<form ng-submit="sendMessage()" action="">
-  <div class="form-group">
-    <input type="text" class="form-control" ng-model="message.text" />
+<br />
+<div class="row">
+  <div class="col-md-11">
+    <input type="text" class="form-control" ng-model="message.text" ng-enter="sendMessage()" />
   </div>
-  <br />
-  <div class="form-group">
-  	<button class="btn btn-primary">Enviar</button>
-  </div>
-</form>
+  <div class="col-md-1">
+	   <button class="btn btn-primary" ng-click="sendMessage()">Enviar</button>
+   </div>
+</div>

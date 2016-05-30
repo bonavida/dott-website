@@ -34,10 +34,10 @@ angular.module('dottApp.controllers').controller('LoginUserController', function
 
 	$scope.isAuthenticated = function(){
 		return AuthService.isAuthenticated();
-	}
+	};
 
 	$scope.logout = function() {
 	    AuthService.logout();
-	    $state.go('activities');
+	    $state.go('user-login');
 	};
 });
