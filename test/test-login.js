@@ -4,8 +4,8 @@ var rest = require('restler');
 
 describe('User login API tests', function(){
 	var user = {
-		username: "irene",
-		password: "hola,hola",
+		username: "vlad",
+		password: "12345678",
 	};
 	var base = "http://127.0.0.1:3000/";
 

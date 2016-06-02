@@ -40,5 +40,8 @@
     "karma-jasmine": "^0.3.8",
     "mocha": "^2.4.5",
     "restler": "^3.4.0"
+  },
+  "scripts": {
+  "test": "mocha test/test-register.js test/test-login.js test/activity-add.js"
   }
 }

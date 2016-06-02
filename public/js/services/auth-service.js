@@ -2,6 +2,7 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
   var LOCAL_TOKEN_KEY = 'yourTokenKey';
   var isAuthenticated = false;
   var authToken;
+    var isAdmin = false;
 
   function loadUserCredentials() {
     var token = window.localStorage.getItem(LOCAL_TOKEN_KEY);
@@ -114,16 +115,22 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
   };
   
   loadUserCredentials();
+    
+    var user = getUser();
+    if (user.isAdm){
+        isAdmin = false;
+    }
 
   return {
-    login: login,
-    register: register,
-    logout: logout,
-    getUser:getUser,
-    edit: edit,
-    editPwd: editPwd,
-    deleteUsr: deleteUsr,
-    isAuthenticated: function() {return isAuthenticated;},
+      login: login,
+      register: register,
+      logout: logout,
+      getUser:getUser,
+      edit: edit,
+      editPwd: editPwd,
+      deleteUsr: deleteUsr,
+      isAdmin: function () {return isAdmin;},
+      isAuthenticated: function() {return isAuthenticated;},
   };
 })
 
