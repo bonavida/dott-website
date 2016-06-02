@@ -1,78 +1,113 @@
 <h2>Actividad: {{activity.name}}</h2>
-<div class="well">
-    <div class="col-lg-8">
-        <div class="featurette-image center-block" style="margin-bottom: 30px;">
-            <img ng-src="{{activity.image}}" height="300">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8">
-            <table class="table table-user-information">
-                <tbody>
-                <tr>
-                    <th>Nombre</th>
-                    <td>{{activity.name}}</td>
-                </tr>
-                <tr>
-                    <th>Creador</th>
-                    <td><a ui-sref="public-profile({id:activity.creator.userID})">{{activity.creator.name}}</a></td>
-                </tr>
-                <tr>
-                    <th>Descripción</th>
-                    <td><span ng-bind-html="activity.description | breakFilter"></span></td>
-                </tr>
-                <tr>
-                    <th>Lugar</th>
-                    <td>{{activity.location.name}}<br /><br />
-                        <ui-gmap-google-map center="map.center"
-                                            zoom="map.zoom"
-                                            draggable="true"
-                                            options="map.options"
-                                            control="map.control">
-                            <ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id"></ui-gmap-marker>
-                        </ui-gmap-google-map>
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <th>Fecha</th>
-                    <td>{{activity.executionDate | date:'dd/MM/yyyy'}}</td>
-                </tr>
-                <tr>
-                    <th>Nº mín. participantes</th>
-                    <td>{{activity.minParticipants}}</td>
-                </tr>
-                <tr>
-                    <th>Nº máx. participantes</th>
-                    <td>{{activity.maxParticipants}}</td>
-                </tr>
-                </tbody>
-            </table>
-            <button class="btn btn-primary" ng-show= "user._id==activity.creator.userID" ui-sref="activities-edit({id:activity._id})">Editar actividad</button>
-            <button class="btn btn-danger" ng-show= "user._id==activity.creator.userID" ng-click="deleteActivity()">Eliminar actividad</button>
-
-            <!-- Participate -->
-            <div ng-show="user._id != activity.creator.userID">
-            	<button class="btn btn-danger" ng-hide= "areYouParticipant()" ng-click="participate()">Participar</button>
-            	<button class="btn btn-danger" ng-show= "areYouParticipant()" ng-click="stopParticipate()">Dejar de participar</button>
+<br />
+<div class="col-md-8">
+    <div class="well well-lg">
+        <div class="row">
+            <div class="featurette-image center-block" style="margin-bottom: 30px;" align="center">
+                <img ng-src="{{activity.image}}" height="300">
             </div>
-            
-            <!-- Err delete activity -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-user-information">
+                    <tbody>
+                    <tr>
+                        <th class="col-md-2">Nombre</th>
+                        <td class="col-md-10">{{activity.name}}</td>
+                    </tr>
+                    <tr>
+                        <th class="col-md-2">Creador</th>
+                        <td class="col-md-10"><a ui-sref="public-profile({id:activity.creator.userID})">{{activity.creator.name}}</a></td>
+                    </tr>
+                    <tr>
+                        <th class="col-md-2">Descripción</th>
+                        <td class="col-md-10"><span ng-bind-html="activity.description | breakFilter"></span></td>
+                    </tr>
+                    <tr>
+                        <th class="col-md-2">Lugar</th>
+                        <td class="col-md-10">{{activity.location.name}}<br /><br />
+                            <ui-gmap-google-map center="map.center"
+                                                zoom="map.zoom"
+                                                draggable="true"
+                                                options="map.options"
+                                                control="map.control">
+                                <ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id"></ui-gmap-marker>
+                            </ui-gmap-google-map>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="col-md-2">Fecha</th>
+                        <td class="col-md-10">{{activity.executionDate | date:'dd/MM/yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <th class="col-md-2">Nº mín. participantes</th>
+                        <td class="col-md-10">{{activity.minParticipants}}</td>
+                    </tr>
+                    <tr>
+                        <th class="col-md-2">Nº máx. participantes</th>
+                        <td class="col-md-10">{{activity.maxParticipants}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div ng-show="areYouParticipant() || (user._id==activity.creator.userID)">
+            <br />
+            <div class="well" style="background-color:#d1e0e0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="chat-wrapper">
+                          <div ng-repeat="message in messages track by $index"><b>{{message.user}}:</b> {{message.text}}</div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" ng-model="message.text" ng-enter="sendMessage()" />
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-primary" ng-click="sendMessage()">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br /><br/>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Owner options -->
+                <button class="btn btn-primary" ng-show= "user._id==activity.creator.userID" ui-sref="activities-edit({id:#def1ffactivity._id})">Editar actividad</button>
+                <button class="btn btn-danger" ng-show= "user._id==activity.creator.userID" ng-click="deleteActivity()">Eliminar actividad</button>
+
+                <!-- Participate -->
+                <div ng-show="user._id != activity.creator.userID">
+                	<button class="btn btn-danger" ng-hide= "areYouParticipant()" ng-click="participate()">Participar</button>
+                	<button class="btn btn-danger" ng-show= "areYouParticipant()" ng-click="stopParticipate()">Dejar de participar</button>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <!-- Err delete activity -->
+        <div id="msg" class="row">
             <div ng-show="err==1" class="alert alert-danger">
-			      	<strong>Error:</strong> {{msg}}
-			  		</div>
-					  <div ng-show="err==0" class="alert alert-success">
-					    <strong>Éxito:</strong> {{msg}}
-					  </div>
-					  
-					  <!-- Err participate -->
-					  <div ng-show="errPart==1" class="alert alert-danger">
-			      	<strong>Error:</strong> {{msgPart}}
-			  		</div>
-					  <div ng-show="errPart==0" class="alert alert-success">
-					    <strong>Éxito:</strong> {{msgPart}}
-					  </div>
-					  
+    		    <strong>Error:</strong> {{msg}}
+    		</div>
+    		<div ng-show="err==0" class="alert alert-success">
+    			<strong>Éxito:</strong> {{msg}}
+    		</div>
+
+    		<!-- Err participate -->
+    		<div ng-show="errPart==1" class="alert alert-danger">
+    		    <strong>Error:</strong> {{msgPart}}
+    		</div>
+    		<div ng-show="errPart==0" class="alert alert-success">
+    			<strong>Éxito:</strong> {{msgPart}}
+    		</div>
         </div>
     </div>
 </div>
+<br />

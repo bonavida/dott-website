@@ -177,7 +177,7 @@ angular.module('dottApp.controllers').controller('AddActivityController', functi
     $scope.lat = 39.9863563;
     $scope.lng = -0.051324600000043574;
     $scope.searchModel = {
-      searchTerm: ""
+      searchTerm: "Castellón de La Plana"
     };
 
     $scope.map = {
