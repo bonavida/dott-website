@@ -23,7 +23,7 @@ angular.module('dottApp.controllers').controller('LoginUserController', function
 
 		console.log($scope.status);
 	};
-	
+
 	$scope.getUser = function(){
 	    AuthService.getUser().then(function(user){
 	    	$scope.user = user;
@@ -33,12 +33,11 @@ angular.module('dottApp.controllers').controller('LoginUserController', function
 	$scope.getUser();
 
 	$scope.isAuthenticated = function(){
-		console.log(AuthService.isAuthenticated());
 		return AuthService.isAuthenticated();
-	}
-	
+	};
+
 	$scope.logout = function() {
 	    AuthService.logout();
-	    $state.go('activities');
+	    $state.go('user-login');
 	};
 });

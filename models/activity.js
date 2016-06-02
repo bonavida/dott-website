@@ -8,8 +8,8 @@ var ActivitySchema = new Schema({
   location: {
       name: String,
       coords: {
-          lat: Number,
-          lng: Number
+          latitude: Number,
+          longitude: Number
       }},
   creator: {
             userID: String,

@@ -29,7 +29,7 @@
       	<ul class="nav navbar-nav">
         	<li class="active"><a href="#">HOME</a></li>
       	</ul>
-     
+
 			<!-- LOGIN/REGISTER arriba derecha!! :o -->
         <ul class="nav navbar-nav navbar-right" ng-hide="isAuthenticated()">
 	        <!-- <li><p class="navbar-text">Already have an account?</p></li> -->
@@ -39,7 +39,7 @@
 								<li>
 						 			<div class="row">
 										<div class="col-md-12">
-											
+
 									 		<form name="logForm" ng-submit="login(logForm.$valid)" novalidate>
 												<div class="form-group">
 													<label class="sr-only" for="username">Nombre de usuario:</label>
@@ -53,10 +53,10 @@
 													<button type="submit" class="btn btn-primary btn-block" ng-disabled="logForm.$invalid">Sign in</button>
 												</div>
 									 		</form>
-									 		
+
 										</div>
 										<div class="bottom text-center">
-											Eres nuevo? <a ui-sref="user-register"><b>Regístrate</b></a>
+											¿Eres nuevo? <a ui-sref="user-register"><b>Regístrate</b></a>
 										</div>
 						 			</div>
 								</li>
@@ -82,16 +82,16 @@
 
 	      	<!-- Ver el perfil -->
       		<ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated()">
-      			<div style="width: 40px; height: 40px" class="img-crop-circle" uib-tooltip="Ir a mi perfil" tooltip-placement="bottom">
-              <img class="" ng-src="{{user.image}}" ui-sref="user-profile">
+      			<div style="width: 40px; height: 40px; margin-top:5px;" class="img-crop-circle" uib-tooltip="Ir a mi perfil" tooltip-placement="bottom">
+              <a ui-sref="user-profile"><img class="" ng-src="{{user.image}}" /></a>
             </div>
       		</ul>
-	      	
+
 	      	<!-- LOGOUT -->
       		<ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated()">
-        		<li><a ng-click="logout()">Cerrar sesion</a></li>
+        		<li><a href="" ng-click="logout()">Cerrar sesión</a></li>
       		</ul>
-	      	
+
     		</div><!-- /.navbar-collapse -->
   		</div><!-- /.container-fluid -->
 		</nav>
@@ -108,7 +108,7 @@
                 <a ui-sref="activities-new">Create</a>
             </li>
             <li>
-                <a ui-sref="map">Mapa</a>
+                <a ui-sref="chat">Chat</a>
             </li>
             <li>
                 <a ui-sref="user-login">Login</a>
@@ -128,7 +128,7 @@
         </ul>
 
         <div class="row">
-            <div class="col-xs-8" ui-view></div>
+            <div class="col-xs-12" ui-view></div>
         </div>
     </div>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKVbTUVq9QRTgqtR2bk1RdhxPetMZ6cUM&libraries=places"></script>
@@ -144,6 +144,7 @@
     <script type="text/javascript" src="lib/angular-simple-logger.min.js"></script>
     <script type="text/javascript" src="lib/lodash.min.js"></script>
     <script type="text/javascript" src="lib/angular-utils-pagination/dirPagination.js"></script>
+    <script type="text/javascript" src="/lib/socket.io-client/socket.io.js"></script>
 
     <script type="text/javascript" src="js/app.js"></script>
 
@@ -156,6 +157,8 @@
     <script type="text/javascript" src="js/services/file-upload-service.js"></script>
     <script type="text/javascript" src="js/services/activity-validator.js"></script>
 
+    <script type="text/javascript" src="js/services/socket-service.js"></script>
+
     <script type="text/javascript" src="js/constants.js"></script>
 
     <script type="text/javascript" src="js/controllers/activities/add.js"></script>
@@ -164,7 +167,7 @@
     <script type="text/javascript" src="js/controllers/activities/remove.js"></script>
     <script type="text/javascript" src="js/controllers/activities/adminList.js"></script>
     <script type="text/javascript" src="js/controllers/activities/list.js"></script>
-    <script type="text/javascript" src="js/controllers/activities/map.js"></script> <!-- TODO Quitar -->
+    <script type="text/javascript" src="js/controllers/activities/chat.js"></script> <!-- TODO Quitar -->
     <script type="text/javascript" src="js/controllers/activities/directives.js"></script>
     <script type="text/javascript" src="js/controllers/users/login.js"></script>
     <script type="text/javascript" src="js/controllers/users/register.js"></script>

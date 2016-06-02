@@ -25,10 +25,10 @@ angular.module('dottApp').config(function($stateProvider,$routeProvider, $urlRou
         url:'/activities/:id/remove',
         templateUrl:'partials/activities/remove.html',
         controller:'RemoveActivityController'
-    }).state('map',{
-        url:'/map',
-        templateUrl:'partials/activities/map.html',
-        controller:'MapController'
+    }).state('chat',{
+        url:'/chat',
+        templateUrl:'partials/activities/chat.html',
+        controller:'ChatController'
     }).state('user-login',{
     	url:'/login',
     	templateUrl:'partials/users/login.html',

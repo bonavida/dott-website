@@ -13,8 +13,8 @@ angular.module('dottApp.controllers').controller('EditActivityController',functi
         /** Save location info */
         $scope.activity.location.name = $scope.searchModel.searchTerm;
         $scope.activity.location.coords = {
-            lat: $scope.lat,
-            lng: $scope.lng
+            latitude: $scope.lat,
+            longitude: $scope.lng
         };
         ActivityService.update($scope.activity).then(function() {
 			$scope.err = 0;
@@ -38,8 +38,8 @@ angular.module('dottApp.controllers').controller('EditActivityController',functi
     };
 
     $scope.loadLocation = function() {
-        $scope.lat = $scope.activity.location.coords.lat;
-        $scope.lng = $scope.activity.location.coords.lng;
+        $scope.lat = $scope.activity.location.coords.latitude;
+        $scope.lng = $scope.activity.location.coords.longitude;
         $scope.searchModel = {
             searchTerm: $scope.activity.location.name
         };

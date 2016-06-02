@@ -5,7 +5,7 @@
   <div class="panel-body">
     <div class="col-xs-12">
       <div class="input-group">
-        <input type="text" class="form-control" ng-model="query" placeholder="Buscar...">
+        <input type="text" class="form-control" ng-model="searchText" placeholder="Buscar...">
         <span class="input-group-btn">
         <button class="btn btn-default" type="button" ng-click="search()">Buscar</button>
         </span>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="activities-list">
-    <div dir-paginate="activity in activities | filter: search | itemsPerPage : 2">
+    <div dir-paginate="activity in activities | filter: searchFilter | itemsPerPage : 2">
 
       <div class="panel panel-default">
 
@@ -46,24 +46,26 @@
                       <div class="participants-wrapper">
                         <div class="progress-bar-segmented">
                           <div  style="width:{{100/activity.maxParticipants}}%"
-                                class="item" ng-repeat="n in [] | range:activity.participants.lenght">
+                                class="item" ng-repeat="n in [] | range:activity.participants.length">
                             <div class="filled"></div>
                           </div>
                           <div  style="width:{{100/activity.maxParticipants}}%"
-                                class="item" ng-repeat="n in [] | range: (activity.maxParticipants-activity.participants.lenght)">
+                                class="item" ng-repeat="n in [] | range: (activity.maxParticipants-activity.participants.length)">
                             <div class="empty"></div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div class="hiddeable" ng-show="activity.showMap">
+                    <div class="hiddeable" ng-if="activity.showMap">
                       <div>{{activity.location.name}}<br /><br />
-                          <ui-gmap-google-map center="{latitude: activity.location.coords.lat,longitude: activity.location.coords.lng}"
+                          <ui-gmap-google-map center="centerMap"
                                               zoom="15"
                                               draggable="true"
-                                              options="{scrollwheel: true}">
-                              <ui-gmap-marker coords="{latitude: activity.location.coords.lat,longitude: activity.location.coords.lng}"  idkey="0"></ui-gmap-marker>
+                                              options="{scrollwheel: true}"
+                                              ng-init="centerMap = {latitude: activity.location.coords.latitude, longitude: activity.location.coords.longitude}">
+                              <ui-gmap-marker coords="centerMap" options="{draggable: false}" idkey="0"
+                                              ng-init="centerMap = {latitude: activity.location.coords.latitude, longitude: activity.location.coords.longitude}"></ui-gmap-marker>
                           </ui-gmap-google-map>
                       </div>
                     </div>
