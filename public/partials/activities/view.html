@@ -1,6 +1,6 @@
 <h2>Actividad: {{activity.name}}</h2>
 <br />
-<div class="col-md-8">
+<div class="col-md-10">
     <div class="well well-lg">
         <div class="row">
             <div class="featurette-image center-block" style="margin-bottom: 30px;" align="center">
@@ -78,7 +78,7 @@
         <div class="row">
             <div class="col-md-8">
                 <!-- Owner options -->
-                <button class="btn btn-primary" ng-show= "user._id==activity.creator.userID" ui-sref="activities-edit({id:#def1ffactivity._id})">Editar actividad</button>
+                <button class="btn btn-primary" ng-show= "user._id==activity.creator.userID" ui-sref="activities-edit({id:activity._id})">Editar actividad</button>
                 <button class="btn btn-danger" ng-show= "user._id==activity.creator.userID" ng-click="deleteActivity()">Eliminar actividad</button>
 
                 <!-- Participate -->
