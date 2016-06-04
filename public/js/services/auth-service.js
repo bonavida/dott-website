@@ -47,6 +47,8 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
     return $q(function(resolve, reject) {
       $http.get(API_ENDPOINT.url + '/profile').then(function(result) {
         if (result.data.success) {
+          isAdmin = result.data.msg.isAdm;
+          console.log(isAdmin);
           resolve(result.data.msg);
         } else {
           reject(result.data.msg);
@@ -71,8 +73,9 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
 
   var logout = function() {
     destroyUserCredentials();
+    isAdmin = false;
   };
-  
+
   var edit = function(user) {
     return $q(function(resolve, reject) {
       console.log("auth-service llama a auth");
@@ -86,10 +89,10 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
       });
     });
   };
-  
+
   var editPwd = function(user) {
 	console.log("auth-service");
-	
+
     return $q(function(resolve, reject) {
       console.log("auth-service llama a auth");
       $http.put(API_ENDPOINT.url + '/profile/pwd', user).then(function(result) {
@@ -111,15 +114,10 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
           reject(result.data.msg);
         }
       });
-    });  
+    });
   };
-  
+
   loadUserCredentials();
-    
-    var user = getUser();
-    if (user.isAdm){
-        isAdmin = false;
-    }
 
   return {
       login: login,

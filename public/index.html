@@ -65,17 +65,20 @@
 	      	</ul>
 
             <!-- ACCIONES ADMINISTRACION arriba derecha!! :o -->
-            <ul class="nav navbar-nav navbar-right" ng-hide="isAdmin()">
+            <ul class="nav navbar-nav navbar-right" ng-show="isAdmin()">
 	        <!-- <li><p class="navbar-text">Already have an account?</p></li> -->
 	        <li class="dropdown" uib-dropdown>
 	          <a href="#" class="dropdown-toggle" uib-dropdown-toggle><b>Admin</b> <span class="caret"></span></a>
 							<ul class="dropdown-menu" uib-dropdown-menu>
-                                <li>
-                                    <a ui-sref="adminActivities">Manage activities</a>
-                                </li>
-                                <li>
-                                    <a ui-sref="manage-users">Manage users</a>
-                                </li>
+                <li>
+                  <a ui-sref="adminActivities">Manage activities</a>
+                </li>
+                <li>
+                  <a ui-sref="manage-users">Manage users</a>
+                </li>
+                <li>
+                  <a ui-sref="categories">Manage categories</a>
+                </li>
 							</ul>
 	        	</li>
 	      	</ul>

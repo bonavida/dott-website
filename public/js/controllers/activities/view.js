@@ -73,6 +73,7 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
         }else{
         	$scope.errPart=1;
 			$scope.msgPart = "Lo sentimos mucho pero esta actividad ya está completa.";
+            $timeout(callAtTimeout, 3000);
         }
     };
 
@@ -125,7 +126,7 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
     };
 
     function callAtTimeout() {
-        $state.go('activities');
+        $scope.errPart = 2;
     }
 
     $scope.sendMessage = function() {
