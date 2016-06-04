@@ -48,12 +48,25 @@
                         <th class="col-md-2">Nº máx. participantes</th>
                         <td class="col-md-10">{{activity.maxParticipants}}</td>
                     </tr>
+                    <tr>
+                        <th class="col-md-2">Participantes</th>
+                        <td class="col-md-10">
+                            <div style="margin-left:-50px;">
+                                <ul>
+                                    <li class="pthumbnail" ng-repeat="part in activity.participants">
+                                        <a ui-sref="public-profile({id:part.userID})">
+                                            <img width="40" height="40" class="img-crop-circle" ng-src="{{part.image}}" uib-tooltip="{{part.name}}" tooltip-placement="bottom" />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
         </div>
         <div ng-show="areYouParticipant() || (user._id==activity.creator.userID)">
-            <br />
             <div class="well" style="background-color:#d1e0e0">
                 <div class="row">
                     <div class="col-md-12">
