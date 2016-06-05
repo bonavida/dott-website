@@ -9,9 +9,9 @@ angular.module('dottApp.controllers').controller('LoginUserController', function
 		console.log($scope.username, $scope.pwd);
 		if($scope.username && $scope.pwd){
 			AuthService.login({"username":$scope.username, "password":$scope.pwd}).then(function(){
-				$state.go('activities');
 				$scope.status = 1;
 				console.log("REDIRIGIR!");
+				$state.go('activities');
 			}).catch(function(){
 				$scope.status = 0;
 				console.log("ERROR!");
@@ -30,14 +30,18 @@ angular.module('dottApp.controllers').controller('LoginUserController', function
 	    });
 	};
 
-	$scope.getUser();
-
 	$scope.isAuthenticated = function(){
 		return AuthService.isAuthenticated();
+	};
+
+	$scope.isAdmin = function(){
+		return AuthService.isAdmin();
 	};
 
 	$scope.logout = function() {
 	    AuthService.logout();
 	    $state.go('user-login');
 	};
+
+	$scope.getUser();
 });

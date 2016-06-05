@@ -1,6 +1,6 @@
 <h2>Actividad: {{activity.name}}</h2>
 <br />
-<div class="col-md-8">
+<div class="col-md-10">
     <div class="well well-lg">
         <div class="row">
             <div class="featurette-image center-block" style="margin-bottom: 30px;" align="center">
@@ -48,12 +48,25 @@
                         <th class="col-md-2">Nº máx. participantes</th>
                         <td class="col-md-10">{{activity.maxParticipants}}</td>
                     </tr>
+                    <tr>
+                        <th class="col-md-2">Participantes</th>
+                        <td class="col-md-10">
+                            <div style="margin-left:-50px;">
+                                <ul>
+                                    <li class="pthumbnail" ng-repeat="part in activity.participants">
+                                        <a ui-sref="public-profile({id:part.userID})">
+                                            <img width="40" height="40" class="img-crop-circle" ng-src="{{part.image}}" uib-tooltip="{{part.name}}" tooltip-placement="bottom" />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
         </div>
         <div ng-show="areYouParticipant() || (user._id==activity.creator.userID)">
-            <br />
             <div class="well" style="background-color:#d1e0e0">
                 <div class="row">
                     <div class="col-md-12">
@@ -78,7 +91,7 @@
         <div class="row">
             <div class="col-md-8">
                 <!-- Owner options -->
-                <button class="btn btn-primary" ng-show= "user._id==activity.creator.userID" ui-sref="activities-edit({id:#def1ffactivity._id})">Editar actividad</button>
+                <button class="btn btn-primary" ng-show= "user._id==activity.creator.userID" ui-sref="activities-edit({id:activity._id})">Editar actividad</button>
                 <button class="btn btn-danger" ng-show= "user._id==activity.creator.userID" ng-click="deleteActivity()">Eliminar actividad</button>
 
                 <!-- Participate -->
