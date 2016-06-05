@@ -4,7 +4,7 @@
   "description": "Aplicacion para juntar gente con aficiones comunes",
   "main": "server.js",
   "scripts": {
-    "test": "karma start karma.conf.js",
+    "test": "mocha",
     "mongo": "mongod --dbpath data/",
     "postinstall": ""
   },
@@ -42,7 +42,4 @@
     "mocha": "^2.4.5",
     "restler": "^3.4.0"
   },
-  "scripts": {
-    "test": "mocha"
-  }
 }

@@ -2,7 +2,7 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
   var LOCAL_TOKEN_KEY = 'yourTokenKey';
   var isAuthenticated = false;
   var authToken;
-    var isAdmin = false;
+  var isAdmin = false;
 
   function loadUserCredentials() {
     var token = window.localStorage.getItem(LOCAL_TOKEN_KEY);
