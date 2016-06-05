@@ -20,12 +20,12 @@ module.exports = function(router){
         location  : req.body.location,
         image     : req.body.image,
       });
-      newUser.save(function(err){
+      newUser.save(function(err, created){
         if (err) {
           console.log(err);
           return res.json({success: false, msg: 'Username or e-mail already exists.'});
         }
-        res.json({success: true, msg: 'Successful created new user.'});
+        res.json({id: created._id, success: true, msg: 'Successful created new user.'});
       });
 
 
