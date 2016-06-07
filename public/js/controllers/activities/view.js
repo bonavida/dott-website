@@ -118,7 +118,7 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
         ActivityService.remove($stateParams.id).then(function () {
             $scope.msg = "Actividad borrada con éxito.";
             $scope.err = 0;
-            $timeout(callAtTimeout, 3000);
+            $timeout(callAtDeleting, 3000);
         }).catch(function(){
         	$scope.msg = "Se ha producido un error al borrar la actividad.";
         	$scope.err = 1;
@@ -127,6 +127,10 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
 
     function callAtTimeout() {
         $scope.errPart = 2;
+    }
+
+    function callAtDeleting() {
+        $state.go('activities');
     }
 
     $scope.sendMessage = function() {
