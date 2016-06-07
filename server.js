@@ -13,7 +13,36 @@ var port = process.env.PORT || 3000;
 
 var Activity  = require('./models/activity');
 var User  = require('./models/user');
-mongoose.connect(config.database);
+
+mongoose.connect(config.database, function(err) {
+    if (err) {
+        console.log("Error al conectarse a la base de datos.");
+    } else {
+        var admin = new User({
+            name:  "admin",
+            username: "admin",
+            password: "admin123",
+            email: "admin@admin.com",
+            birthday: "",
+            location: "",
+            image: "images/profile.png",
+            isAdm: true
+        });
+        User.findOne({username : admin.username}, function(err, user) {
+          if (err) {
+            console.log(err);
+          } else if (!user) {
+            admin.save(function(err, created) {
+              if (err) {
+                console.log(err);
+              } else if (created) {
+                console.log("Admin successfully created.");
+              }
+            });
+          }
+        });
+    }
+});
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
