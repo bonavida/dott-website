@@ -112,17 +112,17 @@ describe('User REST API tests', function(){
 			done();
 		});
 	});
-/*
-    it('Get user profile using token', function(done){
+
+    it('Get user profile using token exchange', function(done){
         var header = {
-            'auth' : token
-        }
-        rest.get(base+"api/profile" , {headers: header, data: user}).on("complete", function(result){
-            assert(result.success);
+            'Authorization': token
+        };
+		rest.get(base+"api/profile" , {headers: header}).on("complete", function(result){
+			assert(result.success);
             done();
         });
     });
-*/
+
     it('Get all users', function(done){
         rest.get(base+"api/users" ).on("complete", function(result){
             assert(result.length == existingUsers + 1);

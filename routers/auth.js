@@ -97,7 +97,8 @@ module.exports = function(router){
   }
 }).put('/profile/pwd', passport.authenticate('jwt', { session: false}), function(req, res) {
   var token = getToken(req.headers);
-  if (token) {
+  console.log("vlad");
+      if (token) {
     var decoded = jwt.decode(token, config.secret);
     if(decoded.username == req.body.username){
       User.findById(req.body._id, function(err, user){

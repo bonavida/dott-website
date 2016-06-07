@@ -4,6 +4,7 @@
   "description": "Aplicacion para juntar gente con aficiones comunes",
   "main": "server.js",
   "scripts": {
+    "prestart" : "node create-admin.js",
     "test": "mocha",
     "mongo": "mongod --dbpath data/",
     "postinstall": ""
