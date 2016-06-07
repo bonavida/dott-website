@@ -48,7 +48,6 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
       $http.get(API_ENDPOINT.url + '/profile').then(function(result) {
         if (result.data.success) {
           isAdmin = result.data.msg.isAdm;
-          console.log(isAdmin);
           resolve(result.data.msg);
         } else {
           reject(result.data.msg);
@@ -58,11 +57,11 @@ angular.module('dottApp.services').service('AuthService', function($q, $http, AP
   };
 
   var login = function(user) {
-    console.log(user);
     return $q(function(resolve, reject) {
       $http.post(API_ENDPOINT.url + '/login', user).then(function(result) {
         if (result.data.success) {
           storeUserCredentials(result.data.token);
+          isAdmin = user.isAdmin;
           resolve(result.data.msg);
         } else {
           reject(result.data.msg);
