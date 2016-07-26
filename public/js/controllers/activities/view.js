@@ -32,7 +32,7 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
     $scope.areYouParticipant = function(){
     	if($scope.activity.participants !== undefined){
 	    	for(var i=0; i<$scope.activity.participants.length; i++){
-          console.log($scope.activity.participants[i]);
+          //console.log($scope.activity.participants[i]);
 	    		if($scope.activity.participants[i].userID == $scope.user._id){
 	    			return true;
 	    		}
@@ -78,17 +78,14 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
     };
 
     $scope.loadLocation = function() {
-        $scope.lat = $scope.activity.location.coords.latitude;
-        $scope.lng = $scope.activity.location.coords.longitude;
+        //$scope.lat = $scope.activity.location.coords.latitude;
+        //$scope.lng = $scope.activity.location.coords.longitude;
         $scope.searchModel = {
             searchTerm: $scope.activity.location.name
         };
-
+        console.log($scope.activity.location);
         $scope.map = {
-            center: {
-                latitude: $scope.lat,
-                longitude: $scope.lng
-            },
+            center: $scope.activity.location.coords,
             zoom: 15,
             options : {
                 scrollwheel: true
@@ -97,10 +94,7 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
 
         $scope.marker = {
             id: 0,
-            coords: {
-                latitude: $scope.lat,
-                longitude: $scope.lng
-            },
+            coords: $scope.activity.location.coords,
             options: {
                 draggable: false
             }
@@ -134,8 +128,9 @@ angular.module('dottApp.controllers').controller('ViewActivityController',functi
     }
 
     $scope.sendMessage = function() {
-        console.log($scope.activity._id);
+        //console.log($scope.activity._id);
         socket.emit('send message', { message: $scope.message, activity_id: $scope.activity._id });
+        console.log($scope.message);
         $scope.message.text = "";
     };
 

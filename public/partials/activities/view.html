@@ -74,14 +74,14 @@
                           <div ng-repeat="message in messages track by $index"><b>{{message.user}}:</b> {{message.text}}</div>
                         </div>
                         <br />
-                        <div class="row">
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" ng-model="message.text" ng-enter="sendMessage()" />
-                            </div>
-                            <div class="col-md-1">
-                                <button class="btn btn-primary" ng-click="sendMessage()">Enviar</button>
-                            </div>
-                        </div>
+                          <div class="input-group">
+                              <input type="text" class="form-control" ng-model="message.text" ng-enter="sendMessage()" />
+                              <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="sendMessage()">
+                                  <span class="glyphicon glyphicon-send success"></span>
+                                </button>
+                              </span>
+                          </div>
                     </div>
                 </div>
             </div>
